@@ -12,7 +12,7 @@ sudo docker build -t covidi_cedric:latest .
 ``` 
 #to run the container (-d : in the background; -p 5000:5000 map the docker container port 5000 to the host port 5000)  
 ```
-sudo docker run -d -p 5000:5000 --name covidi_cedric covidi_cedric   
+sudo docker run -d -p 5000:5000 --name covidi_cedric -v ${pwd}/data_input:/app/data_in -v ${pwd}/data_output:/app/data_out covidi_cedric
 ```  
 # building with docker-compose
 #if it's easier I have also provided a docker-compose file that does the same thing, to build and run in one command:
