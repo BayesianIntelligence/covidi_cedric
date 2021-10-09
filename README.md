@@ -2,7 +2,7 @@
 # deployment instructions  
 #to clone the git repo to your local environment  
 ```
-git clone  
+git clone https://github.com/COVID-I/covidi_cedric.git  
 ```
 #to build the docker image and give the image the name: covidi_cedric:latest 
 ```
