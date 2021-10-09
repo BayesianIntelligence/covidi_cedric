@@ -4,6 +4,7 @@
 ```
 git clone https://github.com/COVID-I/covidi_cedric.git  
 ```
+# building with docker
 #to build the docker image and give the image the name: covidi_cedric:latest 
 ```
 cd covidi_cedric  
@@ -13,6 +14,15 @@ sudo docker build -t covidi_cedric:latest .
 ```
 sudo docker run -d -p 5000:5000 --name covidi_cedric covidi_cedric   
 ```  
+# building with docker-compose
+#if it's easier I have also provided a docker-compose file that does the same thing, to build and run in one command:
+```
+sudo docker-compose up -d
+```
+#if for any reason you need to access the docker container directly you can use the following command:
+```
+sudo docker exec -it covidi_cedric /bin/bash
+```
 # how to use  
 #to confirm the API is working via a web browser  
 ```
@@ -26,7 +36,7 @@ http://localhost:5000/getall
 ```
 http://localhost:5000/getall  
 ```
-#the POST statement allows you to set evidence on the BN. HEre is an example JSON body with evidence set for 2 nodes.
+#the POST statement allows you to set evidence on the BN. Here is an example JSON body with evidence set for 2 nodes.
 ```
 {
     "ci_age_group_bg":"adult",
