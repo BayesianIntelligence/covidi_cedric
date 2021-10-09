@@ -14,7 +14,7 @@ param_dict = {'': '', '': ''}
 @app.route('/')
 @app.route('/index')
 def index():
-	return "API is working!"
+	return "The COVID-I API is running"
 
 # A route to set evidence and return the updated outputs	
 @app.route('/getall', methods=['POST'])

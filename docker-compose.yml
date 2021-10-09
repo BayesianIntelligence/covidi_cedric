@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    #name the image
+    image: covidi_cedric
+    #name the container
+    container_name: covidi_cedric
+    volumes:
+      - ./data_input:/app/data_in
+      - ./data_output:/app/data_out
+    ports:
+      - 5000:5000
