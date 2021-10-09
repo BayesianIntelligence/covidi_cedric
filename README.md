@@ -18,7 +18,19 @@ sudo docker run -d -p 5000:5000 --name covidi_cedric covidi_cedric
 ```
 http://localhost:5000  
 ```
-#to return all nodes and distributions from the BN model  
+#to [GET] all nodes and distributions from the BN model via HTTP  
 ```
 http://localhost:5000/getall  
 ```
+#The API also supports POST to the same end point
+```
+http://localhost:5000/getall  
+```
+#the POST statement allows you to set evidence on the BN. HEre is an example JSON body with evidence set for 2 nodes.
+```
+{
+    "ci_age_group_bg":"adult",
+    "ci_anticoag_treat_bl":"FALSE"
+}
+```
+#any number of BN nodes can be set, the API will simply ignore incorrectly named nodes. The file "bn_node_output_file.xlsx" provides a full list of possible nodes and their states, and can be found in the same fodler as this README.
