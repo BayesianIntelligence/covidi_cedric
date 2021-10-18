@@ -1,0 +1,192 @@
+[
+  {
+    "TimeSeries": [
+      {
+        "Timestamp": 4952771.686060875,
+        "RespiratoryRateU": "esse",
+        "HeartRateU": "magna in in",
+        "OxygenSaturationU": "cillum",
+        "PlateletsU": "in",
+        "NeutrophilsU": "minim aute ut",
+        "LDH": 88871758.30064887,
+        "PO2": 80555314.4811171,
+        "Creatinine": 41675117.93974059,
+        "VascularComplication": "Yes",
+        "HeartRate": 49479214.333252355,
+        "PCO2U": "in cillum",
+        "DiastolicBP": 94596877.5052203,
+        "PO2U": "ut ad",
+        "CreatinineU": "mollit laboris cupidatat",
+        "LymphocytesU": "Ut in Excepteur irure enim",
+        "AntiCoagulation": "Yes",
+        "TroponinU": "eu",
+        "TestOrderedTimestamp": 65108750.55975418,
+        "Troponin": 62485306.471027814,
+        "RespiratoryRate": 7471420.35899182,
+        "PCO2": 57150556.08167234,
+        "OxygenTreatment": "NoOxygenTreatment",
+        "DDimerU": "minim Duis anim"
+      },
+      {
+        "Timestamp": 54682261.81166021,
+        "CRPU": "deserunt",
+        "RespiratoryRate": 27515143.60790639,
+        "CreatinineU": "Ut",
+        "aPTTU": "esse deserunt aute",
+        "SystolicBP": 1635511.9991872557,
+        "PulmonaryComplication": "No",
+        "PO2": 67785731.34350955,
+        "VascularComplication": "No",
+        "SystolicBPU": "aute aliqua aliquip ullamco ad"
+      }
+    ],
+    "OxygenTreatment": [
+      "MechanicalVentilation",
+      "SupplementalO2",
+      "MechanicalVentilation"
+    ],
+    "DurationOfStay": -64394981.84142334,
+    "BaselineStatus": "DischargedFromED",
+    "AnyICU": "*",
+    "FinalStatus": "Transferred",
+    "COVIDStatus": "Sneaky",
+    "ChronicPulmonaryDisease": "*",
+    "Age": "*",
+    "Gender": "F"
+  },
+  {
+    "TimeSeries": [
+      {
+        "Timestamp": 26916731.329560183,
+        "TestOrderedTimestamp": 24332162.729142226,
+        "LactateU": "deserunt sit eiusmod",
+        "CRPU": "Duis quis culpa",
+        "PCO2": 94323934.15098894
+      },
+      {
+        "Timestamp": 84142867.02283016,
+        "DiastolicBPU": "Excepteur",
+        "OxygenSaturationU": "irure",
+        "Platelets": 68898909.18334343,
+        "Neutrophils": 19495549.414834533,
+        "LDHU": "tempor",
+        "ResultReceivedTimestamp": 65885775.74424867,
+        "LymphocytesU": "aliqua ad occaecat dolore minim",
+        "TestPerformedTimestamp": 86745326.23289023,
+        "SystolicBPU": "ea laboris nisi dolore",
+        "Creatinine": 28516768.552881923,
+        "AntiInflammatory": "No",
+        "HeartRate": 68771350.94102547,
+        "PO2U": "ad sint Duis veniam fugiat",
+        "Lactate": 36225931.77507889,
+        "OxygenTreatment": "CPAP/BIPAP/OtherNonInvasive",
+        "aPTTU": "sed occaecat elit eiusmod",
+        "AntiViral": "Yes",
+        "PlateletsU": "esse in reprehenderit",
+        "Lymphocytes": 24343496.652386222,
+        "CRP": 21118472.799350508,
+        "LDH": 29657927.326735757,
+        "PulmonaryComplication": "Yes",
+        "AntiCoagulation": "Yes",
+        "DDimer": 31448079.33112621,
+        "SystolicBP": 90572535.4355142,
+        "NeutrophilsU": "velit",
+        "DiastolicBP": 69212914.70801497,
+        "VascularComplication": "Yes",
+        "TestOrderedTimestamp": 46683689.54574267,
+        "CreatinineU": "ex qui nisi",
+        "RespiratoryRate": 44966554.01031406
+      },
+      {
+        "Timestamp": 36644858.76726149,
+        "OxygenTreatment": "HighFlowNasal",
+        "CreatinineU": "ullamco sit veniam mollit",
+        "LactateU": "veniam laboris exercitation in",
+        "Neutrophils": 18459836.346848067,
+        "Lymphocytes": 84047314.47843538,
+        "LDH": 69103852.31302842,
+        "DDimerU": "irure in voluptate",
+        "Status": "AdmittedToWard",
+        "PO2U": "sint irure ea dolor"
+      },
+      {
+        "Timestamp": 52786263.188826025,
+        "DDimerU": "aliquip fugiat",
+        "AntiViral": "Yes",
+        "CardiacComplication": "No",
+        "Lymphocytes": 4660707.807371312,
+        "AntiInflammatory": "No",
+        "Creatinine": 6946753.530416228,
+        "RespiratoryRate": 75112964.56315967,
+        "TroponinU": "occaecat qui Lorem in sunt",
+        "PO2U": "mollit et Excepteur quis",
+        "HeartRateU": "deserunt",
+        "TestOrderedTimestamp": 85456422.8838347,
+        "DDimer": 64396750.78660301,
+        "CreatinineU": "nisi enim",
+        "aPTT": 13195902.801437365,
+        "Hematocrit": 92096335.6229662,
+        "PCO2": 80048907.12344308,
+        "Status": "DischargedFromED",
+        "Troponin": 35762722.07703466,
+        "PO2": 29531396.546049017
+      }
+    ],
+    "Gender": "*",
+    "COVIDStatus": "Sneaky",
+    "FinalStatus": "Discharged",
+    "Age": 77813778.98544937,
+    "AnyICU": "No",
+    "BaselineStatus": "Death",
+    "DurationOfStay": -35967637.12846211,
+    "OxygenTreatment": [
+      "HighFlowNasal"
+    ],
+    "ChronicPulmonaryDisease": "Yes"
+  },
+  {
+    "TimeSeries": [
+      {
+        "Timestamp": 42355260.798691206,
+        "HematocritU": "ut est",
+        "OxygenTreatment": "SupplementalO2",
+        "PCO2": 58153737.595521696,
+        "DiastolicBP": 2364430.987312782,
+        "OxygenSaturation": 33191260.98256182,
+        "RespiratoryRate": 6670466.24695602,
+        "HeartRate": 27969491.595561612,
+        "DiastolicBPU": "ut mollit eiusmod",
+        "CreatinineU": "Excepteur ea occaecat ex",
+        "Lymphocytes": 18674598.629164096,
+        "PO2U": "consectetur commodo Lorem",
+        "RespiratoryRateU": "Ut ad sit sunt",
+        "AntiInflammatory": "No",
+        "AntiViral": "Yes",
+        "PO2": 53816598.491054535,
+        "DDimerU": "fugiat tempor veniam",
+        "VascularComplication": "No",
+        "OxygenSaturationU": "anim id",
+        "SystolicBPU": "do dolor",
+        "Neutrophils": 98425126.82522917,
+        "NeutrophilsU": "minim magna nisi"
+      },
+      {
+        "Timestamp": 35044887.512328416,
+        "AntiInflammatory": "No",
+        "CardiacComplication": "No",
+        "HematocritU": "irure cillum",
+        "Lactate": 8018057.577437054,
+        "Neutrophils": 14189811.19880438
+      }
+    ],
+    "AnyICU": "Yes",
+    "OxygenTreatment": [
+      "*",
+      "HighFlowNasal",
+      "HighFlowNasal"
+    ],
+    "Age": 42619245.351977006,
+    "ChronicPulmonaryDisease": "*",
+    "COVIDStatus": "*"
+  }
+]

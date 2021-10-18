@@ -1,0 +1,125 @@
+{
+	"type": "array",
+	"description": "Throughout, NM = not measured/tested/asked, * = missing for any other reason. If NM not possible to detect, use *.",
+	"items": {
+		"type": "object",
+		"required": ["TimeSeries"],
+		"properties": {
+			"Age": {
+				"anyOf": [{"type": "number", "minimum": 0}, {"enum": ["*"]}],
+				"description": "Unit: years"
+			},
+			"Gender": {
+				"enum": ["F","M","*"]
+			},
+			"FinalStatus": {
+				"enum": ["Discharged","Death","Transferred","Other","*"]
+			},
+			"BaselineStatus": {
+				"enum": ["DischargedFromED","AdmittedToWard","AdmittedToICU","Death","*"]
+			},
+			"AnyICU": {
+				"description": "Has this person ever been admitted to ICU: Yes, No. Can derive from time series",
+				"enum": ["Yes","No","*"]
+			},
+			"COVIDStatus": {
+				"description": "Confirmed (prior to ED presentation), sneaky (confirmed after ED visit)",
+				"enum": ["Confirmed","Sneaky","*"]
+			},
+			"DurationOfStay": {
+				"type": "number",
+				"description": "Unit: days"
+			},
+			"OxygenTreatment": {
+				"type": "array",
+				"items": {
+					"type": "string",
+					"enum": ["NoOxygenTreatment","SupplementalO2", "HighFlowNasal",
+						"CPAP/BIPAP/OtherNonInvasive", "MechanicalVentilation",
+						"*"]
+				}
+			},
+			"ChronicPulmonaryDisease": {
+				"enum": ["Yes","No","NM","*"]
+			},
+			"TimeSeries": {
+				"type": "array",
+				"items": {
+					"type": "object",
+					"properties": {
+						"Timestamp": {
+							"type": "number",
+							"minimum": 0,
+							"description": "if available, TestPerformedTimestamp; otherwise TestOrderedTimestamp; otherwise ResultReceivedTimestamp. So long as this is an ordered number, any unit is fine."
+						},
+						"TestOrderedTimestamp": {
+							"type": "number",
+							"minimum": 0,
+							"description": "The date/time at which the test was ordered (or some transformation of it, if needed)."
+						},
+						"TestPerformedTimestamp": {
+							"type": "number",
+							"minimum": 0,
+							"description": "The date/time at which the test was performed."
+						},
+						"ResultReceivedTimestamp": {
+							"type": "number",
+							"minimum": 0,
+							"description": "The date/time at which the test result was received."
+						},
+						"HeartRate": {"type": "number", "minimum": 0},
+						"HeartRateU": {"type": "string"},
+						"Troponin": {"type": "number", "minimum": 0},
+						"TroponinU": {"type": "string"},
+						"DiastolicBP": {"type": "number", "minimum": 0},
+						"DiastolicBPU": {"type": "string"},
+						"SystolicBP": {"type": "number", "minimum": 0},
+						"SystolicBPU": {"type": "string"},
+						"CRP": {"type": "number", "minimum": 0},
+						"CRPU": {"type": "string"},
+						"LDH": {"type": "number", "minimum": 0},
+						"LDHU": {"type": "string"},
+						"Lymphocytes": {"type": "number", "minimum": 0},
+						"LymphocytesU": {"type": "string"},
+						"Neutrophils": {"type": "number", "minimum": 0},
+						"NeutrophilsU": {"type": "string"},
+						"OxygenSaturation": {"type": "number", "minimum": 0},
+						"OxygenSaturationU": {"type": "string"},
+						"PO2": {"type": "number", "minimum": 0},
+						"PO2U": {"type": "string"},
+						"PCO2": {"type": "number", "minimum": 0},
+						"PCO2U": {"type": "string"},
+						"RespiratoryRate": {"type": "number", "minimum": 0},
+						"RespiratoryRateU": {"type": "string"},
+						"aPTT": {"type": "number", "minimum": 0},
+						"aPTTU": {"type": "string"},
+						"Platelets": {"type": "number", "minimum": 0},
+						"PlateletsU": {"type": "string"},
+						"DDimer": {"type": "number", "minimum": 0},
+						"DDimerU": {"type": "string"},
+						"Creatinine": {"type": "number", "minimum": 0},
+						"CreatinineU": {"type": "string"},
+						"Lactate": {"type": "number", "minimum": 0},
+						"LactateU": {"type": "string"},
+						"Hematocrit": {"type": "number", "minimum": 0},
+						"HematocritU": {"type": "string"},
+						"OxygenTreatment": {
+							"enum": ["NoOxygenTreatment","SupplementalO2", "HighFlowNasal",
+								"CPAP/BIPAP/OtherNonInvasive", "MechanicalVentilation"]
+						},
+						"Status": {
+							"enum": ["DischargedFromED","AdmittedToWard","AdmittedToICU","Death"]
+						},
+						"PulmonaryComplication": {"enum": ["Yes","No"]},
+						"CardiacComplication": {"enum": ["Yes","No"]},
+						"VascularComplication": {"enum": ["Yes","No"]},
+						"AntiCoagulation": {"enum": ["Yes", "No"]},
+						"AntiInflammatory": {"enum": ["Yes", "No"]},
+						"AntiViral": {"enum": ["Yes", "No"]}
+					},
+					"required": ["Timestamp"]
+				}
+			}
+		}
+	}
+}
