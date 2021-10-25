@@ -7,7 +7,7 @@ from builtins import object
 import ctypes, re, itertools, sys, pdb
 from ctypes import *
 
-license = ''
+license = '+Site/MonashU/120,310-6-AS/47037'
 
 def setLicense(str):
 	license = str
