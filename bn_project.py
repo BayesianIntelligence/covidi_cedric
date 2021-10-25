@@ -1,7 +1,7 @@
 import _env,csv,math 
 from bni_netica import *
 
-bn_model = 'progression.trained_illu.dne'
+bn_model = 'progression5.trained.dne'
 
 nested_dictionary = { }
 
