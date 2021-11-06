@@ -64,7 +64,7 @@ if sys.platform == 'win32':
         g = ctypes.windll.LoadLibrary("Netica.dll")
 elif sys.platform.startswith('linux'):
     print("Loading Netica")
-    g = ctypes.cdll.LoadLibrary('./libNeticaJ.so')
+    g = ctypes.cdll.LoadLibrary('./_lib/libNeticaJ.so')
 else:
     print('Need platform specific library')
 
