@@ -19,43 +19,60 @@ def updateBn(param_dict):
 
                 if node.name() == 'ci_pulse_rate_t0':
                     print ('    Converting ci_pulse_rate_t0 to ci_func_car_t0')
-                    beats = param_dict[node.name()]
+                    beats = int(param_dict[node.name()])
                     status = ''
                     if beats < 45 and beats > 199:
                         status = 'abnormal'
                     else:
                         status = 'normal'
-                    #TODO Check with Yue, assume greater than 95 is low
                     enterFinding(net.node('ci_func_car_t0'), status)
-                if node.name() == 'ci_oxygen_saturation_t0':
+                    print ('    Entering findings for: ci_func_car_t0, with state: ', status)
+                elif node.name() == 'ci_oxygen_saturation_t0':
                     print ('    Converting ci_oxygen_saturation_t0 to ci_hypoxaemia_t0')
                     #If SaO2 is between 90-95%, 'ci_hypoxaemia_t0' is 'moderate'. If SaO2 is <=89%, 'ci_hypoxaemia_t0' is 'severe'.
-                    sao2 = param_dict[node.name()]
-                    status = ''
-                    if sao2 <= 0.89:
-                        status = 'severe'
+                    sao2 = float(param_dict[node.name()])
+                    status = 'normal'
+                    if float(sao2) <= 0.89:
+                        status = 'verylow'
+                    elif float(sao2) <= 95:
+                        status = 'low'
                     else:
-                        status = 'moderate'
-                        #TODO Check with Yue, assume greater than 95 is low
+                        status = 'normal'
                     enterFinding(net.node('ci_hypoxaemia_t0'), status)
-                if node.name() == 'CREATININE':
-                    print ('    CONVERT CRT INTEGER TO DISCRETISATION')
-                if node.name() == 'NEUTRO' and 'LYMPH':
-                    print ('    CALC to NLR and CONVERT NLR int to DISCRETISATION')
-                if node.name() == 'NEUTRO' and 'LYMPH':
-                    print ('    CALC to NLR and CONVERT NLR int to DISCRETISATION')
-                if node.name() == 'NEUTRO' and not 'LYMPH':
-                    print ('    CONVERT NEUTRO int to DISCRETISATION')
-                if node.name() == 'LYMPH' and not 'NEUTRO':
-                    print ('    CONVERT LYMPH int to DISCRETISATION')
+                    print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
+                elif node.name() == 'ci_creat_t0':
+                    print ('    Converting ci_creat_t0 to ci_intravas_volume_t0 OR ci_intravas_volume_t0')
+                    crt = int(param_dict[node.name()])
+                    if crt > 90 and param_dict[net.node('ci_chronic_kidney_disease_bg').name()] not in ['true', 'True', 'TRUE']:
+                        enterFinding(net.node('ci_intravas_volume_t0'), 'low')
+                        print ('    Entering findings for: ci_intravas_volume_t0, with state: low')
+                    elif crt > 105:
+                        status = 'low'
+                        enterFinding(net.node('ci_end_organ_perf_t0'), 'low')
+                        print ('    Entering findings for: ci_end_organ_perf_t0, with state: low')
+                elif node.name() == 'ci_neut_t0' and 'ci_lym_t0' in param_dict:
+                    print ('    combining ci_neut_t0 and ci_lym_t0 to calculate NLR')
+                    nlr = float(param_dict[node.name()])/float(param_dict[net.node('ci_end_organ_perf_t0')])
+                    #TODO ask Yue which one is NLR node in the BN
+                elif node.name() == 'ci_neut_t0' and 'ci_lym_t0' not in param_dict:
+                    print ('    entering finding for neutrophil only')
+                    neut = param_dict[node.name()]
+                    #TODO update this logic
+                    enterFinding(net.node('ci_neut_t0'), neut)
+                    print ('    Entering findings for: ci_neut_t0, with state: ', neut)
+                elif node.name() == 'ci_lym_t0' and not net.node('ci_neut_t0'):
+                    print ('    entering finding for lymphocytes only')
+                    lym = param_dict[node.name()]
+                    #TODO update this logic
+                    enterFinding(net.node('ci_lym_t0'), lym)
+                    print ('    Entering findings for: ci_lym_t0, with state: ', lym)
                 else:
+                    print ('No translation logic found for ', node.name())
                     enterFinding(node, param_dict[node.name()])
-                print ('output: ', node.beliefs(), file=sys.stderr)
-            except:
-                print ('    exception caught!', file=sys.stderr)
+                print ('    Node state set! ', file=sys.stderr)
+            except Exception as e:
+                print ('    exception caught!' , e)
                 pass
-            for state in node.states():
-                print ('    state name: ' + state.name(), file=sys.stderr)
 
     #add meta data: the bn name and version, to nested dictionary
     #TODO remove this line and replace with user defined variable in the netica BN net_version

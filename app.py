@@ -3,12 +3,12 @@ from flask import Flask
 from flask_cors import CORS
 from flask import request, jsonify, abort
 import bn_project
-import json 
+import json
 
 app = Flask(__name__)
 CORS(app)
 
-param_dict = {'': '', '': ''}
+param_dict = {'ci_oxygen_saturation_t0': '0.05', 'ci_pulse_rate_t0': '46', 'ci_creat_t0': '91', 'ci_chronic_kidney_disease_bg': 'false', 'ci_neut_t0': '23'}
 
 #default route, allows me to confirm the API is working
 @app.route('/')
@@ -16,7 +16,7 @@ param_dict = {'': '', '': ''}
 def index():
 	return "The COVID-I API is running"
 
-# A route to set evidence and return the updated outputs	
+# A route to set evidence and return the updated outputs
 @app.route('/getall', methods=['POST'])
 def postBnEvidence():
 	if not request.json:
@@ -25,9 +25,9 @@ def postBnEvidence():
 	output_dict = bn_project.updateBn(json.loads(bn_params))
 	response = jsonify(output_dict)
 	response.headers.add('Access-Control-Allow-Origin', '*')
-	return response, 201	
-	
-	
+	return response, 201
+
+
 # A route to return the baseline bn model without setting evidence.
 @app.route('/getall', methods=['GET'])
 def getBaseline():
