@@ -8,7 +8,7 @@ import json
 app = Flask(__name__)
 CORS(app)
 
-param_dict = {'ci_oxygen_saturation_t0': '0.05', 'ci_pulse_rate_t0': '46', 'ci_creat_t0': '91', 'ci_chronic_kidney_disease_bg': 'false', 'ci_neut_t0': '23'}
+param_dict = {'': '', '': ''}
 
 #default route, allows me to confirm the API is working
 @app.route('/')
