@@ -1,12 +1,12 @@
 // ~->[DNET-1]->~
 
-// File created by an unlicensed user using Netica 6.09 on Nov 05, 2021 at 00:25:09 UTC.
+// File created by someone at MonashU using Netica 6.09 on Nov 08, 2021 at 04:26:16 UTC.
 
 bnet untitled {
 AutoCompile = TRUE;
 autoupdate = TRUE;
 comment = "Hello";
-whenchanged = 1636071909;
+whenchanged = 1636345572;
 
 visual V6 {
 	defdispform = BELIEFBARS;
@@ -16,7 +16,6 @@ visual V6 {
 	linkfont = font {shape= "Arial"; size= 9;};
 	ShowLinkStrengths = 1;
 	windowposn = (26, 26, 1640, 659);
-	CommentShowing = TRUE;
 	CommentWindowPosn = (52, 52, 1147, 594);
 	resolution = 72;
 	drawingbounds = (2370, 1300);
@@ -36,6 +35,10 @@ visual V6 {
 	PrinterSetting A {
 		margins = (1270, 1270, 1270, 1270);
 		};
+	};
+user U1 {
+	net_name = "Progression Model No.5";
+	net_version = "20211108";
 	};
 
 node ci_age_group_bg {
@@ -300,7 +303,7 @@ node ci_diabetes_bg {
 		   0.7186273,   6.137849e-5, 0.2813113,    // male         senior          true                     true                         false               
 		   0.009912658, 0.3913814,   0.5987059,    // male         senior          true                     false                        true                
 		   1.863313e-5, 0.5023897,   0.4975917,    // male         senior          true                     false                        false               
-		   0.6082243,   0.3818634,   0.009912203,  // male         senior          false                    true                         true                
+		   0.6082243,   0.3818634,   0.009912204,  // male         senior          false                    true                         true                
 		   0.4676667,   0.00151914,  0.5308142,    // male         senior          false                    true                         false               
 		   5.216305e-4, 0.002081766, 0.9973966,    // male         senior          false                    false                        true                
 		   4.17789e-5,  0.09810107,  0.9018571,    // male         senior          false                    false                        false               
@@ -324,7 +327,7 @@ node ci_diabetes_bg {
 		   0.4114761,   1.4442e-4,   0.5883794,    // female       senior          true                     true                         false               
 		   0.970879,    0.01151155,  0.01760951,   // female       senior          true                     false                        true                
 		   1.715004e-5, 0.4348761,   0.5651067,    // female       senior          true                     false                        false               
-		   0.6082243,   0.3818634,   0.009912203,  // female       senior          false                    true                         true                
+		   0.6082243,   0.3818634,   0.009912204,  // female       senior          false                    true                         true                
 		   0.990615,    0.008282246, 0.001102731,  // female       senior          false                    true                         false               
 		   0.009910697, 0.03955242,  0.9505369,    // female       senior          false                    false                        true                
 		   2.191746e-5, 0.2849373,   0.7150408,    // female       senior          false                    false                        false               
@@ -3313,7 +3316,7 @@ node ci_pulmonary_support_t1 {
 	probs = 
 		// high flow nasal cpap      mechanical venti supplemental o2 none   // ci_pulmonary_support_t0 ci_func_pul_t1 
 		  (0.4880222,   2.310842e-4, 0.1443412,   0.3636569,   0.003748635,  // high flow nasal         abnormal       
-		   0.06602385,  2.946599e-4, 0.003226941, 0.2307544,   0.6997,       // high flow nasal         normal         
+		   0.06602386,  2.946599e-4, 0.003226941, 0.2307544,   0.6997,       // high flow nasal         normal         
 		   2.590336e-4, 0.8902821,   0.033104,    0.07628872,  6.616554e-5,  // cpap                    abnormal       
 		   3.835145e-5, 0.4429614,   0.01414888,  0.02171873,  0.5211326,    // cpap                    normal         
 		   7.865185e-4, 1.343656e-4, 0.9858229,   0.005642978, 0.007613236,  // mechanical venti        abnormal       
@@ -5872,7 +5875,7 @@ node ci_end_organ_perf_t0 {
 		   0.6130567,   0.3869433,    // yesnocomplicatio abnormal              abnormal          normal           normal               true                         false               
 		   0.4069458,   0.5930542,    // yesnocomplicatio abnormal              abnormal          normal           normal               false                        true                
 		   0.2370867,   0.7629133,    // yesnocomplicatio abnormal              abnormal          normal           normal               false                        false               
-		   0.9121,      0.08790016,   // yesnocomplicatio abnormal              normal            verylow          low                  true                         true                
+		   0.9121,      0.08790015,   // yesnocomplicatio abnormal              normal            verylow          low                  true                         true                
 		   0.8978251,   0.102175,     // yesnocomplicatio abnormal              normal            verylow          low                  true                         false               
 		   0.7915812,   0.2084189,    // yesnocomplicatio abnormal              normal            verylow          low                  false                        true                
 		   0.8804274,   0.1195726,    // yesnocomplicatio abnormal              normal            verylow          low                  false                        false               

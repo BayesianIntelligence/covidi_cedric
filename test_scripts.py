@@ -33,7 +33,7 @@ if __name__ == '__main__':
         assert testResponse["data"]["ci_func_car_t0"]["abnormal"] != 1.0, "ASSERTION ERROR: " + assertion_expectation + " but is " + str(testResponse["data"]["ci_func_car_t0"]["abnormal"])
     except AssertionError as ae:
         print (ae)
-
+#
     try:
         test_dict = {'ci_pulse_rate_t0': '200'}
         assertion_expectation = "ci_func_car_t0->Abnormal should be 1.0"

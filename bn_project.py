@@ -25,6 +25,10 @@ def updateBn(param_dict):
                         status = 'abnormal'
                         enterFinding(net.node('ci_func_car_t0'), status)
                         print ('    Entering findings for: ci_func_car_t0, with state: ', status)
+                    #TODO this pulse rate does not map to the expected value in the BN model
+                    #enterFinding(net.node('ci_pulse_rate_t0'), beats)
+                    #print ('    Entering findings for: ci_pulse_rate_t0, with state: ', beats)
+                    #TODO expect to update this definition
                 elif node.name() == 'ci_oxygen_saturation_t0':
                     print ('    Converting ci_oxygen_saturation_t0 to ci_hypoxaemia_t0')
                     #If SaO2 is between 90-95%, 'ci_hypoxaemia_t0' is 'moderate'. If SaO2 is <=89%, 'ci_hypoxaemia_t0' is 'severe'.
@@ -38,7 +42,13 @@ def updateBn(param_dict):
                         status = 'low'
                         enterFinding(net.node('ci_hypoxaemia_t0'), status)
                         print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
-                        #DOUBLE CHECK WITH SM - DO we ignore sa02 > 0.95 or do we set it to normal
+                    else:
+                        status = 'normal'
+                        enterFinding(net.node('ci_hypoxaemia_t0'), status)
+                        print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
+                    #TODO this sao2 rate does not map to the expected value in the BN model
+                    print ('    Entering findings for: ci_oxygen_saturation_t0, with state: ', float(sao2))
+                    enterFinding(net.node('ci_oxygen_saturation_t0'), float(sao2))
                 elif node.name() == 'ci_creat_t0':
                     print ('    Converting ci_creat_t0 to ci_intravas_volume_t0 OR ci_end_organ_perf_t0')
                     crt = int(param_dict[node.name()])
@@ -51,24 +61,24 @@ def updateBn(param_dict):
                     elif crt > 90 and kidney_disease_status not in ['true', 'True', 'TRUE']:
                         enterFinding(net.node('ci_intravas_volume_t0'), 'low')
                         print ('    Entering findings : ci_intravas_volume_t0, with state: low')
+                    enterFinding(net.node('ci_creat_t0'), crt)
+                    print ('    Entering findings for: ci_creat_t0, with state: ', crt)
                 elif node.name() == 'ci_neut_t0' and 'ci_lym_t0' in param_dict:
                     print ('    combining ci_neut_t0 and ci_lym_t0 to calculate NLR')
                     nlr = float(param_dict[node.name()])/float(param_dict[net.node('ci_lym_t0').name()])
                     if nlr > 5:
                         enterFinding(net.node('ci_sys_immune_resp_t0'), 'abnormal')
                         print ('    Entering findings for: ci_sys_immune_resp_t0, with state: abnormal')
-                elif node.name() == 'ci_neut_t0' and 'ci_lym_t0' not in param_dict:
-                    print ('    entering finding for neutrophil only')
-                    neut = param_dict[node.name()]
-                    enterFinding(net.node('ci_neut_t0'), neut)
-                    print ('    Entering findings for: ci_neut_t0, with state: ', neut)
-                elif node.name() == 'ci_lym_t0'  and 'ci_neut_t0' not in param_dict:
-                    print ('    entering finding for lymphocytes only')
-                    lym = param_dict[node.name()]
-                    enterFinding(net.node('ci_lym_t0'), lym)
-                    print ('    Entering findings for: ci_lym_t0, with state: ', lym)
+                    else:
+                        enterFinding(net.node('ci_neut_t0'), float(param_dict[node.name()]))
+                        print ('    Entering findings for: ci_neut_t0, with state: ', float(param_dict[node.name()]))
+                        enterFinding(net.node('ci_lym_t0'), float(param_dict[net.node('ci_lym_t0').name()]))
+                        print ('    Entering findings for: ci_lym_t0, with state: ', float(param_dict[net.node('ci_lym_t0').name()]))
+                elif node.name() == 'ci_lym_t0' and 'ci_neut_t0' in param_dict:
+                    print ();
+                    #do nothing as both neut and lym have already been used to update nlr
                 else:
-                    print ('    No translation logic found for ', node.name())
+                    print ('    Updating state directly for: ' + node.name() + " to: ",  param_dict[node.name()])
                     enterFinding(node, param_dict[node.name()])
                 print ('    Node complete (but not neccessarily updated.) ', file=sys.stderr)
             except Exception as e:
@@ -76,10 +86,8 @@ def updateBn(param_dict):
                 pass
 
     #add meta data: the bn name and version, to nested dictionary
-    #TODO remove this line and replace with user defined variable in the netica BN net_version
-    net.add_net_usr_field('net_version', '1')
-    #TODO remove this line and replace with user defined variable in the netica BN net_name
-    net.add_net_usr_field('net_name', 'progression model')
+    #net.add_net_usr_field('net_version', '1')
+    #net.add_net_usr_field('net_name', 'progression model')
     print ('API request made for BN name: ' + net.get_net_usr_field('net_name') + ' with version: ' + net.get_net_usr_field('net_version'))
     nested_dictionary['model'] = {}
     nested_dictionary['model']['name'] = net.get_net_usr_field('net_name')
