@@ -44,3 +44,26 @@ http://localhost:5000/getall
 }
 ```
 #any number of BN nodes can be set, the API will simply ignore incorrectly named nodes. The file "bn_node_output_file.xlsx" provides a full list of possible nodes and their states, and can be found in the same fodler as this README.
+
+#Volume based model validation - in order to perform model validation, a JSON file must be provided via a documer volume.
+
+# when performing this outside of docker.
+
+# save the import JSON file to data_input as file name test_json:
+cp sourcefile.json data_input/test_file.json
+
+# create the database from the JSON file:
+python db.py
+
+# this will create a file in data_output called covidi.db NB THIS CONTAINS SOURCE DATA SO SHOULD NOT BE SHARED EXTERNALLY
+
+# You will require all the validation scripts from GITHUB, these are stored and maintained seperately to the COVID-I-CEDRIC source code. To pull this codebase, run:
+python clone.py
+
+#copy the validation file to the newely cloned folder
+cp validation.py covid-intelligence-iddo/validation.py
+
+cd covid-intelligence-iddo
+
+#finally, to perform the validation process, run the validation script: 
+python validation.py

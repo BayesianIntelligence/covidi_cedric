@@ -602,9 +602,6 @@ class Net(Net):
     def get_net_usr_field(self, field_name):
         return g.GetNetUserField_bn(self.eNet, field_name, None, 0)
 
-    def net_version(self):
-        return g.GetNetUserField_bn(self.eNet, 'net_version', None, 0)
-
     def add_net_usr_field(self, name, value):
         value = bytes(value, encoding='ascii')
         g.SetNetUserField_bn(self.eNet, name, value, len(value), 0)

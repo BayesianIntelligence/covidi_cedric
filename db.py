@@ -118,7 +118,7 @@ def update_tables(db_file, json_data):
             value_final_status = str(item.get('FinalStatus'))
             value_icu = str(item.get('AnyICU'))
             value_baseline_status = str(item.get('BaselineStatus'))
-            value_stay_duration = str(item.get('DurationOfStay'))
+            value_stay_duration = item.get('DurationOfStay')
             value_oxygen = str(item.get('OxygenTreatment'))
 			
             print(sql, value_gender, value_age, value_pulmonary, value_covid_status, value_final_status, value_icu, value_baseline_status, value_stay_duration, value_oxygen)
