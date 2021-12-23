@@ -10,7 +10,7 @@ from make_sample_sets import *
 #run validation scripts
 def validate(db_name, transitionSize = None):
     
-    mod.workingDb  = db_name
+    mod.workingDb['path'] = db_name
 	
     mod.runStep(lambda: updateTableUnits('subject'), msg = 'Updating to common units in subject table')
 	
