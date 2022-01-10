@@ -1,11 +1,11 @@
 // ~->[DNET-1]->~
 
-// File created by someone at MonashU using Netica 6.09 on Jan 10, 2022 at 06:37:33 UTC.
+// File created by someone at MonashU using Netica 6.09 on Jan 10, 2022 at 13:22:23 UTC.
 
 bnet untitled {
 AutoCompile = TRUE;
 autoupdate = TRUE;
-whenchanged = 1641796638;
+whenchanged = 1641814011;
 
 visual V6 {
 	defdispform = BELIEFBARS;
@@ -15,7 +15,7 @@ visual V6 {
 	linkfont = font {shape= "Arial"; size= 9;};
 	ShowLinkStrengths = 1;
 	windowposn = (26, 26, 1002, 374);
-	scrollposn = (0, 524);
+	scrollposn = (1064, 319);
 	resolution = 72;
 	drawingbounds = (2376, 1258);
 	showpagebreaks = FALSE;
@@ -59,7 +59,7 @@ node ci_age_group_bg {
 	numcases = 12074;
 	title = "ci age group bg";
 	whenchanged = 1641785860;
-	belief = (0.11649, 0.5818416, 0.3016683);
+	belief = (0.110857, 0.5680334, 0.3211096);
 	user U1 {
 		submodel = "background";
 		};
@@ -87,7 +87,7 @@ node ci_gender_bg {
 		   3643.046);    // young           ;
 	title = "ci gender bg";
 	whenchanged = 1641785868;
-	belief = (0.6485394, 0.3514605);
+	belief = (0.6469938, 0.3530062);
 	user U1 {
 		submodel = "background";
 		};
@@ -124,13 +124,13 @@ node ci_smoking_history_bg {
 		   1228.92);     // female       young           ;
 	title = "ci smoking history bg";
 	whenchanged = 1640058601;
-	belief = (0.01134902, 0.1527369, 0.8359141);
+	belief = (0.01147817, 0.1502241, 0.8382977);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (90, 126);
-		height = 72;
+		height = 69;
 		};
 	};
 
@@ -158,7 +158,7 @@ node ci_hypertension_bg {
 		   1228.92);     // female       young           ;
 	title = "ci hypertension bg";
 	whenchanged = 1640058601;
-	belief = (0.3715672, 0.6284328);
+	belief = (0.3503572, 0.6496428);
 	user U1 {
 		submodel = "background";
 		};
@@ -195,13 +195,13 @@ node ci_obesity_bg {
 		   1228.92);     // female       young           ;
 	title = "ci obesity bg";
 	whenchanged = 1640058601;
-	belief = (0.2258779, 0.7741221);
+	belief = (0.2200453, 0.7799547);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (720, 42);
-		height = 71;
+		height = 68;
 		};
 	};
 
@@ -225,13 +225,13 @@ node ci_metabolic_syndrome_bg {
 		   6272);        // false              false         ;
 	title = "ci metabolic syndrome bg";
 	whenchanged = 1640058601;
-	belief = (0.5054783, 0.4945217);
+	belief = (0.4835569, 0.5164431);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (294, 102);
-		height = 69;
+		height = 66;
 		};
 	};
 
@@ -271,13 +271,13 @@ node ci_diabetes_bg {
 		   825.3376);    // female       young           false                    ;
 	title = "ci diabetes bg";
 	whenchanged = 1640058601;
-	belief = (0.2516919, 0.7483081);
+	belief = (0.2246426, 0.7753574);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (474, 114);
-		height = 70;
+		height = 67;
 		};
 	};
 
@@ -329,13 +329,13 @@ node ci_chronic_pul_disease_bg {
 		   1191.569);    // female       young           never                 ;
 	title = "ci chronic pul disease bg";
 	whenchanged = 1640058601;
-	belief = (0.09861985, 0.9013801);
+	belief = (0.09535689, 0.9046431);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (666, 120);
-		height = 75;
+		height = 72;
 		};
 	};
 
@@ -399,13 +399,13 @@ node ci_chronic_cardiac_disease_bg {
 		   1081.926);    // female       young           false                     false          ;
 	title = "ci chronic cardiac disease bg";
 	whenchanged = 1640058601;
-	belief = (0.1621477, 0.8378523);
+	belief = (0.1558382, 0.8441618);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (882, 120);
-		height = 76;
+		height = 73;
 		};
 	};
 
@@ -445,13 +445,13 @@ node ci_chronic_kidney_disease_bg {
 		   1099.926);    // female       young           false          ;
 	title = "ci chronic kidney disease bg";
 	whenchanged = 1640058601;
-	belief = (0.06938036, 0.9306197);
+	belief = (0.06616, 0.93384);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (912, 42);
-		height = 73;
+		height = 70;
 		};
 	};
 
@@ -491,13 +491,13 @@ node ci_liver_disease_bg {
 		   1099.926);    // female       young           false          ;
 	title = "ci liver disease bg";
 	whenchanged = 1640058601;
-	belief = (0.03809925, 0.9619008);
+	belief = (0.0381035, 0.9618965);
 	user U1 {
 		submodel = "background";
 		};
 	visual V6 {
 		center = (1092, 42);
-		height = 74;
+		height = 71;
 		};
 	};
 
@@ -513,7 +513,7 @@ node ci_antiinflam_treat_t0 {
 	numcases = 12074;
 	title = "ci antiinflam treat t0";
 	whenchanged = 1640058601;
-	belief = (0.2595877, 0.7404123);
+	belief = (0.2561616, 0.7438384);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -583,13 +583,13 @@ node ci_sys_immune_resp_t0 {
 		   783.3376);    // female       young           false                    false                  ;
 	title = "ci sys immune resp t0";
 	whenchanged = 1641784605;
-	belief = (0.4930771, 0.5069229);
+	belief = (0.4438471, 0.5561529);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (150, 222);
-		height = 63;
+		height = 60;
 		link 1 {
 			path = ((291, 57), (172, 196));
 			};
@@ -608,7 +608,7 @@ node ci_anticoag_treat_t0 {
 	numcases = 12074;
 	title = "ci anticoag treat t0";
 	whenchanged = 1640058601;
-	belief = (0.06228792, 0.9377121);
+	belief = (0.06252962, 0.9374704);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -646,13 +646,13 @@ node ci_coagulation_t0 {
 		   4817.064);    // false          normal                false                ;
 	title = "ci coagulation t0";
 	whenchanged = 1640058601;
-	belief = (0.2873672, 0.7126328);
+	belief = (0.272485, 0.727515);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (366, 234);
-		height = 64;
+		height = 61;
 		link 2 {
 			path = ((236, 227), (281, 230));
 			};
@@ -863,13 +863,13 @@ node ci_func_pul_t0 {
 		   2179.285);    // young           false         false                     normal            normal                false                  ;
 	title = "ci func pul t0";
 	whenchanged = 1640058601;
-	belief = (0.4465947, 0.5534052);
+	belief = (0.4307508, 0.5692492);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (228, 348);
-		height = 53;
+		height = 50;
 		};
 	};
 
@@ -917,13 +917,13 @@ node ci_intravas_volume_t0 {
 		   3405.857);    // false              false          normal                normal            ;
 	title = "ci intravas volume t0";
 	whenchanged = 1641784608;
-	belief = (0.3256953, 0.6743047);
+	belief = (0.01229314, 0.9877068);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (474, 306);
-		height = 65;
+		height = 62;
 		};
 	};
 
@@ -943,7 +943,7 @@ node ci_pulmonary_support_t0 {
 		   6959.069);    // normal         ;
 	title = "ci pulmonary support t0";
 	whenchanged = 1640058601;
-	belief = (0.02070121, 0.05564368, 0.3365223, 0.1913822, 0.3957506);
+	belief = (0.02050659, 0.05464916, 0.3309327, 0.189556, 0.4043556);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -985,13 +985,13 @@ node ci_hypoxaemia_t0 {
 		   4562.67);     // normal         none                    ;
 	title = "ci hypoxaemia t0";
 	whenchanged = 1640058601;
-	belief = (0.1634985, 0.3510034, 0.4854981);
+	belief = (0.1602845, 0.3471863, 0.4925292);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (438, 384);
-		height = 55;
+		height = 52;
 		link 1 {
 			path = ((310, 362), (353, 370));
 			};
@@ -2162,13 +2162,13 @@ node ci_func_car_t0 {
 		   1431.919);    // young           false                         false              normal                normal            normal           normal                false                  ;
 	title = "ci func car t0";
 	whenchanged = 1641784638;
-	belief = (0.3057922, 0.6942078);
+	belief = (0.2605058, 0.7394942);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (660, 402);
-		height = 54;
+		height = 51;
 		link 1 {
 			path = ((196, 70), (624, 376));
 			};
@@ -2207,7 +2207,7 @@ node ci_antiinflam_treat_t1 {
 		   5075.611);    // false                  normal                ;
 	title = "ci antiinflam treat t1";
 	whenchanged = 1640058601;
-	belief = (0.2058259, 0.7941741);
+	belief = (0.2012329, 0.7987671);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -2613,13 +2613,13 @@ node ci_sys_immune_resp_t1 {
 		   624.0546);    // female       young           false                    normal                normal         normal         false                  ;
 	title = "ci sys immune resp t1";
 	whenchanged = 1640058601;
-	belief = (0.4182719, 0.581728);
+	belief = (0.3898074, 0.6101926);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (150, 522);
-		height = 56;
+		height = 53;
 		};
 	};
 
@@ -2643,7 +2643,7 @@ node ci_anticoag_treat_t1 {
 		   8001.706);    // false                normal            ;
 	title = "ci anticoag treat t1";
 	whenchanged = 1640058601;
-	belief = (0.03923649, 0.9607635);
+	belief = (0.03908833, 0.9609117);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -2663,7 +2663,7 @@ node ci_coagulation_t1 {
 		// abnormal     normal        // ci_diabetes_bg ci_coagulation_t0 ci_sys_immune_resp_t1 ci_anticoag_treat_t1 
 		  (0.4273421,   0.5726579,    // true           abnormal          abnormal              true                 
 		   0.8355803,   0.1644197,    // true           abnormal          abnormal              false                
-		   0.06100019,  0.939,        // true           abnormal          normal                true                 
+		   0.06100018,  0.939,        // true           abnormal          normal                true                 
 		   0.5734118,   0.4265882,    // true           abnormal          normal                false                
 		   0.1327572,   0.8672428,    // true           normal            abnormal              true                 
 		   0.07975554,  0.9202445,    // true           normal            abnormal              false                
@@ -2697,13 +2697,13 @@ node ci_coagulation_t1 {
 		   4673.527);    // false          normal            normal                false                ;
 	title = "ci coagulation t1";
 	whenchanged = 1640058601;
-	belief = (0.2891286, 0.7108714);
+	belief = (0.27802, 0.72198);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (366, 540);
-		height = 61;
+		height = 58;
 		};
 	};
 
@@ -3103,7 +3103,7 @@ node ci_func_pul_t1 {
 		   2198.809);    // young           false         false                     normal         normal            normal                false                  ;
 	title = "ci func pul t1";
 	whenchanged = 1640058601;
-	belief = (0.3057976, 0.6942024);
+	belief = (0.2921661, 0.7078339);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -3136,13 +3136,13 @@ node ci_cardiac_output_t0 {
 		   6250.801);    // normal         normal                ;
 	title = "ci cardiac output t0";
 	whenchanged = 1640058601;
-	belief = (0.229847, 0.7701529);
+	belief = (0.1909108, 0.8090892);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (870, 420);
-		height = 51;
+		height = 48;
 		link 1 {
 			path = ((742, 408), (789, 413));
 			};
@@ -3545,13 +3545,13 @@ node ci_end_organ_perf_t0 {
 		   2737.551);    // false          normal                normal            normal           normal               false                        false               ;
 	title = "ci end organ perf t0";
 	whenchanged = 1641784642;
-	belief = (0.4460257, 0.5539743);
+	belief = (0.4277058, 0.5722942);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (678, 468);
-		height = 52;
+		height = 49;
 		link 2 {
 			path = ((205, 249), (622, 442));
 			};
@@ -3637,13 +3637,13 @@ node ci_intravas_volume_t1 {
 		   2667.673);    // false              false          normal                normal                normal            ;
 	title = "ci intravas volume t1";
 	whenchanged = 1640058601;
-	belief = (0.2828857, 0.7171143);
+	belief = (0.08508992, 0.9149101);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (474, 612);
-		height = 62;
+		height = 59;
 		};
 	};
 
@@ -3679,7 +3679,7 @@ node ci_pulmonary_support_t1 {
 		   4422.542);    // none                    normal         ;
 	title = "ci pulmonary support t1";
 	whenchanged = 1640058601;
-	belief = (0.01022426, 0.03879213, 0.2673047, 0.1295113, 0.5541677);
+	belief = (0.01000666, 0.03776691, 0.2607792, 0.1267456, 0.5647016);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -3721,13 +3721,13 @@ node ci_hypoxaemia_t1 {
 		   6421.678);    // normal         none                    ;
 	title = "ci hypoxaemia t1";
 	whenchanged = 1640058601;
-	belief = (0.09874249, 0.309838, 0.5914195);
+	belief = (0.09575713, 0.3039109, 0.600332);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (432, 702);
-		height = 57;
+		height = 54;
 		link 1 {
 			path = ((310, 684), (347, 690));
 			};
@@ -5284,7 +5284,7 @@ node ci_func_car_t1 {
 		   0.9599779,   0.04002216,   // young           true                          true               reduced        reduced              reduced               abnormal          severe           normal                false                  
 		   0.9689386,   0.0310614,    // young           true                          true               reduced        reduced              reduced               abnormal          moderate         abnormal              true                   
 		   0.9280615,   0.07193848,   // young           true                          true               reduced        reduced              reduced               abnormal          moderate         abnormal              false                  
-		   0.9405,      0.05950013,   // young           true                          true               reduced        reduced              reduced               abnormal          moderate         normal                true                   
+		   0.9405,      0.05950012,   // young           true                          true               reduced        reduced              reduced               abnormal          moderate         normal                true                   
 		   0.8779569,   0.1220431,    // young           true                          true               reduced        reduced              reduced               abnormal          moderate         normal                false                  
 		   0.9577223,   0.04227767,   // young           true                          true               reduced        reduced              reduced               abnormal          normal           abnormal              true                   
 		   0.907416,    0.09258401,   // young           true                          true               reduced        reduced              reduced               abnormal          normal           abnormal              false                  
@@ -5328,7 +5328,7 @@ node ci_func_car_t1 {
 		   0.5978669,   0.4021331,    // young           true                          true               reduced        reduced              normal                normal            normal           normal                false                  
 		   0.9621298,   0.03787025,   // young           true                          true               reduced        normal               reduced               abnormal          severe           abnormal              true                   
 		   0.9161728,   0.08382721,   // young           true                          true               reduced        normal               reduced               abnormal          severe           abnormal              false                  
-		   0.9292,      0.0707998,    // young           true                          true               reduced        normal               reduced               abnormal          severe           normal                true                   
+		   0.9292,      0.07079981,   // young           true                          true               reduced        normal               reduced               abnormal          severe           normal                true                   
 		   0.859041,    0.140959,     // young           true                          true               reduced        normal               reduced               abnormal          severe           normal                false                  
 		   0.8829382,   0.1170618,    // young           true                          true               reduced        normal               reduced               abnormal          moderate         abnormal              true                   
 		   0.7702354,   0.2297646,    // young           true                          true               reduced        normal               reduced               abnormal          moderate         abnormal              false                  
@@ -8354,13 +8354,13 @@ node ci_func_car_t1 {
 		   1351.408);    // young           false                         false              normal         normal               normal                normal            normal           normal                false                  ;
 	title = "ci func car t1";
 	whenchanged = 1641784637;
-	belief = (0.3297993, 0.6702007);
+	belief = (0.2834615, 0.7165385);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (660, 648);
-		height = 58;
+		height = 55;
 		link 6 {
 			path = ((556, 627), (579, 632));
 			};
@@ -8393,13 +8393,13 @@ node ci_cardiac_output_t1 {
 		   6390.233);    // normal         normal                ;
 	title = "ci cardiac output t1";
 	whenchanged = 1640058601;
-	belief = (0.2642063, 0.7357937);
+	belief = (0.2251166, 0.7748834);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (852, 690);
-		height = 59;
+		height = 56;
 		link 1 {
 			path = ((742, 666), (771, 673));
 			};
@@ -8442,7 +8442,7 @@ node ci_end_organ_perf_t1 {
 		   0.9867322,   0.0132678,    // true           reduced              abnormal              normal            severe           reduced              true                         false               
 		   0.9899934,   0.01000659,   // true           reduced              abnormal              normal            severe           reduced              false                        true                
 		   0.9107614,   0.08923867,   // true           reduced              abnormal              normal            severe           reduced              false                        false               
-		   0.9911,      0.008900314,  // true           reduced              abnormal              normal            severe           normal               true                         true                
+		   0.9911,      0.008900311,  // true           reduced              abnormal              normal            severe           normal               true                         true                
 		   0.9989264,   0.001073585,  // true           reduced              abnormal              normal            severe           normal               true                         false               
 		   0.9792385,   0.02076152,   // true           reduced              abnormal              normal            severe           normal               false                        true                
 		   0.9037768,   0.09622321,   // true           reduced              abnormal              normal            severe           normal               false                        false               
@@ -8635,7 +8635,7 @@ node ci_end_organ_perf_t1 {
 		   0.9534122,   0.04658783,   // false          reduced              abnormal              normal            severe           reduced              false                        true                
 		   0.8792084,   0.1207915,    // false          reduced              abnormal              normal            severe           reduced              false                        false               
 		   0.8717,      0.1283,       // false          reduced              abnormal              normal            severe           normal               true                         true                
-		   0.9111,      0.08889987,   // false          reduced              abnormal              normal            severe           normal               true                         false               
+		   0.9111,      0.08889989,   // false          reduced              abnormal              normal            severe           normal               true                         false               
 		   0.8912602,   0.1087398,    // false          reduced              abnormal              normal            severe           normal               false                        true                
 		   0.9067973,   0.09320273,   // false          reduced              abnormal              normal            severe           normal               false                        false               
 		   0.7055218,   0.2944782,    // false          reduced              abnormal              normal            moderate         reduced              true                         true                
@@ -9186,13 +9186,13 @@ node ci_end_organ_perf_t1 {
 		   2410);        // false          normal               normal                normal            normal           normal               false                        false               ;
 	title = "ci end organ perf t1";
 	whenchanged = 1640058601;
-	belief = (0.3810431, 0.6189569);
+	belief = (0.3596629, 0.6403371);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (678, 738);
-		height = 60;
+		height = 57;
 		link 4 {
 			path = ((406, 567), (637, 712));
 			};
@@ -9218,7 +9218,7 @@ node ci_crp_t0 {
 		   1135);        // normal                ;
 	title = "ci crp t0";
 	whenchanged = 1640058601;
-	belief = (0.1218328, 0.1168461, 0.1089263, 0.1103805, 0.1107736, 0.10201, 0.0803446, 0.08266805, 0.08354244, 0.08267555);
+	belief = (0.132117, 0.1246397, 0.1145172, 0.1146791, 0.1147655, 0.102915, 0.07232639, 0.07441596, 0.07520223, 0.0744219);
 	user U1 {
 		submodel = "system";
 		};
@@ -9247,7 +9247,7 @@ node ci_neut_t0 {
 		   1382.701);    // normal                ;
 	title = "ci neut t0";
 	whenchanged = 1640058601;
-	belief = (0.09748676, 0.1001888, 0.09969012, 0.09893128, 0.09976596, 0.1006128, 0.1015229, 0.1005176, 0.09964558, 0.1016382);
+	belief = (0.1031458, 0.1052747, 0.1033088, 0.1026372, 0.1007161, 0.09873378, 0.09421094, 0.09698708, 0.1013265, 0.09365918);
 	user U1 {
 		submodel = "system";
 		};
@@ -9273,13 +9273,13 @@ node ci_lym_t0 {
 		   1421.587);    // normal                ;
 	title = "ci lym t0";
 	whenchanged = 1640058601;
-	belief = (0.1000463, 0.09993864, 0.0934327, 0.1065512, 0.08935171, 0.1060825, 0.1035662, 0.09962457, 0.1005905, 0.1008158);
+	belief = (0.09195603, 0.09537315, 0.09155507, 0.1088431, 0.09314774, 0.1126366, 0.110651, 0.09379316, 0.09860327, 0.1034409);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (498, 984);
-		height = 13;
+		height = 74;
 		};
 	};
 
@@ -9299,13 +9299,13 @@ node ci_ldh_t0 {
 		   621);         // normal                ;
 	title = "ci ldh t0";
 	whenchanged = 1640058601;
-	belief = (0.1183768, 0.1171632, 0.1168257, 0.1146427, 0.107588, 0.09753531, 0.08262207, 0.08156884, 0.08105133, 0.08262603);
+	belief = (0.1266822, 0.1257599, 0.1238444, 0.1215503, 0.110208, 0.09681125, 0.07437834, 0.07342699, 0.07296056, 0.07437803);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (696, 990);
-		height = 14;
+		height = 13;
 		};
 	};
 
@@ -9337,13 +9337,13 @@ node ci_status_t0 {
 		   4444.304);    // normal         normal         normal               ;
 	title = "ci status t0";
 	whenchanged = 1640058601;
-	belief = (0.05672761, 0.3012899, 0.2765194, 0.365463);
+	belief = (0.04762662, 0.2902687, 0.2881702, 0.3739345);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (288, 816);
-		height = 68;
+		height = 65;
 		link 2 {
 			path = ((637, 429), (324, 776));
 			};
@@ -9392,13 +9392,13 @@ node ci_status_plus1day {
 		   0,           0,           0,           1);           // discharged   normal         normal         normal               ;
 	title = "ci status plus1day";
 	whenchanged = 1640058601;
-	belief = (0.06284354, 0.3338825, 0.2236285, 0.3796455);
+	belief = (0.05319324, 0.3230366, 0.2350675, 0.3887026);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (558, 840);
-		height = 66;
+		height = 63;
 		};
 	};
 
@@ -9434,13 +9434,13 @@ node ci_pulmonary_support_plus1day {
 		   4562.671);    // none                    normal         ;
 	title = "ci pulmonary support plus1day";
 	whenchanged = 1640058601;
-	belief = (0.01897763, 0.05303764, 0.3269511, 0.1804234, 0.4206102);
+	belief = (0.01878738, 0.05207918, 0.3215466, 0.178589, 0.4289978);
 	user U1 {
 		submodel = "treatment";
 		};
 	visual V6 {
 		center = (1482, 390);
-		height = 15;
+		height = 14;
 		};
 	};
 
@@ -9460,13 +9460,13 @@ node ci_respiratory_rate_t0 {
 		   2748);        // normal         ;
 	title = "ci respiratory rate t0";
 	whenchanged = 1640058601;
-	belief = (0.04496343, 0.09038341, 0.1416233, 0.05958967, 0.225623, 3.127051e-5, 0.08883151, 0.1219855, 0.1071634, 0.1198055);
+	belief = (0.04586052, 0.09254966, 0.1453034, 0.06117075, 0.2313958, 3.139473e-5, 0.0871136, 0.1176579, 0.1033617, 0.1155553);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (1722, 990);
-		height = 16;
+		height = 15;
 		};
 	};
 
@@ -9486,13 +9486,13 @@ node ci_pco2_t0 {
 		   917);         // normal         ;
 	title = "ci pco2 t0";
 	whenchanged = 1640058601;
-	belief = (0.09527949, 0.09328084, 0.1074023, 0.1012631, 0.1060958, 0.1096047, 0.105497, 0.1041509, 0.09900481, 0.0784212);
+	belief = (0.09464864, 0.09338032, 0.1076979, 0.1016607, 0.1067475, 0.1106346, 0.1064786, 0.1049086, 0.09820311, 0.07564012);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (1902, 1008);
-		height = 17;
+		height = 16;
 		};
 	};
 
@@ -9512,13 +9512,13 @@ node ci_pulse_rate_t0 {
 		   4340);        // normal         ;
 	title = "ci pulse rate t0";
 	whenchanged = 1640058601;
-	belief = (0.1030939, 0.0735423, 0.08713972, 0.07805648, 0.1214367, 0.06622201, 0.1050377, 0.1055887, 0.09838701, 0.1614954);
+	belief = (0.1016146, 0.07633781, 0.08945733, 0.08083223, 0.124101, 0.06822533, 0.1073665, 0.1060613, 0.09985764, 0.1461463);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (894, 990);
-		height = 18;
+		height = 17;
 		};
 	};
 
@@ -9538,13 +9538,13 @@ node ci_troponin_t0 {
 		   63.0001);     // normal         ;
 	title = "ci troponin t0";
 	whenchanged = 1640058601;
-	belief = (0.1616532, 0.2158132, 0.1927028, 0.1492301, 0.04474226, 0.04707213, 0.04714353, 0.0109353, 0.08353492, 0.04717255);
+	belief = (0.1710875, 0.229332, 0.2047036, 0.155617, 0.03821517, 0.04012625, 0.04018446, 0.009338502, 0.07118643, 0.04020917);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1098, 984);
-		height = 19;
+		height = 18;
 		};
 	};
 
@@ -9564,13 +9564,13 @@ node ci_crp_t1 {
 		   508);         // normal                ;
 	title = "ci crp t1";
 	whenchanged = 1641785510;
-	belief = (0.1511128, 0.1249741, 0.1272394, 0.1249099, 0.1177165, 0.09750845, 0.06544116, 0.06327192, 0.06412563, 0.06370004);
+	belief = (0.1571982, 0.1280191, 0.1303943, 0.1279499, 0.119901, 0.09744629, 0.06099315, 0.05896866, 0.05976303, 0.05936639);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (105, 1140);
-		height = 20;
+		height = 19;
 		};
 	};
 
@@ -9590,13 +9590,13 @@ node ci_neut_t1 {
 		   451.1327);    // normal                ;
 	title = "ci neut t1";
 	whenchanged = 1640058601;
-	belief = (0.121644, 0.1291353, 0.1171558, 0.1087637, 0.08691625, 0.07800269, 0.07251354, 0.1231873, 0.09029689, 0.07238451);
+	belief = (0.1256106, 0.1329152, 0.1199122, 0.1099771, 0.08493829, 0.07466861, 0.06834456, 0.1267309, 0.088836, 0.06806657);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (294, 1140);
-		height = 21;
+		height = 20;
 		};
 	};
 
@@ -9616,13 +9616,13 @@ node ci_lym_t1 {
 		   469.8223);    // normal                ;
 	title = "ci lym t1";
 	whenchanged = 1641785519;
-	belief = (0.07558237, 0.07026467, 0.1074869, 0.1028969, 0.1156814, 0.134407, 0.09584957, 0.08208044, 0.09829017, 0.1174606);
+	belief = (0.0718924, 0.06824475, 0.1065579, 0.1030067, 0.1185439, 0.1391831, 0.09503664, 0.07947364, 0.09820814, 0.1198528);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (486, 1146);
-		height = 22;
+		height = 21;
 		};
 	};
 
@@ -9642,13 +9642,13 @@ node ci_ldh_t1 {
 		   166);         // normal                ;
 	title = "ci ldh t1";
 	whenchanged = 1640058601;
-	belief = (0.1762107, 0.1681568, 0.153387, 0.1511, 0.07940282, 0.05453449, 0.05372827, 0.0537335, 0.05524836, 0.05449785);
+	belief = (0.1823564, 0.1736411, 0.157794, 0.1552176, 0.07771475, 0.05083392, 0.0500759, 0.05008078, 0.05149255, 0.05079311);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (690, 1146);
-		height = 23;
+		height = 22;
 		};
 	};
 
@@ -9694,13 +9694,13 @@ node ci_status_t1 {
 		   0,           0,           0,           1);           // discharged   normal         normal         normal               ;
 	title = "ci status t1";
 	whenchanged = 1640058601;
-	belief = (0.100651, 0.235123, 0.02388701, 0.640339);
+	belief = (0.08635448, 0.2272383, 0.02485923, 0.661548);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (798, 840);
-		height = 67;
+		height = 64;
 		link 3 {
 			path = ((678, 675), (769, 800));
 			};
@@ -9752,13 +9752,13 @@ node ci_status {
 		   0,           1);           // discharged   normal         normal         normal               ;
 	title = "ci status";
 	whenchanged = 1640058601;
-	belief = (0.1769325, 0.8230675);
+	belief = (0.153107, 0.846893);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (1104, 809);
-		height = 24;
+		height = 23;
 		link 3 {
 			path = ((731, 675), (1032, 783));
 			};
@@ -9903,13 +9903,13 @@ node ci_icu {
 		   0.9927524,   0.007247566); // discharged   discharged   normal         normal         normal               ;
 	title = "ci icu";
 	whenchanged = 1640058601;
-	belief = (0.5344866, 0.4655134);
+	belief = (0.552624, 0.447376);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (1098, 750);
-		height = 25;
+		height = 24;
 		};
 	};
 
@@ -9973,13 +9973,13 @@ node ci_inv_vent {
 		   0.9967322,   0.003267761); // none                    none                    normal         ;
 	title = "ci inv vent";
 	whenchanged = 1640058602;
-	belief = (0.5696124, 0.4303876);
+	belief = (0.578535, 0.421465);
 	user U1 {
 		submodel = "system";
 		};
 	visual V6 {
 		center = (1350, 672);
-		height = 26;
+		height = 25;
 		};
 	};
 
@@ -9999,13 +9999,13 @@ node ci_respiratory_rate_t1 {
 		   1163);        // normal         ;
 	title = "ci respiratory rate t1";
 	whenchanged = 1640058601;
-	belief = (0.07291155, 0.1251922, 0.1621334, 0.07524477, 0.257455, 0.03129369, 0.07967879, 0.05268738, 0.07446708, 0.06893618);
+	belief = (0.07391854, 0.1272081, 0.1650339, 0.07665133, 0.2618907, 0.03181841, 0.07612841, 0.05033918, 0.07114795, 0.0658636);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (1722, 1146);
-		height = 27;
+		height = 26;
 		};
 	};
 
@@ -10025,13 +10025,13 @@ node ci_pco2_t1 {
 		   588);         // normal         ;
 	title = "ci pco2 t1";
 	whenchanged = 1640058601;
-	belief = (0.08378128, 0.1110196, 0.09016614, 0.1275908, 0.1188797, 0.121581, 0.1191975, 0.1066415, 0.069214, 0.05192849);
+	belief = (0.0831589, 0.1113857, 0.0903267, 0.1282825, 0.1198079, 0.1225396, 0.1201093, 0.1071253, 0.06764901, 0.04961503);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (1901, 1158);
-		height = 28;
+		height = 27;
 		};
 	};
 
@@ -10051,13 +10051,13 @@ node ci_pulse_rate_t1 {
 		   2023);        // normal         ;
 	title = "ci pulse rate t1";
 	whenchanged = 1640058601;
-	belief = (0.1010549, 0.07175799, 0.1062465, 0.05817564, 0.1181479, 0.08601171, 0.1058071, 0.09635948, 0.1028215, 0.1536173);
+	belief = (0.1004749, 0.07474018, 0.1093146, 0.06021932, 0.1207247, 0.08817245, 0.1072, 0.0964404, 0.104494, 0.1382192);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (882, 1145);
-		height = 29;
+		height = 28;
 		};
 	};
 
@@ -10077,13 +10077,13 @@ node ci_troponin_t1 {
 		   23.0001);     // normal         ;
 	title = "ci troponin t1";
 	whenchanged = 1640058601;
-	belief = (0.0613829, 0.3341242, 0.2773271, 0.04459946, 0.04897787, 0.04318983, 0.03732511, 0.0852957, 0.01913962, 0.04863827);
+	belief = (0.06561444, 0.357204, 0.2951874, 0.03878, 0.04215452, 0.03717971, 0.032139, 0.07336958, 0.01650863, 0.04186264);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1086, 1134);
-		height = 30;
+		height = 75;
 		};
 	};
 
@@ -10106,14 +10106,15 @@ node ci_creat_t0 {
 		   298.2295,     // normal               reduced               
 		   1463.771);    // normal               normal                ;
 	title = "ci creat t0";
-	whenchanged = 1640058601;
-	belief = (0.1009557, 0.09042346, 0.1038808, 0.09919619, 0.1038748, 0.1105181, 0.1235308, 0.1409111, 0.06349865, 0.06321043);
+	whenchanged = 1641814011;
+	likelihood = (0.003687867, 0.004117418, 0.003584022, 0.00375328, 1, 0.00336878, 0.003013913, 0.002642171, 0.005863292, 0.005890027);
+	belief = (0.003472222, 0.003472222, 0.003472222, 0.003472222, 0.96875, 0.003472222, 0.003472222, 0.003472222, 0.003472222, 0.003472222);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2028, 690);
-		height = 31;
+		height = 29;
 		};
 	};
 
@@ -10137,16 +10138,13 @@ node ci_creat_t1 {
 		   555.1602);    // normal               normal                ;
 	title = "ci creat t1";
 	whenchanged = 1640058601;
-	belief = (0.08927593, 0.1008913, 0.1202976, 0.1074312, 0.1024264, 0.1077255, 0.1568843, 0.1257356, 0.04485258, 0.04447964);
+	belief = (0.1138625, 0.1286936, 0.1530246, 0.1370484, 0.1306027, 0.1372439, 0.1348495, 0.03798336, 0.01340854, 0.01328281);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
-		center = (2226, 690);
-		height = 32;
-		link 2 {
-			path = ((556, 615), (2114, 685));
-			};
+		center = (2232, 666);
+		height = 76;
 		};
 	};
 
@@ -10166,13 +10164,13 @@ node ci_ddimer_t0 {
 		   87.0001);     // normal            ;
 	title = "ci ddimer t0";
 	whenchanged = 1640058601;
-	belief = (0.2925126, 0.3802874, 0.09749284, 0.03163214, 0.03339136, 0.03339553, 0.03293672, 0.0324769, 0.03293953, 0.03293496);
+	belief = (0.2978479, 0.3870183, 0.09727655, 0.03000643, 0.03166772, 0.03167167, 0.03123662, 0.03080062, 0.03123929, 0.03123496);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2010, 92);
-		height = 33;
+		height = 30;
 		};
 	};
 
@@ -10192,13 +10190,13 @@ node ci_aptt_t0 {
 		   36.0001);     // normal            ;
 	title = "ci aptt t0";
 	whenchanged = 1640058601;
-	belief = (0.7111391, 0.02626072, 0.03779062, 0.03222826, 0.03183221, 0.03223053, 0.0322309, 0.03183319, 0.03222949, 0.03222498);
+	belief = (0.7248038, 0.0250446, 0.03597739, 0.03070309, 0.03032755, 0.03070524, 0.0307056, 0.03032848, 0.03070426, 0.0307);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2010, 240);
-		height = 34;
+		height = 31;
 		};
 	};
 
@@ -10218,13 +10216,13 @@ node ci_plat_t0 {
 		   2755);        // normal            ;
 	title = "ci plat t0";
 	whenchanged = 1640058601;
-	belief = (0.1004499, 0.1012309, 0.1002034, 0.1014884, 0.09734061, 0.09916, 0.1025257, 0.09942385, 0.09943042, 0.09874683);
+	belief = (0.1009267, 0.1015546, 0.1002233, 0.1018928, 0.09803496, 0.0995345, 0.1028574, 0.09963401, 0.09947084, 0.09587091);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2016, 384);
-		height = 35;
+		height = 32;
 		};
 	};
 
@@ -10244,13 +10242,13 @@ node ci_ddimer_t1 {
 		   40.0001);     // normal            ;
 	title = "ci ddimer t1";
 	whenchanged = 1640058601;
-	belief = (0.5381728, 0.2051188, 0.03168192, 0.03323968, 0.03170851, 0.03096449, 0.03321524, 0.03171929, 0.03171908, 0.03246024);
+	belief = (0.5460141, 0.2070257, 0.03051362, 0.03197382, 0.03049933, 0.0297839, 0.03194818, 0.0305097, 0.03050951, 0.03122218);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2250, 92);
-		height = 36;
+		height = 33;
 		};
 	};
 
@@ -10270,13 +10268,13 @@ node ci_aptt_t1 {
 		   25.0001);     // normal            ;
 	title = "ci aptt t1";
 	whenchanged = 1640058601;
-	belief = (0.6060598, 0.143388, 0.03579859, 0.02982585, 0.0320721, 0.03034205, 0.02918836, 0.03207355, 0.03034054, 0.03091111);
+	belief = (0.6146863, 0.1442223, 0.03448348, 0.02869795, 0.03085443, 0.02919085, 0.02808149, 0.03085583, 0.0291894, 0.02973804);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2244, 240);
-		height = 37;
+		height = 34;
 		};
 	};
 
@@ -10296,13 +10294,13 @@ node ci_plat_t1 {
 		   1256);        // normal            ;
 	title = "ci plat t1";
 	whenchanged = 1640058601;
-	belief = (0.1035558, 0.103679, 0.1037633, 0.1011664, 0.1014326, 0.1025498, 0.09713598, 0.09831578, 0.1015622, 0.08683915);
+	belief = (0.1041381, 0.1041958, 0.104124, 0.1013515, 0.1015767, 0.1030486, 0.09707781, 0.09802848, 0.1013027, 0.08515627);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2238, 390);
-		height = 38;
+		height = 35;
 		};
 	};
 
@@ -10322,13 +10320,13 @@ node ci_lacticac_t0 {
 		   256);         // normal               ;
 	title = "ci lacticac t0";
 	whenchanged = 1640058601;
-	belief = (0.1960226, 0.1917501, 0.1153339, 0.1822897, 0.03995682, 0.06583934, 0.05456059, 0.04591335, 0.05429922, 0.05403441);
+	belief = (0.2008527, 0.1957971, 0.1183302, 0.1833226, 0.03832272, 0.06313746, 0.05232113, 0.04402907, 0.0520705, 0.05181657);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2022, 540);
-		height = 39;
+		height = 36;
 		};
 	};
 
@@ -10348,13 +10346,13 @@ node ci_hgb_t0 {
 		   1844);        // normal               ;
 	title = "ci hgb t0";
 	whenchanged = 1640058601;
-	belief = (0.08293059, 0.07978117, 0.09077312, 0.1015858, 0.1021207, 0.0946015, 0.1170646, 0.0987388, 0.1209813, 0.1114224);
+	belief = (0.07952455, 0.07650468, 0.08824843, 0.1016692, 0.1025168, 0.09546292, 0.1184518, 0.1003892, 0.1235226, 0.11371);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2022, 816);
-		height = 40;
+		height = 37;
 		};
 	};
 
@@ -10374,13 +10372,13 @@ node ci_lacticac_t1 {
 		   143);         // normal               ;
 	title = "ci lacticac t1";
 	whenchanged = 1640058601;
-	belief = (0.1891958, 0.2283135, 0.1409812, 0.1789889, 0.03557499, 0.05279679, 0.04525604, 0.03772775, 0.04787572, 0.04328929);
+	belief = (0.1939789, 0.2332896, 0.1449285, 0.1799754, 0.03359569, 0.04983937, 0.04272053, 0.03561465, 0.04519322, 0.04086413);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2232, 540);
-		height = 41;
+		height = 38;
 		};
 	};
 
@@ -10400,13 +10398,13 @@ node ci_hgb_t1 {
 		   672);         // normal               ;
 	title = "ci hgb t1";
 	whenchanged = 1640058601;
-	belief = (0.05887112, 0.0499432, 0.06025869, 0.05525764, 0.1027304, 0.1250151, 0.1204, 0.1405058, 0.1432652, 0.1437531);
+	belief = (0.05556872, 0.04714174, 0.05687894, 0.05216027, 0.1030672, 0.1265262, 0.122257, 0.1431589, 0.1462668, 0.1469742);
 	user U1 {
 		submodel = "vascular";
 		};
 	visual V6 {
 		center = (2238, 804);
-		height = 42;
+		height = 39;
 		};
 	};
 
@@ -10428,13 +10426,13 @@ node ci_oxygen_saturation_t0 {
 		   2488);        // normal           ;
 	title = "ci oxygen saturation t0";
 	whenchanged = 1640058601;
-	belief = (0.1727595, 0.002231557, 0.1545162, 0.1250163, 0.1052272, 0.09327788, 0.07484926, 0.06118049, 0.09211256, 0.118829);
+	belief = (0.1749246, 0.002242977, 0.1562438, 0.1260875, 0.106034, 0.09221716, 0.07396639, 0.06047142, 0.09106932, 0.1167428);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (2088, 1014);
-		height = 43;
+		height = 40;
 		link 1 {
 			path = ((524, 416), (1999, 980));
 			};
@@ -10459,13 +10457,13 @@ node ci_po2_t0 {
 		   447);         // normal           ;
 	title = "ci po2 t0";
 	whenchanged = 1640058601;
-	belief = (0.1824707, 0.1763379, 0.1767789, 0.07592404, 0.06389154, 0.06541349, 0.0647722, 0.06503978, 0.06490014, 0.06447135);
+	belief = (0.1845504, 0.1782796, 0.178552, 0.07560343, 0.06314689, 0.06465206, 0.06399395, 0.06423745, 0.06377984, 0.0632044);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (2271, 1020);
-		height = 44;
+		height = 41;
 		};
 	};
 
@@ -10485,13 +10483,13 @@ node ci_systolic_blood_pressure_t0 {
 		   4871);        // normal               ;
 	title = "ci systolic blood pressure t0";
 	whenchanged = 1640058601;
-	belief = (0.09917372, 0.1052226, 0.09140974, 0.1219851, 0.08253748, 0.09828732, 0.09731649, 0.09938646, 0.09738697, 0.107294);
+	belief = (0.1032097, 0.1091732, 0.09477884, 0.1267822, 0.08518324, 0.1005947, 0.09804905, 0.09736817, 0.0920203, 0.09284052);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1308, 990);
-		height = 45;
+		height = 42;
 		link 1 {
 			path = ((890, 447), (1238, 898));
 			};
@@ -10514,13 +10512,13 @@ node ci_diastolic_blood_pressure_t0 {
 		   4871);        // normal               ;
 	title = "ci diastolic blood pressure t0";
 	whenchanged = 1640058601;
-	belief = (0.09899659, 0.1021642, 0.1061573, 0.09682751, 0.09267449, 0.09935191, 0.1018601, 0.09653745, 0.09923923, 0.1061912);
+	belief = (0.1040012, 0.1073289, 0.1114455, 0.1016441, 0.09735943, 0.1042961, 0.1069698, 0.09632285, 0.08242933, 0.08820273);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1518, 990);
-		height = 46;
+		height = 43;
 		};
 	};
 
@@ -10542,13 +10540,13 @@ node ci_oxygen_saturation_t1 {
 		   951);         // normal           ;
 	title = "ci oxygen saturation t1";
 	whenchanged = 1640058601;
-	belief = (0.1764229, 0.1735876, 0.1583535, 0.1389468, 0.07970268, 0.06428812, 0.05337872, 0.04676671, 0.06070436, 0.04784856);
+	belief = (0.1787126, 0.175671, 0.1599806, 0.1403407, 0.07818359, 0.06300201, 0.05232171, 0.04585926, 0.05951994, 0.04640856);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (2088, 1164);
-		height = 47;
+		height = 44;
 		};
 	};
 
@@ -10570,13 +10568,13 @@ node ci_po2_t1 {
 		   278);         // normal           ;
 	title = "ci po2 t1";
 	whenchanged = 1640058601;
-	belief = (0.2277098, 0.2208033, 0.1975387, 0.05962579, 0.05538874, 0.06237182, 0.05207516, 0.04903616, 0.03994288, 0.03550757);
+	belief = (0.2305446, 0.2234814, 0.1994679, 0.05875484, 0.05429673, 0.0611352, 0.05103, 0.04801607, 0.03883832, 0.03443501);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V6 {
 		center = (2266, 1165);
-		height = 48;
+		height = 45;
 		};
 	};
 
@@ -10596,13 +10594,13 @@ node ci_systolic_blood_pressure_t1 {
 		   2386);        // normal               ;
 	title = "ci systolic blood pressure t1";
 	whenchanged = 1640058601;
-	belief = (0.1038119, 0.09769221, 0.09959692, 0.1196648, 0.08617368, 0.1043908, 0.0902186, 0.1062886, 0.09309667, 0.09906565);
+	belief = (0.1083023, 0.1016012, 0.1032862, 0.1242913, 0.08825173, 0.1073074, 0.09033237, 0.1030936, 0.08682933, 0.0867046);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1302, 1140);
-		height = 49;
+		height = 46;
 		};
 	};
 
@@ -10622,13 +10620,13 @@ node ci_diastolic_blood_pressure_t1 {
 		   2387);        // normal               ;
 	title = "ci diastolic blood pressure t1";
 	whenchanged = 1640058601;
-	belief = (0.1048472, 0.100245, 0.1067287, 0.08635858, 0.1027007, 0.113174, 0.08513586, 0.1027256, 0.1000125, 0.09807193);
+	belief = (0.1104167, 0.1055058, 0.1122699, 0.09094585, 0.108092, 0.1191218, 0.08952793, 0.09534022, 0.08521721, 0.08356263);
 	user U1 {
 		submodel = "cardiac";
 		};
 	visual V6 {
 		center = (1512, 1140);
-		height = 50;
+		height = 47;
 		};
 	};
 NodeSet backgrounds {Nodes = (ci_age_group_bg, ci_gender_bg, ci_smoking_history_bg, ci_hypertension_bg, ci_obesity_bg, ci_metabolic_syndrome_bg, ci_diabetes_bg, ci_chronic_pul_disease_bg, ci_chronic_cardiac_disease_bg, ci_chronic_kidney_disease_bg, ci_liver_disease_bg);};
