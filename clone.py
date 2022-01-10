@@ -5,10 +5,10 @@ import shutil
 
 GIT_REPO = 'https://gitlab.erc.monash.edu.au/stevenm/covid-intelligence-iddo/'
 # using temporary GIT repo replacement, SWSLHD does not have access to gitlab
-GIT_REPO = "https://github.com/COVID-I/covidi_validation"
+#GIT_REPO = "https://github.com/COVID-I/covidi_validation"
 IMPORT_FOLDER = './covid-intelligence-iddo/'
 # using tremporay git repo replacement
-IMPORT_FOLDER = './covidi_validation/'
+#IMPORT_FOLDER = './covidi_validation/'
 
 #clone validation scripts from gitlab
 def clone():

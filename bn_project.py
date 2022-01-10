@@ -6,7 +6,7 @@ bn_model = 'progression5.trained.dne'
 nested_dictionary = { }
 
 def updateBn(param_dict):
-    print('Running model with input: {}'.format(param_dict), file=sys.stderr)
+    print('Running model with input: {}'.format(param_dict))
 
     net = Net(bn_model)
     net.retractFindings()
@@ -15,74 +15,77 @@ def updateBn(param_dict):
     for node in net.nodes():
         if node.name() in param_dict:
             try:
-                print ('setting evidence for node: ' + node.name() + ' with value: ', param_dict[node.name()], file=sys.stderr)
-
-                if node.name() == 'ci_pulse_rate_t0':
-                    print ('    Converting ci_pulse_rate_t0 to ci_func_car_t0')
-                    beats = int(param_dict[node.name()])
-                    status = ''
-                    if beats < 45 or beats > 199:
-                        status = 'abnormal'
-                        enterFinding(net.node('ci_func_car_t0'), status)
-                        print ('    Entering findings for: ci_func_car_t0, with state: ', status)
-                    #TODO this pulse rate does not map to the expected value in the BN model
-                    #enterFinding(net.node('ci_pulse_rate_t0'), beats)
-                    #print ('    Entering findings for: ci_pulse_rate_t0, with state: ', beats)
-                    #TODO expect to update this definition
-                elif node.name() == 'ci_oxygen_saturation_t0':
-                    print ('    Converting ci_oxygen_saturation_t0 to ci_hypoxaemia_t0')
-                    #If SaO2 is between 90-95%, 'ci_hypoxaemia_t0' is 'moderate'. If SaO2 is <=89%, 'ci_hypoxaemia_t0' is 'severe'.
-                    sao2 = float(param_dict[node.name()])
-                    status = 'normal'
-                    if float(sao2) <= 0.89:
-                        status = 'verylow'
-                        enterFinding(net.node('ci_hypoxaemia_t0'), status)
-                        print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
-                    elif float(sao2) <= 0.95:
-                        status = 'low'
-                        enterFinding(net.node('ci_hypoxaemia_t0'), status)
-                        print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
+                print ('setting evidence for node: ' + node.name() + ' with value: ', param_dict[node.name()])
+                if node.name() == 'ci_age_group_bg':
+                    print ('    interpolating ci_age_group_bg')
+                    #age could be between 0-110
+                    #if less than 0 assume 0, if more than 110 assume 110
+                    raw_age = int(param_dict[node.name()])
+                    young_min = 0
+                    young_max = 45
+                    young_mid = int((young_max - young_min)/2)
+                    adult_min = 46
+                    adult_max = 75
+                    adult_mid = int(((adult_max - adult_min)/2)+adult_min)
+                    senior_min = 76
+                    senior_max = 110
+                    senior_mid = int(((senior_max - senior_min)/2)+senior_min)
+                    if raw_age <= young_max:
+                        #age bracket = young
+                        if raw_age < young_min: raw_age = young_min
+                        if (raw_age <= young_mid):
+                            young_result = 1.0
+                            adult_result = 0
+                            senior_result = 0
+                        else:
+                            young_fraction = 1/(abs(raw_age - young_mid))
+                            adult_fraction = 1/(abs(raw_age - adult_mid))
+                            sum_fraction = young_fraction + adult_fraction
+                            young_result = young_fraction/sum_fraction
+                            adult_result = adult_fraction/sum_fraction
+                            senior_result = 0
+                    elif raw_age <= adult_max:
+                        #age bracket = adult
+                        if raw_age == adult_mid:
+                            young_result = 0
+                            adult_result = 1.0
+                            senior_result = 0
+                        elif raw_age <  adult_mid:
+                            young_fraction = 1/(abs(raw_age - young_mid))
+                            adult_fraction = 1/(abs(raw_age - adult_mid))
+                            sum_fraction = young_fraction + adult_fraction
+                            young_result = young_fraction/sum_fraction
+                            adult_result = adult_fraction/sum_fraction
+                            senior_result = 0
+                        else:
+                            adult_fraction = 1/(abs(raw_age - adult_mid))
+                            senior_fraction = 1/(abs(raw_age - senior_mid))
+                            sum_fraction = adult_fraction + senior_fraction
+                            young_result = 0
+                            adult_result = adult_fraction/sum_fraction
+                            senior_result = senior_fraction/sum_fraction
                     else:
-                        status = 'normal'
-                        enterFinding(net.node('ci_hypoxaemia_t0'), status)
-                        print ('    Entering findings for: ci_hypoxaemia_t0, with state: ', status)
-                    #TODO this sao2 rate does not map to the expected value in the BN model
-                    print ('    Entering findings for: ci_oxygen_saturation_t0, with state: ', float(sao2))
-                    enterFinding(net.node('ci_oxygen_saturation_t0'), float(sao2))
-                elif node.name() == 'ci_creat_t0':
-                    print ('    Converting ci_creat_t0 to ci_intravas_volume_t0 OR ci_end_organ_perf_t0')
-                    crt = int(param_dict[node.name()])
-                    kidney_disease_status = ""
-                    if net.node('ci_chronic_kidney_disease_bg').name() in param_dict:
-                        kidney_disease_status = param_dict[net.node('ci_chronic_kidney_disease_bg').name()]
-                    if crt > 105:
-                        enterFinding(net.node('ci_end_organ_perf_t0'), 'low')
-                        print ('    Entering findings for: ci_end_organ_perf_t0, with state: low')
-                    elif crt > 90 and kidney_disease_status not in ['true', 'True', 'TRUE']:
-                        enterFinding(net.node('ci_intravas_volume_t0'), 'low')
-                        print ('    Entering findings : ci_intravas_volume_t0, with state: low')
-                    enterFinding(net.node('ci_creat_t0'), crt)
-                    print ('    Entering findings for: ci_creat_t0, with state: ', crt)
-                elif node.name() == 'ci_neut_t0' and 'ci_lym_t0' in param_dict:
-                    print ('    combining ci_neut_t0 and ci_lym_t0 to calculate NLR')
-                    nlr = float(param_dict[node.name()])/float(param_dict[net.node('ci_lym_t0').name()])
-                    if nlr > 5:
-                        enterFinding(net.node('ci_sys_immune_resp_t0'), 'abnormal')
-                        print ('    Entering findings for: ci_sys_immune_resp_t0, with state: abnormal')
-                    else:
-                        enterFinding(net.node('ci_neut_t0'), float(param_dict[node.name()]))
-                        print ('    Entering findings for: ci_neut_t0, with state: ', float(param_dict[node.name()]))
-                        enterFinding(net.node('ci_lym_t0'), float(param_dict[net.node('ci_lym_t0').name()]))
-                        print ('    Entering findings for: ci_lym_t0, with state: ', float(param_dict[net.node('ci_lym_t0').name()]))
-                elif node.name() == 'ci_lym_t0' and 'ci_neut_t0' in param_dict:
-                    print ();
-                    #do nothing as both neut and lym have already been used to update nlr
+                        #age bracket = senior
+                        if raw_age > senior_max: raw_age = senior_max
+                        if(raw_age >= senior_mid): node.likelihoods([1.0, 0, 0])
+                        else:
+                            adult_fraction = 1/(abs(raw_age - adult_mid))
+                            senior_fraction = 1/(abs(raw_age - senior_mid))
+                            sum_fraction = adult_fraction + senior_fraction
+                            young_result = 0
+                            adult_result = adult_fraction/sum_fraction
+                            senior_result = senior_fraction/sum_fraction
+                    node.likelihoods([senior_result, adult_result,young_result])
+                    print ('    setting node likelihoods: ', node.likelihoods())
+                elif node.type() == Node.CONTINUOUS_TYPE:
+                    print ('    Interpolating: ' + node.name() + " with value: ",  param_dict[node.name()])
+                    interpolate (node, (param_dict[node.name()]))
                 else:
                     print ('    Updating state directly for: ' + node.name() + " to: ",  param_dict[node.name()])
                     enterFinding(node, param_dict[node.name()])
-                print ('    Node complete (but not neccessarily updated.) ', file=sys.stderr)
+                print ('    Node updated ')
             except Exception as e:
-                print ('    exception caught!' , e)
+                print ('    exception caught!' , e, file=sys.stderr)
                 pass
 
     #add meta data: the bn name and version, to nested dictionary
@@ -109,6 +112,67 @@ def updateBn(param_dict):
 def enterFinding(node, value):
     if node.type() == Node.DISCRETE_TYPE: node.finding(state=value)
     if node.type() == Node.CONTINUOUS_TYPE: node.finding(value=value)
+
+#TODO I expect this to break if there is only one level
+def interpolate(node, value):
+    # find out what level the value sits between
+    min_marker = -1
+    max_marker = 0
+    valid_value = False
+    levels = []
+    for step in node.levels():
+        #print (step)
+        if min_marker == -1:
+            min_marker = step
+        else:
+            max_marker = step
+            levels.append([min_marker,max_marker])
+        min_marker = step
+    print ('    levels: ', levels)
+    valid_value = False
+    index = 0
+    for level in levels:
+        if level[0] <= float(value) <= level[1]:
+            #value falls within this level
+            valid_value = True
+            value_index = index
+        index=index+1
+    if valid_value:
+        print ('    valid value found at level: ', levels[value_index])
+        if value_index > 0:
+            prev_mid_point = levels[value_index-1][0] + (levels[value_index-1][1]-levels[value_index-1][0])/2
+            print ('    prev midpoint = ', prev_mid_point)
+        current_mid_point = levels[value_index][0] + (levels[value_index][1]-levels[value_index][0])/2
+        print ('    current midpoint = ', current_mid_point)
+        if value_index < len(levels)-1:
+            next_mid_point = levels[value_index+1][0] + (levels[value_index+1][1]-levels[value_index+1][0])/2
+            print ('    next midpoint = ', next_mid_point)
+        interpolate_update = [0] * len(levels)
+        if float(value) == current_mid_point:
+            #instantiate a list
+            interpolate_update[value_index] = 1.0
+        elif float(value) < current_mid_point or value_index == len(levels)-1:
+            prev_level_fraction = 1/(abs(float(value) - prev_mid_point))
+            current_level_fraction = 1/(abs(float(value) - current_mid_point))
+            sum_fraction = prev_level_fraction + current_level_fraction
+            prev_result = prev_level_fraction/sum_fraction
+            current_result = current_level_fraction/sum_fraction
+            interpolate_update[value_index-1] = prev_result
+            interpolate_update[value_index] = current_result
+        elif float(value) > current_mid_point or value_index == 0:
+            next_level_fraction = 1/(abs(float(value) - next_mid_point))
+            current_level_fraction = 1/(abs(float(value) - current_mid_point))
+            sum_fraction = next_level_fraction + current_level_fraction
+            next_result = next_level_fraction/sum_fraction
+            current_result = current_level_fraction/sum_fraction
+            interpolate_update[value_index+1] = next_result
+        interpolate_update[value_index] = current_result
+        print('    setting likelihoods: ', interpolate_update)
+        node.likelihoods(interpolate_update)
+    else: print ('    no valid level found for this value')
+    #print (node.likelihoods())
+    # print (node.levels())
+    return 0
 
 if __name__ == '__main__':
     updateBn(param_dict)
