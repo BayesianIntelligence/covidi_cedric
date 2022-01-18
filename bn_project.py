@@ -131,11 +131,23 @@ def interpolate(node, value):
     print ('    levels: ', levels)
     valid_value = False
     index = 0
+    #determine if levels are ascending or descending
+    if levels[0][0] < levels[0][1]:
+        level_direction_asc = True
+    else:
+        level_direction_asc = False
     for level in levels:
-        if level[0] <= float(value) <= level[1]:
-            #value falls within this level
-            valid_value = True
-            value_index = index
+        #print ('    checking to see if evidence of: ', value, ' is between level: ', level[0], ':', level[1])
+        if level_direction_asc:
+            if float(level[0]) <= float(value) <= float(level[1]):
+                #value falls within this level
+                valid_value = True
+                value_index = index
+        else:
+            if float(level[0]) >= float(value) <= float(level[1]):
+                #value falls within this level
+                valid_value = True
+                value_index = index
         index=index+1
     if valid_value:
         print ('    valid value found at level: ', levels[value_index])
@@ -150,7 +162,7 @@ def interpolate(node, value):
         interpolate_update = [0] * len(levels)
         if float(value) == current_mid_point:
             #instantiate a list
-            interpolate_update[value_index] = 1.0
+            current_result = 1.0
         elif float(value) < current_mid_point or value_index == len(levels)-1:
             prev_level_fraction = 1/(abs(float(value) - prev_mid_point))
             current_level_fraction = 1/(abs(float(value) - current_mid_point))
