@@ -140,11 +140,12 @@ def interpolate(node, value):
         #print ('    checking to see if evidence of: ', value, ' is between level: ', level[0], ':', level[1])
         if level_direction_asc:
             if float(level[0]) <= float(value) <= float(level[1]):
+                #TODO - IF NUMBER FALLS BELOW BOTTOM BIN, ASIGN TO BOTTOM BIN and VISA VERSA WITH TOP BIN
                 #value falls within this level
                 valid_value = True
                 value_index = index
         else:
-            if float(level[0]) >= float(value) <= float(level[1]):
+            if float(level[0]) >= float(value) >= float(level[1]):
                 #value falls within this level
                 valid_value = True
                 value_index = index
