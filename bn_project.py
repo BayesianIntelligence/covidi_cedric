@@ -128,30 +128,34 @@ def interpolate(node, value):
             max_marker = step
             levels.append([min_marker,max_marker])
         min_marker = step
-    print ('    levels: ', levels)
     valid_value = False
     index = 0
+    level_direction_desc = False
     #determine if levels are ascending or descending
-    if levels[0][0] < levels[0][1]:
-        level_direction_asc = True
-    else:
-        level_direction_asc = False
+    if levels[0][0] > levels[0][1]:
+        level_direction_desc = True
+        #reverse levels array
+        print ("    reverseing descending array...")
+        levels = [i[::-1] for i in levels[::-1]]
+        #print (levels)
+    print ('    levels: ', levels)
     for level in levels:
         #print ('    checking to see if evidence of: ', value, ' is between level: ', level[0], ':', level[1])
-        if level_direction_asc:
-            if float(level[0]) <= float(value) <= float(level[1]):
-                #TODO - IF NUMBER FALLS BELOW BOTTOM BIN, ASIGN TO BOTTOM BIN and VISA VERSA WITH TOP BIN
-                #value falls within this level
-                valid_value = True
-                value_index = index
-        else:
-            if float(level[0]) >= float(value) >= float(level[1]):
-                #value falls within this level
-                valid_value = True
-                value_index = index
+        if float(level[0]) <= float(value) <= float(level[1]):
+            #value falls within this level
+            valid_value = True
+            value_index = index
+        elif index==0 and float(value) < float(level[0]):
+            #assign value to minimum level
+            valid_value = True
+            value_index = index
+        elif index==len(levels)-1 and float(value) > float(level[1]):
+            #assign value to maximum level
+            valid_value = True
+            value_index = index
         index=index+1
     if valid_value:
-        print ('    valid value found at level: ', levels[value_index])
+        print ('    value assigned to level: ', levels[value_index], 'at index: ', value_index)
         if value_index > 0:
             prev_mid_point = levels[value_index-1][0] + (levels[value_index-1][1]-levels[value_index-1][0])/2
             print ('    prev midpoint = ', prev_mid_point)
@@ -162,9 +166,15 @@ def interpolate(node, value):
             print ('    next midpoint = ', next_mid_point)
         interpolate_update = [0] * len(levels)
         if float(value) == current_mid_point:
-            #instantiate a list
             current_result = 1.0
-        elif float(value) < current_mid_point or value_index == len(levels)-1:
+            interpolate_update[value_index] = current_result
+        elif value_index == 0 and float(value) < current_mid_point:
+            current_result = 1.0
+            interpolate_update[value_index] = current_result
+        elif value_index == len(levels)-1 and float(value) > current_mid_point:
+            current_result = 1.0
+            interpolate_update[value_index] = current_result
+        elif float(value) < current_mid_point:
             prev_level_fraction = 1/(abs(float(value) - prev_mid_point))
             current_level_fraction = 1/(abs(float(value) - current_mid_point))
             sum_fraction = prev_level_fraction + current_level_fraction
@@ -172,15 +182,20 @@ def interpolate(node, value):
             current_result = current_level_fraction/sum_fraction
             interpolate_update[value_index-1] = prev_result
             interpolate_update[value_index] = current_result
-        elif float(value) > current_mid_point or value_index == 0:
+        elif float(value) > current_mid_point:
             next_level_fraction = 1/(abs(float(value) - next_mid_point))
             current_level_fraction = 1/(abs(float(value) - current_mid_point))
             sum_fraction = next_level_fraction + current_level_fraction
             next_result = next_level_fraction/sum_fraction
             current_result = current_level_fraction/sum_fraction
             interpolate_update[value_index+1] = next_result
-        interpolate_update[value_index] = current_result
-        print('    setting likelihoods: ', interpolate_update)
+            interpolate_update[value_index] = current_result
+        else: print ('unhandled scenario')
+        print('    likelihoods: ', interpolate_update)
+        if level_direction_desc:
+            print('    reverting descending array...')
+            #reverse the interpolation update list for descending levels
+            interpolate_update = interpolate_update[::-1]
         node.likelihoods(interpolate_update)
     else: print ('    no valid level found for this value')
     #print (node.likelihoods())
