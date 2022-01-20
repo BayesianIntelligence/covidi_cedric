@@ -38,6 +38,7 @@ def updateBn(param_dict):
                             adult_result = 0
                             senior_result = 0
                         else:
+                            #TODO do not need the 1/
                             young_fraction = 1/(abs(raw_age - young_mid))
                             adult_fraction = 1/(abs(raw_age - adult_mid))
                             sum_fraction = young_fraction + adult_fraction
@@ -175,21 +176,21 @@ def interpolate(node, value):
             current_result = 1.0
             interpolate_update[value_index] = current_result
         elif float(value) < current_mid_point:
-            prev_level_fraction = 1/(abs(float(value) - prev_mid_point))
-            current_level_fraction = 1/(abs(float(value) - current_mid_point))
-            sum_fraction = prev_level_fraction + current_level_fraction
-            prev_result = prev_level_fraction/sum_fraction
-            current_result = current_level_fraction/sum_fraction
-            interpolate_update[value_index-1] = prev_result
-            interpolate_update[value_index] = current_result
+            distance_to_current_mid_point = abs(float(value)-current_mid_point)
+            distance_to_prev_mid_point = abs(float(value)-prev_mid_point)
+            total_distance = distance_to_current_mid_point + distance_to_prev_mid_point
+            fraction_of_current_level = distance_to_current_mid_point / total_distance
+            fraction_of_prev_level = distance_to_prev_mid_point / total_distance
+            interpolate_update[value_index-1] = fraction_of_prev_level
+            interpolate_update[value_index] = fraction_of_current_level
         elif float(value) > current_mid_point:
-            next_level_fraction = 1/(abs(float(value) - next_mid_point))
-            current_level_fraction = 1/(abs(float(value) - current_mid_point))
-            sum_fraction = next_level_fraction + current_level_fraction
-            next_result = next_level_fraction/sum_fraction
-            current_result = current_level_fraction/sum_fraction
-            interpolate_update[value_index+1] = next_result
-            interpolate_update[value_index] = current_result
+            distance_to_current_mid_point = abs(float(value)-current_mid_point)
+            distance_to_next_mid_point = abs(float(value)-next_mid_point)
+            total_distance = distance_to_current_mid_point + distance_to_next_mid_point
+            fraction_of_current_level = distance_to_current_mid_point / total_distance
+            fraction_of_next_level = distance_to_next_mid_point / total_distance
+            interpolate_update[value_index+1] = fraction_of_next_level
+            interpolate_update[value_index] = fraction_of_current_level
         else: print ('unhandled scenario')
         print('    likelihoods: ', interpolate_update)
         if level_direction_desc:
