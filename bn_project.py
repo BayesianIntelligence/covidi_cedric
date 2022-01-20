@@ -156,6 +156,7 @@ def interpolate(node, value):
             value_index = index
         index=index+1
     if valid_value:
+        #TODO if we have a scenario where the last 2 levels are [20,20][20,20] eg. the same, I expect a divide by zero error.
         print ('    value assigned to level: ', levels[value_index], 'at index: ', value_index)
         if value_index > 0:
             prev_mid_point = levels[value_index-1][0] + (levels[value_index-1][1]-levels[value_index-1][0])/2
@@ -179,16 +180,18 @@ def interpolate(node, value):
             distance_to_current_mid_point = abs(float(value)-current_mid_point)
             distance_to_prev_mid_point = abs(float(value)-prev_mid_point)
             total_distance = distance_to_current_mid_point + distance_to_prev_mid_point
-            fraction_of_current_level = distance_to_current_mid_point / total_distance
-            fraction_of_prev_level = distance_to_prev_mid_point / total_distance
+            fraction_of_current_level = 1-(distance_to_current_mid_point / total_distance)
+            fraction_of_prev_level = 1-(distance_to_prev_mid_point / total_distance)
             interpolate_update[value_index-1] = fraction_of_prev_level
             interpolate_update[value_index] = fraction_of_current_level
         elif float(value) > current_mid_point:
             distance_to_current_mid_point = abs(float(value)-current_mid_point)
             distance_to_next_mid_point = abs(float(value)-next_mid_point)
             total_distance = distance_to_current_mid_point + distance_to_next_mid_point
-            fraction_of_current_level = distance_to_current_mid_point / total_distance
-            fraction_of_next_level = distance_to_next_mid_point / total_distance
+            fraction_of_current_level = 1-(distance_to_current_mid_point / total_distance)
+            fraction_of_next_level = 1-(distance_to_next_mid_point / total_distance)
+            print ("ratio of current_level: ", fraction_of_current_level)
+            print ("ratio of next_level: ", fraction_of_next_level)
             interpolate_update[value_index+1] = fraction_of_next_level
             interpolate_update[value_index] = fraction_of_current_level
         else: print ('unhandled scenario')
