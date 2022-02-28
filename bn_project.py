@@ -1,14 +1,26 @@
 import _env,csv,math
 from bni_netica import *
 
-bn_model = 'progression5.trained.dne'
+bn_models = {"bn_model_admission" : 'progression5.trained.dne', "bn_model_hospitalisation" :'progression10.trained.dne'}
 
 nested_dictionary = { }
 
 def updateBn(param_dict):
     print('Running model with input: {}'.format(param_dict))
 
-    net = Net(bn_model)
+    #select which BN model to use
+    if "time_since_admission" in param_dict:
+        bn_selection = param_dict["time_since_admission"]
+        print ("Model Selection: " + param_dict["time_since_admission"])
+        if bn_selection in bn_models:
+            print ("Selecting BN: " + bn_models[bn_selection])
+            net = Net(bn_models[bn_selection])
+        else:
+            print ("Selecting BN: " + bn_models[0])
+            net = Net(bn_models[0])
+    else:
+        print ("Selecting BN: " + bn_models[0])
+        net = Net(bn_models[0])
     net.retractFindings()
     #pass parameter dictionary to set evidence
     output_test_string = "Values set: "
@@ -107,6 +119,9 @@ def updateBn(param_dict):
                 nested_dictionary['data'][node.name()]['s'+str(index)] = node.beliefs()[index]
             else:
                 nested_dictionary['data'][node.name()][state.name()] = node.beliefs()[index]
+            #Add a special condition for other gender
+            if node.name() == 'ci_gender_bg':
+                nested_dictionary['data'][node.name()]["other"] = 0
             index+=1
     return nested_dictionary
 
