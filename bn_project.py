@@ -8,6 +8,11 @@ nested_dictionary = { }
 def updateBn(param_dict):
     print('Running model with input: {}'.format(param_dict))
 
+    #select the first value from Bn_models to use as a default
+    values_view = bn_models.values()
+    value_iterator = iter(values_view)
+    first_value = next(value_iterator)
+
     #select which BN model to use
     if "time_since_admission" in param_dict:
         bn_selection = param_dict["time_since_admission"]
@@ -16,11 +21,11 @@ def updateBn(param_dict):
             print ("Selecting BN: " + bn_models[bn_selection])
             net = Net(bn_models[bn_selection])
         else:
-            print ("Selecting BN: " + bn_models[0])
-            net = Net(bn_models[0])
+            print ("Selecting BN: " + first_value)
+            net = Net(first_value)
     else:
-        print ("Selecting BN: " + bn_models[0])
-        net = Net(bn_models[0])
+        print ("Selecting BN: " + first_value)
+        net = Net(first_value)
     net.retractFindings()
     #pass parameter dictionary to set evidence
     output_test_string = "Values set: "
