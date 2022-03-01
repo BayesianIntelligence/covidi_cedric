@@ -1,11 +1,11 @@
 // ~->[DNET-1]->~
 
-// File created by someone at MonashU using Netica 6.09 on Feb 28, 2022 at 02:13:23 UTC.
+// File created by someone at MonashU using Netica 6.09 on Mar 01, 2022 at 07:33:46 UTC.
 
 bnet untitled {
 AutoCompile = TRUE;
 autoupdate = TRUE;
-whenchanged = 1646014334;
+whenchanged = 1646120023;
 
 visual V6 {
 	defdispform = BELIEFBARS;
@@ -35,7 +35,7 @@ visual V6 {
 		};
 	};
 user U1 {
-	net_name = "Progression Model v5";
+	net_name = "Progression Model v5 s1p0";
 	net_version = "20220228";
 	};
 
@@ -5806,7 +5806,7 @@ node ci_func_car_t1 {
 		   0.8938581,   0.1061419,    // young           false                         false              reduced        reduced              reduced               abnormal          severe           normal                true                   
 		   0.9197754,   0.0802246,    // young           false                         false              reduced        reduced              reduced               abnormal          severe           normal                false                  
 		   0.9087724,   0.09122761,   // young           false                         false              reduced        reduced              reduced               abnormal          moderate         abnormal              true                   
-		   0.9729,      0.02710028,   // young           false                         false              reduced        reduced              reduced               abnormal          moderate         abnormal              false                  
+		   0.9729,      0.02710027,   // young           false                         false              reduced        reduced              reduced               abnormal          moderate         abnormal              false                  
 		   0.8394842,   0.1605158,    // young           false                         false              reduced        reduced              reduced               abnormal          moderate         normal                true                   
 		   0.8102368,   0.1897632,    // young           false                         false              reduced        reduced              reduced               abnormal          moderate         normal                false                  
 		   0.5997397,   0.4002603,    // young           false                         false              reduced        reduced              reduced               abnormal          normal           abnormal              true                   
@@ -5984,7 +5984,7 @@ node ci_func_car_t1 {
 		   0.7941054,   0.2058946,    // young           false                         false              normal         normal               normal                normal            severe           abnormal              true                   
 		   0.5032898,   0.4967102,    // young           false                         false              normal         normal               normal                normal            severe           abnormal              false                  
 		   0.08202671,  0.9179733,    // young           false                         false              normal         normal               normal                normal            severe           normal                true                   
-		   0.06510019,  0.9349,       // young           false                         false              normal         normal               normal                normal            severe           normal                false                  
+		   0.06510018,  0.9349,       // young           false                         false              normal         normal               normal                normal            severe           normal                false                  
 		   0.09906016,  0.9009398,    // young           false                         false              normal         normal               normal                normal            moderate         abnormal              true                   
 		   0.0217589,   0.9782411,    // young           false                         false              normal         normal               normal                normal            moderate         abnormal              false                  
 		   0.003249534, 0.9967505,    // young           false                         false              normal         normal               normal                normal            moderate         normal                true                   
@@ -10147,7 +10147,7 @@ node ci_ddimer_t1 {
 	parents = (ci_coagulation_t1);
 	probs = 
 		// 0.00209 to 0.401 0.40108 to 0.758 0.75836 to 1 1 to 1.708 1.708 to 2.675 2.675 to 3.7 3.7 to 5.132 5.132 to 8.22 8.22 to 18.824 18.824 to 19838  // ci_coagulation_t1 
-		  (0.03638477,  0.08308856,  0.1064449,   0.1142462,   0.1090873,   0.106514,    0.1142986,   0.1091246,   0.1091239,   0.1116873,    // abnormal          
+		  (0.03638477,  0.08308855,  0.1064449,   0.1142462,   0.1090873,   0.106514,    0.1142986,   0.1091246,   0.1091239,   0.1116873,    // abnormal          
 		   0.7424642,   0.254496,    0.001290072, 3.285412e-4, 2.368629e-4, 2.368629e-4, 2.368629e-4, 2.368629e-4, 2.368629e-4, 2.368629e-4); // normal            ;
 	numcases = 
 		                 // ci_coagulation_t1 
@@ -10173,7 +10173,7 @@ node ci_aptt_t1 {
 	parents = (ci_coagulation_t1);
 	probs = 
 		// 17 to 25     25 to 28     28 to 31     31 to 33     33 to 35.55  35.55 to 38.44 38.44 to 43 43 to 49.52 49.52 to 64.05 64.05 to 133  // ci_coagulation_t1 
-		  (0.05403161,  0.08999923,  0.1199566,   0.1020033,   0.1099944,   0.1040107,   0.1000205,   0.1099994,   0.1040055,   0.1059789,    // abnormal          
+		  (0.0540316,   0.08999921,  0.1199566,   0.1020033,   0.1099944,   0.1040107,   0.1000205,   0.1099994,   0.1040055,   0.1059789,    // abnormal          
 		   0.8314173,   0.1644027,   0.001433245, 4.698945e-4, 3.794788e-4, 3.794788e-4, 3.794788e-4, 3.794788e-4, 3.794788e-4, 3.794788e-4); // normal            ;
 	numcases = 
 		                 // ci_coagulation_t1 
@@ -10181,7 +10181,7 @@ node ci_aptt_t1 {
 		   25.0001);     // normal            ;
 	title = "ci aptt t1";
 	whenchanged = 1643407987;
-	belief = (0.6066594, 0.1428912, 0.03570073, 0.02982525, 0.03207136, 0.03034136, 0.02918771, 0.03207281, 0.03033985, 0.0309104);
+	belief = (0.6066594, 0.1428912, 0.03570074, 0.02982525, 0.03207136, 0.03034136, 0.02918771, 0.03207281, 0.03033985, 0.0309104);
 	user U1 {
 		submodel = "vascular";
 		};

@@ -8,15 +8,12 @@ bn_models = {"0" :'jump5_start0_period0.dne',\
              "4" :'jump5_start0_period2.dne', \
              "5" :'jump5_start1plus_period2.dne'}
 
+default_model = "jump5_start0_period2.dne"
+
 nested_dictionary = { }
 
 def updateBn(param_dict):
     print('Running model with input: {}'.format(param_dict))
-
-    #select the first value from Bn_models to use as a default
-    values_view = bn_models.values()
-    value_iterator = iter(values_view)
-    first_value = next(value_iterator)
 
     #select which BN model to use
     if "time_since_admission" in param_dict and "period" in param_dict:
@@ -34,10 +31,10 @@ def updateBn(param_dict):
             bn_selection = bn_models["5"]
         else:
             print ("Time since admission and/or period not set, Selecting default BN.")
-            bn_selection = first_value
+            bn_selection = default_model
     else:
         print ("Time since admission and/or period not set, Selecting default BN.")
-        bn_selection = first_value
+        bn_selection = default_model
     print ("Selecting BN: " + bn_selection)
     net = Net(bn_selection)
     net.retractFindings()
