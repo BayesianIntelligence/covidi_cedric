@@ -1,7 +1,12 @@
 import _env,csv,math
 from bni_netica import *
 
-bn_models = {"bn_model_admission" : 'progression5.trained.dne', "bn_model_hospitalisation" :'progression10.trained.dne'}
+bn_models = {"0" :'jump5_start0_period0.dne',\
+             "1" :'jump5_start1plus_period0.dne', \
+             "2" :'jump5_start0_period1.dne', \
+             "3" :'jump5_start1plus_period1.dne', \
+             "4" :'jump5_start0_period2.dne', \
+             "5" :'jump5_start1plus_period2.dne'}
 
 nested_dictionary = { }
 
@@ -14,18 +19,27 @@ def updateBn(param_dict):
     first_value = next(value_iterator)
 
     #select which BN model to use
-    if "time_since_admission" in param_dict:
-        bn_selection = param_dict["time_since_admission"]
-        print ("Model Selection: " + param_dict["time_since_admission"])
-        if bn_selection in bn_models:
-            print ("Selecting BN: " + bn_models[bn_selection])
-            net = Net(bn_models[bn_selection])
+    if "time_since_admission" in param_dict and "period" in param_dict:
+        if param_dict["time_since_admission"] == "start0" and param_dict["period"] == "period0":
+            bn_selection = bn_models["0"]
+        elif param_dict["time_since_admission"] == "start1plus" and param_dict["period"] == "period0":
+            bn_selection = bn_models["1"]
+        elif param_dict["time_since_admission"] == "start0" and param_dict["period"] == "period1":
+            bn_selection = bn_models["2"]
+        elif param_dict["time_since_admission"] == "start1plus" and param_dict["period"] == "period1":
+            bn_selection = bn_models["3"]
+        elif param_dict["time_since_admission"] == "start0" and param_dict["period"] == "period2":
+            bn_selection = bn_models["4"]
+        elif param_dict["time_since_admission"] == "start1plus" and param_dict["period"] == "period2":
+            bn_selection = bn_models["5"]
         else:
-            print ("Selecting BN: " + first_value)
-            net = Net(first_value)
+            print ("Time since admission and/or period not set, Selecting default BN.")
+            bn_selection = first_value
     else:
-        print ("Selecting BN: " + first_value)
-        net = Net(first_value)
+        print ("Time since admission and/or period not set, Selecting default BN.")
+        bn_selection = first_value
+    print ("Selecting BN: " + bn_selection)
+    net = Net(bn_selection)
     net.retractFindings()
     #pass parameter dictionary to set evidence
     output_test_string = "Values set: "
@@ -128,6 +142,13 @@ def updateBn(param_dict):
             if node.name() == 'ci_gender_bg':
                 nested_dictionary['data'][node.name()]["other"] = 0
             index+=1
+    nested_dictionary['data']['time_since_admission'] = {}
+    nested_dictionary['data']['time_since_admission']['start0'] = 0
+    nested_dictionary['data']['time_since_admission']['start1plus'] = 0
+    nested_dictionary['data']['period'] = {}
+    nested_dictionary['data']['period']['period0'] = 0
+    nested_dictionary['data']['period']['period1'] = 0
+    nested_dictionary['data']['period']['period2'] = 0
     return nested_dictionary
 
 def enterFinding(node, value):
