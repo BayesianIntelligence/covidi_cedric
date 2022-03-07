@@ -106,6 +106,13 @@ def updateBn(param_dict):
                             senior_result = senior_fraction/sum_fraction
                     node.likelihoods([senior_result, adult_result,young_result])
                     print ('    setting node likelihoods: ', node.likelihoods())
+                elif node.name() == 'ci_gender_bg':
+                    if 'ci_gender_bg' in param_dict.keys() and param_dict['ci_gender_bg'] == 'other':
+                        print ('    Updating gender to: ',  param_dict[node.name()])
+                        node.likelihoods([1, 1])
+                    elif 'ci_gender_bg' in param_dict.keys():
+                        print ('    Updating gender to: ',  param_dict[node.name()])
+                        enterFinding(node, param_dict[node.name()])
                 elif node.type() == Node.CONTINUOUS_TYPE:
                     print ('    Interpolating: ' + node.name() + " with value: ",  param_dict[node.name()])
                     interpolate (node, (param_dict[node.name()]))
@@ -114,9 +121,23 @@ def updateBn(param_dict):
                     enterFinding(node, param_dict[node.name()])
                 print ('    Node updated ')
             except Exception as e:
-                print ('    exception caught!' , e, file=sys.stderr)
+                print ('    1st exception caught!' , e, file=sys.stderr)
                 pass
-
+        else:
+            try:
+                if node.name() == 'ci_status_t0':
+                    if 'icu_status' in param_dict.keys() and param_dict['icu_status'] == 'icu':
+                        print ("converting icu_status:icu to ci_status_t0:0,0,0,1")
+                        node.likelihoods([0, 1, 0, 0])
+                    elif 'icu_status' in param_dict.keys() and param_dict['icu_status'] == 'hospital':
+                        print ("converting icu_status:icu to ci_status_t0:0,0,1,0")
+                        node.likelihoods([0, 0, 1, 0])
+                    else:
+                        print ("setting ci_status_t0:0,0,1,1")
+                        node.likelihoods([0, 1, 1, 0])
+            except Exception as e:
+                print ('   2nd exception caught!' , e, file=sys.stderr)
+                pass
     #add meta data: the bn name and version, to nested dictionary
     #net.add_net_usr_field('net_version', '1')
     #net.add_net_usr_field('net_name', 'progression model')
@@ -139,13 +160,29 @@ def updateBn(param_dict):
             if node.name() == 'ci_gender_bg':
                 nested_dictionary['data'][node.name()]["other"] = 0
             index+=1
+
+    #merge hypoxemia's from 3 states into 2 states
+    nested_dictionary['data']['ci_hypoxaemia_t0']['non_severe'] = 1-nested_dictionary['data']['ci_hypoxaemia_t0']['severe']
+    del nested_dictionary['data']['ci_hypoxaemia_t0']['normal']
+    del nested_dictionary['data']['ci_hypoxaemia_t0']['moderate']
+    nested_dictionary['data']['ci_hypoxaemia_t1']['non_severe'] = 1-nested_dictionary['data']['ci_hypoxaemia_t1']['severe']
+    del nested_dictionary['data']['ci_hypoxaemia_t1']['normal']
+    del nested_dictionary['data']['ci_hypoxaemia_t1']['moderate']
+    #create icu_status field
+    nested_dictionary['data']['icu_status'] = {}
+    nested_dictionary['data']['icu_status']['icu'] = 0
+    nested_dictionary['data']['icu_status']['hospital'] = 0
+
     nested_dictionary['data']['time_since_admission'] = {}
     nested_dictionary['data']['time_since_admission']['start0'] = 0
     nested_dictionary['data']['time_since_admission']['start1plus'] = 0
-    nested_dictionary['data']['period'] = {}
-    nested_dictionary['data']['period']['period0'] = 0
-    nested_dictionary['data']['period']['period1'] = 0
-    nested_dictionary['data']['period']['period2'] = 0
+    nested_dictionary['data']['ci_period_bg'] = {}
+    nested_dictionary['data']['ci_period_bg']['period0'] = 0
+    nested_dictionary['data']['ci_period_bg']['period1'] = 0
+    nested_dictionary['data']['ci_period_bg']['period2'] = 0
+    nested_dictionary['data']['ci_vaccine_status_bg'] = {}
+    nested_dictionary['data']['ci_vaccine_status_bg']['yes'] = 0
+    nested_dictionary['data']['ci_vaccine_status_bg']['no'] = 0
     return nested_dictionary
 
 def enterFinding(node, value):
