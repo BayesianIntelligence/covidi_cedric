@@ -173,9 +173,9 @@ def updateBn(param_dict):
     nested_dictionary['data']['icu_status']['icu'] = 0
     nested_dictionary['data']['icu_status']['hospital'] = 0
 
-    nested_dictionary['data']['time_since_admission'] = {}
-    nested_dictionary['data']['time_since_admission']['start0'] = 0
-    nested_dictionary['data']['time_since_admission']['start1plus'] = 0
+    nested_dictionary['data']['ci_time_since_admission_bg'] = {}
+    nested_dictionary['data']['ci_time_since_admission_bg']['start0'] = 0
+    nested_dictionary['data']['ci_time_since_admission_bg']['start1plus'] = 0
     nested_dictionary['data']['ci_period_bg'] = {}
     nested_dictionary['data']['ci_period_bg']['period0'] = 0
     nested_dictionary['data']['ci_period_bg']['period1'] = 0
