@@ -69,9 +69,11 @@ You will require all the validation scripts from GITHUB, these are stored and ma
 ```
 python clone.py
 ```
-or
+or 
 ```
-sudo docker exec covidi_cedric python clone.py
+sudo docker exec -it covidi_cedric /bin/bash
+python clone.py
+exit
 ```
 copy the validation file to the newely cloned folder
 ```
@@ -83,9 +85,11 @@ sudo docker exec covidi_cedric cp validation.py covid-intelligence-iddo/validati
 ```
 finally, to perform the validation process, run the validation script: 
 ```
-python validation.py
+sudo python covid-intelligence-iddo/validation.py
 ```
 or
 ```
-sudo docker exec covidi_cedric python covid-intelligence-iddo/validation.py
+sudo docker exec -it covidi_cedric /bin/bash
+python covid-intelligence-iddo/validation.py
+exit
 ```
