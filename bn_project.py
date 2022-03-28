@@ -141,10 +141,10 @@ def updateBn(param_dict):
     #add meta data: the bn name and version, to nested dictionary
     #net.add_net_usr_field('net_version', '1')
     #net.add_net_usr_field('net_name', 'progression model')
-    print ('API request made for BN name: ' + net.get_net_usr_field('net_name') + ' with version: ' + net.get_net_usr_field('net_version'))
+    print ('API request made for BN name: ' + net.get_net_usr_field('name') + ' with version: ' + net.get_net_usr_field('version'))
     nested_dictionary['model'] = {}
-    nested_dictionary['model']['name'] = net.get_net_usr_field('net_name')
-    nested_dictionary['model']['version'] = net.get_net_usr_field('net_version')
+    nested_dictionary['model']['name'] = net.get_net_usr_field('name')
+    nested_dictionary['model']['version'] = net.get_net_usr_field('version')
     nested_dictionary['data'] = {}
 
     #update output dictionary
