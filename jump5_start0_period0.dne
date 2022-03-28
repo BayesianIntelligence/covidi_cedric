@@ -1,11 +1,11 @@
 // ~->[DNET-1]->~
 
-// File created by someone at MonashU using Netica 5.04 on Mar 10, 2022 at 09:22:51.
+// File created by someone at MonashU using Netica 6.09 on Mar 28, 2022 at 07:24:36 UTC.
 
 bnet untitled {
 AutoCompile = TRUE;
 autoupdate = TRUE;
-whenchanged = 1646864571;
+whenchanged = 1648452274;
 
 visual V3 {
 	defdispform = BELIEFBARS;
@@ -13,31 +13,37 @@ visual V3 {
 	NodeMaxNumEntries = 50;
 	nodefont = font {shape= "Arial"; size= 9;};
 	linkfont = font {shape= "Arial"; size= 9;};
+	ShowLinkStrengths = 1;
+	windowposn = (26, 26, 2384, 511);
 	resolution = 72;
 	drawingbounds = (2380, 1255);
 	showpagebreaks = FALSE;
 	usegrid = TRUE;
 	gridspace = (6, 6);
-	NodeSet Node {BuiltIn = 1; Color = 0x00E1E1E1;};
-	NodeSet Nature {BuiltIn = 1; Color = 0x00F8EED2;};
-	NodeSet Deterministic {BuiltIn = 1; Color = 0x00D3CAA6;};
-	NodeSet Finding {BuiltIn = 1; Color = 0x00C8C8C8;};
-	NodeSet Constant {BuiltIn = 1; Color = 0x00FFFFFF;};
-	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00FFFFB4;};
-	NodeSet Utility {BuiltIn = 1; Color = 0x00FFBDBD;};
-	NodeSet Decision {BuiltIn = 1; Color = 0x00DEE8FF;};
-	NodeSet Documentation {BuiltIn = 1; Color = 0x00F0FAFA;};
-	NodeSet Title {BuiltIn = 1; Color = 0x00FFFFFF;};
+	NodeSet Node {BuiltIn = 1; Color = 0x00e1e1e1;};
+	NodeSet Nature {BuiltIn = 1; Color = 0x00f8eed2;};
+	NodeSet Deterministic {BuiltIn = 1; Color = 0x00d3caa6;};
+	NodeSet Finding {BuiltIn = 1; Color = 0x00c8c8c8;};
+	NodeSet Constant {BuiltIn = 1; Color = 0x00ffffff;};
+	NodeSet ConstantValue {BuiltIn = 1; Color = 0x00ffffb4;};
+	NodeSet Utility {BuiltIn = 1; Color = 0x00ffbdbd;};
+	NodeSet Decision {BuiltIn = 1; Color = 0x00dee8ff;};
+	NodeSet Documentation {BuiltIn = 1; Color = 0x00f0fafa;};
+	NodeSet Title {BuiltIn = 1; Color = 0x00ffffff;};
 	PrinterSetting A {
 		margins = (1270, 1270, 1270, 1270);
 		};
 	};
+user U1 {
+	name = "Progression Model v5";
+	version = "20220328";
+	};
 
 node ci_age_group_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (senior, adult, young);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = ();
 	probs = 
 		// senior       adult        young        
@@ -55,10 +61,10 @@ node ci_age_group_bg {
 	};
 
 node ci_gender_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (male, female, other);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_age_group_bg);
 	probs = 
 		// male         female       other         // ci_age_group_bg 
@@ -78,10 +84,10 @@ node ci_gender_bg {
 	};
 
 node ci_gender_type_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (male, female);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_bg);
 	probs = 
 		// male         female        // ci_gender_bg 
@@ -101,10 +107,10 @@ node ci_gender_type_bg {
 	};
 
 node ci_smoking_history_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (exsmoker, smoker, never);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg);
 	probs = 
 		// exsmoker     smoker       never         // ci_gender_type_bg ci_age_group_bg 
@@ -127,10 +133,10 @@ node ci_smoking_history_bg {
 	};
 
 node ci_hypertension_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg 
@@ -142,7 +148,7 @@ node ci_hypertension_bg {
 		   0.1084381,   0.8915619);   // female            young           ;
 	title = "ci hypertension bg";
 	whenchanged = 1646864570;
-	belief = (0.4833054, 0.5166946);
+	belief = (0.4833054, 0.5166947);
 	user U1 {
 		submodel = "background";
 		};
@@ -153,10 +159,10 @@ node ci_hypertension_bg {
 	};
 
 node ci_obesity_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg 
@@ -179,10 +185,10 @@ node ci_obesity_bg {
 	};
 
 node ci_metabolic_syndrome_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypertension_bg, ci_obesity_bg);
 	probs = 
 		// true         false         // ci_hypertension_bg ci_obesity_bg 
@@ -203,10 +209,10 @@ node ci_metabolic_syndrome_bg {
 	};
 
 node ci_diabetes_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg, ci_metabolic_syndrome_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg ci_metabolic_syndrome_bg 
@@ -235,10 +241,10 @@ node ci_diabetes_bg {
 	};
 
 node ci_chronic_pul_disease_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg, ci_smoking_history_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg ci_smoking_history_bg 
@@ -273,10 +279,10 @@ node ci_chronic_pul_disease_bg {
 	};
 
 node ci_chronic_cardiac_disease_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg, ci_chronic_pul_disease_bg, ci_diabetes_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg ci_chronic_pul_disease_bg ci_diabetes_bg 
@@ -317,10 +323,10 @@ node ci_chronic_cardiac_disease_bg {
 	};
 
 node ci_chronic_kidney_disease_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg, ci_diabetes_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg ci_diabetes_bg 
@@ -349,10 +355,10 @@ node ci_chronic_kidney_disease_bg {
 	};
 
 node ci_liver_disease_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_gender_type_bg, ci_age_group_bg, ci_diabetes_bg);
 	probs = 
 		// true         false         // ci_gender_type_bg ci_age_group_bg ci_diabetes_bg 
@@ -381,10 +387,10 @@ node ci_liver_disease_bg {
 	};
 
 node ci_vaccine_status_bg {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (ND, reported);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = ();
 	probs = 
 		// ND           reported     
@@ -402,10 +408,10 @@ node ci_vaccine_status_bg {
 	};
 
 node ci_antiinflam_treat_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = ();
 	probs = 
 		// true         false        
@@ -423,10 +429,10 @@ node ci_antiinflam_treat_t0 {
 	};
 
 node ci_sys_immune_resp_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (abnormal, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_vaccine_status_bg, ci_gender_type_bg, ci_age_group_bg, ci_metabolic_syndrome_bg, ci_antiinflam_treat_t0);
 	probs = 
 		// abnormal     normal        // ci_vaccine_status_bg ci_gender_type_bg ci_age_group_bg ci_metabolic_syndrome_bg ci_antiinflam_treat_t0 
@@ -480,7 +486,7 @@ node ci_sys_immune_resp_t0 {
 		   0.1427657,   0.8572343);   // reported             female            young           false                    false                  ;
 	title = "ci sys immune resp t0";
 	whenchanged = 1646864570;
-	belief = (0.7170063, 0.2829937);
+	belief = (0.7170063, 0.2829938);
 	user U1 {
 		submodel = "system";
 		};
@@ -491,10 +497,10 @@ node ci_sys_immune_resp_t0 {
 	};
 
 node ci_anticoag_treat_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = ();
 	probs = 
 		// true         false        
@@ -512,10 +518,10 @@ node ci_anticoag_treat_t0 {
 	};
 
 node ci_coagulation_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (abnormal, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_diabetes_bg, ci_sys_immune_resp_t0, ci_anticoag_treat_t0);
 	probs = 
 		// abnormal     normal        // ci_diabetes_bg ci_sys_immune_resp_t0 ci_anticoag_treat_t0 
@@ -540,10 +546,10 @@ node ci_coagulation_t0 {
 	};
 
 node ci_func_pul_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_age_group_bg, ci_obesity_bg, ci_chronic_pul_disease_bg, ci_coagulation_t0, ci_sys_immune_resp_t0, ci_antiinflam_treat_t0);
 	probs = 
 		// reduced      normal        // ci_age_group_bg ci_obesity_bg ci_chronic_pul_disease_bg ci_coagulation_t0 ci_sys_immune_resp_t0 ci_antiinflam_treat_t0 
@@ -656,10 +662,10 @@ node ci_func_pul_t0 {
 	};
 
 node ci_intravas_volume_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypertension_bg, ci_diabetes_bg, ci_sys_immune_resp_t0, ci_coagulation_t0);
 	probs = 
 		// reduced      normal        // ci_hypertension_bg ci_diabetes_bg ci_sys_immune_resp_t0 ci_coagulation_t0 
@@ -692,10 +698,10 @@ node ci_intravas_volume_t0 {
 	};
 
 node ci_pulmonary_support_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (high_flow_nasal, cpap, mechanical_ventilation, supplemental_o2, none);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t0);
 	probs = 
 		// high flow nasal cpap      mechanical venti supplemental o2 none   // ci_func_pul_t0 
@@ -703,7 +709,7 @@ node ci_pulmonary_support_t0 {
 		   0.02035248,  0.0669849,   0.1278378,   0.2213461,   0.5634788);   // normal         ;
 	title = "ci pulmonary support t0";
 	whenchanged = 1646864570;
-	belief = (0.03339326, 0.09318705, 0.1572963, 0.2397379, 0.4763855);
+	belief = (0.03339326, 0.09318704, 0.1572963, 0.2397379, 0.4763855);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -714,10 +720,10 @@ node ci_pulmonary_support_t0 {
 	};
 
 node ci_hypoxaemia_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (severe, moderate, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t0, ci_pulmonary_support_t0);
 	probs = 
 		// severe       moderate     normal        // ci_func_pul_t0 ci_pulmonary_support_t0 
@@ -744,10 +750,10 @@ node ci_hypoxaemia_t0 {
 	};
 
 node ci_func_car_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_age_group_bg, ci_chronic_cardiac_disease_bg, ci_hypertension_bg, ci_intravas_volume_t0, ci_coagulation_t0, ci_hypoxaemia_t0, ci_sys_immune_resp_t0, ci_antiinflam_treat_t0);
 	probs = 
 		// reduced      normal        // ci_age_group_bg ci_chronic_cardiac_disease_bg ci_hypertension_bg ci_intravas_volume_t0 ci_coagulation_t0 ci_hypoxaemia_t0 ci_sys_immune_resp_t0 ci_antiinflam_treat_t0 
@@ -1329,7 +1335,7 @@ node ci_func_car_t0 {
 		   0.0191611,   0.9808389);   // young           false                         false              normal                normal            normal           normal                false                  ;
 	title = "ci func car t0";
 	whenchanged = 1646864571;
-	belief = (0.3143712, 0.6856288);
+	belief = (0.3143713, 0.6856288);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -1340,10 +1346,10 @@ node ci_func_car_t0 {
 	};
 
 node ci_antiinflam_treat_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_antiinflam_treat_t0, ci_sys_immune_resp_t0);
 	probs = 
 		// true         false         // ci_antiinflam_treat_t0 ci_sys_immune_resp_t0 
@@ -1364,10 +1370,10 @@ node ci_antiinflam_treat_t1 {
 	};
 
 node ci_sys_immune_resp_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (abnormal, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_vaccine_status_bg, ci_gender_type_bg, ci_age_group_bg, ci_metabolic_syndrome_bg, ci_sys_immune_resp_t0, ci_func_pul_t0, ci_func_car_t0, ci_antiinflam_treat_t1);
 	probs = 
 		// abnormal     normal        // ci_vaccine_status_bg ci_gender_type_bg ci_age_group_bg ci_metabolic_syndrome_bg ci_sys_immune_resp_t0 ci_func_pul_t0 ci_func_car_t0 ci_antiinflam_treat_t1 
@@ -1595,7 +1601,7 @@ node ci_sys_immune_resp_t1 {
 		   0.3452134,   0.6547866,    // reported             male              senior          false                    normal                normal         reduced        false                  
 		   0.3058447,   0.6941553,    // reported             male              senior          false                    normal                normal         normal         true                   
 		   0.1874428,   0.8125572,    // reported             male              senior          false                    normal                normal         normal         false                  
-		   0.9268,      0.07320032,   // reported             male              adult           true                     abnormal              reduced        reduced        true                   
+		   0.9268,      0.0732003,    // reported             male              adult           true                     abnormal              reduced        reduced        true                   
 		   0.8260916,   0.1739084,    // reported             male              adult           true                     abnormal              reduced        reduced        false                  
 		   0.7893163,   0.2106837,    // reported             male              adult           true                     abnormal              reduced        normal         true                   
 		   0.6290605,   0.3709395,    // reported             male              adult           true                     abnormal              reduced        normal         false                  
@@ -1768,10 +1774,10 @@ node ci_sys_immune_resp_t1 {
 	};
 
 node ci_anticoag_treat_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (true, false);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_anticoag_treat_t0, ci_coagulation_t0);
 	probs = 
 		// true         false         // ci_anticoag_treat_t0 ci_coagulation_t0 
@@ -1792,10 +1798,10 @@ node ci_anticoag_treat_t1 {
 	};
 
 node ci_coagulation_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (abnormal, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_diabetes_bg, ci_coagulation_t0, ci_sys_immune_resp_t1, ci_anticoag_treat_t1);
 	probs = 
 		// abnormal     normal        // ci_diabetes_bg ci_coagulation_t0 ci_sys_immune_resp_t1 ci_anticoag_treat_t1 
@@ -1817,7 +1823,7 @@ node ci_coagulation_t1 {
 		   0.05132717,  0.9486728);   // false          normal            normal                false                ;
 	title = "ci coagulation t1";
 	whenchanged = 1646864571;
-	belief = (0.1981676, 0.8018324);
+	belief = (0.1981677, 0.8018324);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -1828,10 +1834,10 @@ node ci_coagulation_t1 {
 	};
 
 node ci_func_pul_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_age_group_bg, ci_obesity_bg, ci_chronic_pul_disease_bg, ci_func_pul_t0, ci_coagulation_t1, ci_sys_immune_resp_t1, ci_antiinflam_treat_t1);
 	probs = 
 		// reduced      normal        // ci_age_group_bg ci_obesity_bg ci_chronic_pul_disease_bg ci_func_pul_t0 ci_coagulation_t1 ci_sys_immune_resp_t1 ci_antiinflam_treat_t1 
@@ -2040,10 +2046,10 @@ node ci_func_pul_t1 {
 	};
 
 node ci_cardiac_output_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t0, ci_intravas_volume_t0);
 	probs = 
 		// reduced      normal        // ci_func_car_t0 ci_intravas_volume_t0 
@@ -2053,7 +2059,7 @@ node ci_cardiac_output_t0 {
 		   0.09108964,  0.9089104);   // normal         normal                ;
 	title = "ci cardiac output t0";
 	whenchanged = 1646864571;
-	belief = (0.1382553, 0.8617448);
+	belief = (0.1382552, 0.8617448);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -2064,14 +2070,14 @@ node ci_cardiac_output_t0 {
 	};
 
 node ci_end_organ_perf_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_diabetes_bg, ci_sys_immune_resp_t0, ci_coagulation_t0, ci_hypoxaemia_t0, ci_cardiac_output_t0, ci_chronic_kidney_disease_bg, ci_liver_disease_bg);
 	probs = 
 		// reduced      normal        // ci_diabetes_bg ci_sys_immune_resp_t0 ci_coagulation_t0 ci_hypoxaemia_t0 ci_cardiac_output_t0 ci_chronic_kidney_disease_bg ci_liver_disease_bg 
-		  (0.9576,      0.04239983,   // true           abnormal              abnormal          severe           reduced              true                         true                
+		  (0.9576,      0.04239984,   // true           abnormal              abnormal          severe           reduced              true                         true                
 		   0.9782491,   0.02175091,   // true           abnormal              abnormal          severe           reduced              true                         false               
 		   0.813394,    0.186606,     // true           abnormal              abnormal          severe           reduced              false                        true                
 		   0.8746553,   0.1253447,    // true           abnormal              abnormal          severe           reduced              false                        false               
@@ -2276,10 +2282,10 @@ node ci_end_organ_perf_t0 {
 	};
 
 node ci_intravas_volume_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypertension_bg, ci_diabetes_bg, ci_intravas_volume_t0, ci_sys_immune_resp_t1, ci_coagulation_t1);
 	probs = 
 		// reduced      normal        // ci_hypertension_bg ci_diabetes_bg ci_intravas_volume_t0 ci_sys_immune_resp_t1 ci_coagulation_t1 
@@ -2328,10 +2334,10 @@ node ci_intravas_volume_t1 {
 	};
 
 node ci_pulmonary_support_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (high_flow_nasal, cpap, mechanical_ventilation, supplemental_o2, none);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_pulmonary_support_t0, ci_func_pul_t1);
 	probs = 
 		// high flow nasal cpap      mechanical venti supplemental o2 none   // ci_pulmonary_support_t0 ci_func_pul_t1 
@@ -2347,7 +2353,7 @@ node ci_pulmonary_support_t1 {
 		   0.009721789, 0.009721789, 0.009721789, 0.01550525,  0.9553294);   // none                    normal         ;
 	title = "ci pulmonary support t1";
 	whenchanged = 1646864571;
-	belief = (0.04380537, 0.05110173, 0.09280301, 0.1551702, 0.6571197);
+	belief = (0.04380536, 0.05110173, 0.09280302, 0.1551702, 0.6571196);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -2358,10 +2364,10 @@ node ci_pulmonary_support_t1 {
 	};
 
 node ci_hypoxaemia_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (severe, moderate, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t1, ci_pulmonary_support_t1);
 	probs = 
 		// severe       moderate     normal        // ci_func_pul_t1 ci_pulmonary_support_t1 
@@ -2377,7 +2383,7 @@ node ci_hypoxaemia_t1 {
 		   0.009937933, 0.1134165,   0.8766456);   // normal         none                    ;
 	title = "ci hypoxaemia t1";
 	whenchanged = 1646864571;
-	belief = (0.1007075, 0.4524427, 0.4468498);
+	belief = (0.1007075, 0.4524428, 0.4468498);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -2388,10 +2394,10 @@ node ci_hypoxaemia_t1 {
 	};
 
 node ci_func_car_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_age_group_bg, ci_chronic_cardiac_disease_bg, ci_hypertension_bg, ci_func_car_t0, ci_end_organ_perf_t0, ci_intravas_volume_t1, ci_coagulation_t1, ci_hypoxaemia_t1, ci_sys_immune_resp_t1, ci_antiinflam_treat_t1);
 	probs = 
 		// reduced      normal        // ci_age_group_bg ci_chronic_cardiac_disease_bg ci_hypertension_bg ci_func_car_t0 ci_end_organ_perf_t0 ci_intravas_volume_t1 ci_coagulation_t1 ci_hypoxaemia_t1 ci_sys_immune_resp_t1 ci_antiinflam_treat_t1 
@@ -4712,10 +4718,10 @@ node ci_func_car_t1 {
 	};
 
 node ci_cardiac_output_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t1, ci_intravas_volume_t1);
 	probs = 
 		// reduced      normal        // ci_func_car_t1 ci_intravas_volume_t1 
@@ -4725,7 +4731,7 @@ node ci_cardiac_output_t1 {
 		   0.09805412,  0.9019459);   // normal         normal                ;
 	title = "ci cardiac output t1";
 	whenchanged = 1646864571;
-	belief = (0.2955063, 0.7044937);
+	belief = (0.2955063, 0.7044938);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -4736,10 +4742,10 @@ node ci_cardiac_output_t1 {
 	};
 
 node ci_end_organ_perf_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (reduced, normal);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_diabetes_bg, ci_end_organ_perf_t0, ci_sys_immune_resp_t1, ci_coagulation_t1, ci_hypoxaemia_t1, ci_cardiac_output_t1, ci_chronic_kidney_disease_bg, ci_liver_disease_bg);
 	probs = 
 		// reduced      normal        // ci_diabetes_bg ci_end_organ_perf_t0 ci_sys_immune_resp_t1 ci_coagulation_t1 ci_hypoxaemia_t1 ci_cardiac_output_t1 ci_chronic_kidney_disease_bg ci_liver_disease_bg 
@@ -5140,10 +5146,10 @@ node ci_end_organ_perf_t1 {
 	};
 
 node ci_crp_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.06999, 7.48, 19, 35, 55, 76, 99, 130, 169, 230, 2797.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t0);
 	probs = 
 		// 0.06999 to 7.48 7.48 to 19 19 to 35    35 to 55     55 to 76     76 to 99     99 to 130    130 to 169   169 to 230   230 to 2797   // ci_sys_immune_resp_t0 
@@ -5162,10 +5168,10 @@ node ci_crp_t0 {
 	};
 
 node ci_neut_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.06999, 2.69, 3.4, 4.164, 4.9, 5.66, 6.8, 8.124, 10.124, 14.2, 81200.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t0);
 	probs = 
 		// 0.06999 to 2.69 2.69 to 3.4 3.4 to 4.164 4.164 to 4.9 4.9 to 5.66 5.66 to 6.8 6.8 to 8.124 8.124 to 10.124 10.124 to 14.2 14.2 to 81200  // ci_sys_immune_resp_t0 
@@ -5173,7 +5179,7 @@ node ci_neut_t0 {
 		   0.2415862,   0.1455986,   0.1196944,   0.1035075,   0.09124009,  0.08085687,  0.07129024,  0.06169277,  0.05085177,  0.03368155);  // normal                ;
 	title = "ci neut t0";
 	whenchanged = 1646864571;
-	belief = (0.09384299, 0.08729479, 0.09282188, 0.0981086, 0.1025827, 0.1060691, 0.1083607, 0.109026, 0.1069075, 0.09498577);
+	belief = (0.093843, 0.08729479, 0.09282189, 0.0981086, 0.1025827, 0.1060691, 0.1083607, 0.109026, 0.1069075, 0.09498577);
 	user U1 {
 		submodel = "system";
 		};
@@ -5184,10 +5190,10 @@ node ci_neut_t0 {
 	};
 
 node ci_lym_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.00249, 0.44, 0.6, 0.7, 0.85, 1, 1.15, 1.4, 1.8, 2.8, 16100.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t0);
 	probs = 
 		// 0.00249 to 0.44 0.44 to 0.6 0.6 to 0.7 0.7 to 0.85  0.85 to 1    1 to 1.15    1.15 to 1.4  1.4 to 1.8   1.8 to 2.8   2.8 to 16100  // ci_sys_immune_resp_t0 
@@ -5206,10 +5212,10 @@ node ci_lym_t0 {
 	};
 
 node ci_ldh_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (2.99999, 194, 229.2, 255.8, 304, 357, 421.6, 473, 571.8, 775.2, 2864.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t0);
 	probs = 
 		// 2.99999 to 194 194 to 229.2 229.2 to 255.8 255.8 to 304 304 to 357 357 to 421.6 421.6 to 473 473 to 571.8 571.8 to 775.2 775.2 to 2864  // ci_sys_immune_resp_t0 
@@ -5217,7 +5223,7 @@ node ci_ldh_t0 {
 		   0.1939524,   0.2736403,   0.2227122,   0.147002,    0.08190682,  0.03787116,  0.01367837,  0.009745578, 0.009745578, 0.009745578); // normal                ;
 	title = "ci ldh t0";
 	whenchanged = 1646864571;
-	belief = (0.06919698, 0.109613, 0.1091489, 0.1000132, 0.09284664, 0.09090319, 0.09401118, 0.1024005, 0.1115282, 0.1203381);
+	belief = (0.06919698, 0.109613, 0.1091489, 0.1000132, 0.09284665, 0.0909032, 0.09401119, 0.1024005, 0.1115282, 0.1203381);
 	user U1 {
 		submodel = "system";
 		};
@@ -5228,10 +5234,10 @@ node ci_ldh_t0 {
 	};
 
 node ci_status_t0 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (dead, icu, hospital, discharged);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t0, ci_func_car_t0, ci_end_organ_perf_t0);
 	probs = 
 		// dead         icu          hospital     discharged    // ci_func_pul_t0 ci_func_car_t0 ci_end_organ_perf_t0 
@@ -5245,7 +5251,7 @@ node ci_status_t0 {
 		   0.00990099,  0.01788409,  0.9427474,   0.0294675);   // normal         normal         normal               ;
 	title = "ci status t0";
 	whenchanged = 1646864571;
-	belief = (0.009901132, 0.07442158, 0.8923748, 0.02330245);
+	belief = (0.009901133, 0.07442158, 0.8923748, 0.02330245);
 	user U1 {
 		submodel = "system";
 		};
@@ -5256,10 +5262,10 @@ node ci_status_t0 {
 	};
 
 node ci_status_plus1day {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (dead, icu, hospital, discharged);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_status_t0, ci_func_pul_t0, ci_func_car_t0, ci_end_organ_perf_t0);
 	probs = 
 		// dead         icu          hospital     discharged    // ci_status_t0 ci_func_pul_t0 ci_func_car_t0 ci_end_organ_perf_t0 
@@ -5308,10 +5314,10 @@ node ci_status_plus1day {
 	};
 
 node ci_pulmonary_support_plus1day {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (high_flow_nasal, cpap, mechanical_ventilation, supplemental_o2, none);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_pulmonary_support_t0, ci_func_pul_t0);
 	probs = 
 		// high flow nasal cpap      mechanical venti supplemental o2 none   // ci_pulmonary_support_t0 ci_func_pul_t0 
@@ -5327,7 +5333,7 @@ node ci_pulmonary_support_plus1day {
 		   0.009704519, 0.009704519, 0.009704519, 0.009704519, 0.9611819);   // none                    normal         ;
 	title = "ci pulmonary support plus1day";
 	whenchanged = 1646864571;
-	belief = (0.03783486, 0.0885222, 0.1370348, 0.1671061, 0.5695019);
+	belief = (0.03783487, 0.08852221, 0.1370348, 0.1671061, 0.569502);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -5338,10 +5344,10 @@ node ci_pulmonary_support_plus1day {
 	};
 
 node ci_inv_vent {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (ND, reported);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_pulmonary_support_t0, ci_pulmonary_support_t1, ci_func_pul_t0, ci_func_pul_t1);
 	probs = 
 		// ND           reported      // ci_pulmonary_support_t0 ci_pulmonary_support_t1 ci_func_pul_t0 ci_func_pul_t1 
@@ -5458,10 +5464,10 @@ node ci_inv_vent {
 	};
 
 node ci_inv_vent_t0_to_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (ND, reported);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_pulmonary_support_t0, ci_pulmonary_support_t1, ci_func_pul_t0, ci_func_pul_t1);
 	probs = 
 		// ND           reported      // ci_pulmonary_support_t0 ci_pulmonary_support_t1 ci_func_pul_t0 ci_func_pul_t1 
@@ -5567,7 +5573,7 @@ node ci_inv_vent_t0_to_t1 {
 		   0.9174218,   0.08257826);  // none                    none                    normal         normal         ;
 	title = "ci inv vent t0 to t1";
 	whenchanged = 1646864571;
-	belief = (0.812123, 0.187877);
+	belief = (0.8121229, 0.187877);
 	user U1 {
 		submodel = "treatment";
 		};
@@ -5578,10 +5584,10 @@ node ci_inv_vent_t0_to_t1 {
 	};
 
 node ci_respiratory_rate_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (1.99999, 16, 18, 18, 20, 20, 22, 24, 26, 32, 189.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t0);
 	probs = 
 		// 1.99999 to 16 16 to 18    18           18 to 20     20           20 to 22     22 to 24     24 to 26     26 to 32     32 to 189     // ci_func_pul_t0 
@@ -5589,7 +5595,7 @@ node ci_respiratory_rate_t0 {
 		   0.06095918,  0.2029971,   0.2542934,   0.2158838,   0.140164,    0.07040892,  0.02597026,  0.00977446,  0.00977446,  0.00977446);  // normal         ;
 	title = "ci respiratory rate t0";
 	whenchanged = 1646864571;
-	belief = (0.04175295, 0.1306276, 0.1627242, 0.1386909, 0.09279708, 0.06122651, 0.05986887, 0.09198592, 0.1301346, 0.09019123);
+	belief = (0.04175295, 0.1306276, 0.1627242, 0.1386909, 0.09279708, 0.06122651, 0.05986886, 0.09198592, 0.1301346, 0.09019124);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -5600,10 +5606,10 @@ node ci_respiratory_rate_t0 {
 	};
 
 node ci_pco2_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (3.59999, 22.025, 28, 30.9, 32.325, 34.6875, 37.575, 40.4625, 44.25, 49.725, 130.90001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t0);
 	probs = 
 		// 3.59999 to 22.02 22.025 to 28 28 to 30.9 30.9 to 32.325 32.325 to 34.687 34.6875 to 37.57 37.575 to 40.462 40.4625 to 44.25 44.25 to 49.725 49.725 to 130.9  // ci_func_pul_t0 
@@ -5611,7 +5617,7 @@ node ci_pco2_t0 {
 		   0.06983856,  0.08962956,  0.09823275,  0.1036323,   0.107189,    0.1093669,   0.110269,    0.1096858,   0.1067444,   0.09541161);  // normal         ;
 	title = "ci pco2 t0";
 	whenchanged = 1646864571;
-	belief = (0.08661153, 0.09366985, 0.09758288, 0.100258, 0.1021827, 0.1035454, 0.1044107, 0.1047492, 0.1043788, 0.102611);
+	belief = (0.08661153, 0.09366985, 0.09758288, 0.100258, 0.1021827, 0.1035454, 0.1044106, 0.1047492, 0.1043788, 0.102611);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -5622,10 +5628,10 @@ node ci_pco2_t0 {
 	};
 
 node ci_pulse_rate_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.99999, 67, 74, 80, 85, 89, 94, 100, 108, 118, 244.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t0);
 	probs = 
 		// 0.99999 to 67 67 to 74    74 to 80     80 to 85     85 to 89     89 to 94     94 to 100    100 to 108   108 to 118   118 to 244    // ci_func_car_t0 
@@ -5633,7 +5639,7 @@ node ci_pulse_rate_t0 {
 		   0.07306352,  0.1023801,   0.1138274,   0.1189993,   0.1200509,   0.1176636,   0.111848,    0.1019665,   0.08602942,  0.05417132);  // normal         ;
 	title = "ci pulse rate t0";
 	whenchanged = 1646864571;
-	belief = (0.08047404, 0.09056507, 0.09680106, 0.1000493, 0.1012327, 0.100778, 0.09894437, 0.09608161, 0.09363106, 0.1414428);
+	belief = (0.08047405, 0.09056508, 0.09680106, 0.1000493, 0.1012327, 0.100778, 0.09894437, 0.09608161, 0.09363107, 0.1414428);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -5644,18 +5650,18 @@ node ci_pulse_rate_t0 {
 	};
 
 node ci_troponin_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.00499, 0.0097, 0.012, 0.0219, 0.05, 0.618, 4, 7.83613, 11.336, 27.16, 589.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t0);
 	probs = 
 		// 0.00499 to 0.009 0.0097 to 0.012 0.012 to 0.0219 0.0219 to 0.05 0.05 to 0.618 0.618 to 4 4 to 7.83613 7.83613 to 11.33 11.336 to 27.16 27.16 to 589  // ci_func_car_t0 
-		  (0.02261913,  0.05034176,  0.07127784,  0.08899072,  0.1043776,   0.1177424,   0.1290558,   0.1378912,   0.1428453,   0.1348581,    // reduced        
+		  (0.02261913,  0.05034177,  0.07127785,  0.08899073,  0.1043776,   0.1177424,   0.1290558,   0.1378912,   0.1428453,   0.1348581,    // reduced        
 		   0.2216479,   0.3521447,   0.2337922,   0.107589,    0.0367042,   0.009624381, 0.009624381, 0.009624381, 0.009624381, 0.009624381); // normal         ;
 	title = "ci troponin t0";
 	whenchanged = 1646864571;
-	belief = (0.159079, 0.2572666, 0.1827024, 0.1017422, 0.05797878, 0.04361358, 0.04717019, 0.04994779, 0.05150522, 0.04899427);
+	belief = (0.159079, 0.2572666, 0.1827024, 0.1017423, 0.05797878, 0.04361358, 0.04717019, 0.04994779, 0.05150522, 0.04899427);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -5666,10 +5672,10 @@ node ci_troponin_t0 {
 	};
 
 node ci_crp_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.05999, 9.856, 21.12, 33, 54, 74, 103.6, 136.8, 191.78, 270.2, 2090.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t1);
 	probs = 
 		// 0.05999 to 9.856 9.856 to 21.12 21.12 to 33 33 to 54 54 to 74    74 to 103.6  103.6 to 136.8 136.8 to 191.78 191.78 to 270.2 270.2 to 2090  // ci_sys_immune_resp_t1 
@@ -5677,7 +5683,7 @@ node ci_crp_t1 {
 		   0.2011875,   0.2658891,   0.2158307,   0.1456839,   0.08451219,  0.04141568,  0.01620517,  0.009758566, 0.009758566, 0.009758566); // normal                ;
 	title = "ci crp t1";
 	whenchanged = 1646864571;
-	belief = (0.08742419, 0.1270563, 0.1213, 0.1065723, 0.09390221, 0.08685278, 0.08555119, 0.09043111, 0.09721819, 0.103692);
+	belief = (0.08742419, 0.1270563, 0.1213, 0.1065723, 0.09390221, 0.08685277, 0.08555118, 0.09043111, 0.09721819, 0.103692);
 	user U1 {
 		submodel = "system";
 		};
@@ -5688,10 +5694,10 @@ node ci_crp_t1 {
 	};
 
 node ci_neut_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.02229, 2.5, 3.308, 4, 4.928, 5.89, 7.32, 9.303, 11.308, 58.01, 16150.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t1);
 	probs = 
 		// 0.02229 to 2.5 2.5 to 3.308 3.308 to 4 4 to 4.928   4.928 to 5.89 5.89 to 7.32 7.32 to 9.303 9.303 to 11.308 11.308 to 58.01 58.01 to 16150  // ci_sys_immune_resp_t1 
@@ -5699,7 +5705,7 @@ node ci_neut_t1 {
 		   0.2159191,   0.1140943,   0.09471954,  0.08504716,  0.07947548,  0.07633208,  0.07508474,  0.07588877,  0.08016572,  0.103273);    // normal                ;
 	title = "ci neut t1";
 	whenchanged = 1646864571;
-	belief = (0.1019459, 0.08610708, 0.09128763, 0.09657856, 0.101054, 0.1044719, 0.1066386, 0.1072205, 0.1054485, 0.09924728);
+	belief = (0.101946, 0.08610708, 0.09128764, 0.09657856, 0.101054, 0.1044719, 0.1066386, 0.1072205, 0.1054485, 0.09924728);
 	user U1 {
 		submodel = "system";
 		};
@@ -5710,10 +5716,10 @@ node ci_neut_t1 {
 	};
 
 node ci_lym_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.001463, 0.5, 0.61, 0.773, 0.9, 1.06, 1.2, 1.494, 1.938, 499, 4900.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t1);
 	probs = 
 		// 0.001463 to 0.5 0.5 to 0.61 0.61 to 0.773 0.773 to 0.9 0.9 to 1.06 1.06 to 1.2 1.2 to 1.494 1.494 to 1.938 1.938 to 499 499 to 4900  // ci_sys_immune_resp_t1 
@@ -5721,7 +5727,7 @@ node ci_lym_t1 {
 		   0.009922335, 0.01260951,  0.03034983,  0.05380586,  0.08165064,  0.1124417,   0.1443122,   0.1743551,   0.1966094,   0.1839434);   // normal                ;
 	title = "ci lym t1";
 	whenchanged = 1646864571;
-	belief = (0.08622241, 0.08445389, 0.08778076, 0.09283944, 0.09907917, 0.1058645, 0.1123258, 0.1170361, 0.1169253, 0.09747263);
+	belief = (0.08622241, 0.08445389, 0.08778076, 0.09283944, 0.09907917, 0.1058645, 0.1123258, 0.1170361, 0.1169253, 0.09747264);
 	user U1 {
 		submodel = "system";
 		};
@@ -5732,10 +5738,10 @@ node ci_lym_t1 {
 	};
 
 node ci_ldh_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (1.36699, 214.4, 277.8, 338, 408.4, 460, 484, 543, 628.6, 832.2, 2005.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_sys_immune_resp_t1);
 	probs = 
 		// 1.36699 to 214.4 214.4 to 277.8 277.8 to 338 338 to 408.4 408.4 to 460 460 to 484 484 to 543 543 to 628.6 628.6 to 832.2 832.2 to 2005  // ci_sys_immune_resp_t1 
@@ -5743,7 +5749,7 @@ node ci_ldh_t1 {
 		   0.2566657,   0.3365307,   0.2160258,   0.1031616,   0.03833749,  0.01072949,  0.009637316, 0.009637316, 0.009637316, 0.009637316); // normal                ;
 	title = "ci ldh t1";
 	whenchanged = 1646864571;
-	belief = (0.109141, 0.1559082, 0.1260035, 0.09634086, 0.08200964, 0.07947192, 0.08498382, 0.08933149, 0.09131368, 0.08549602);
+	belief = (0.109141, 0.1559082, 0.1260035, 0.09634086, 0.08200963, 0.07947192, 0.08498382, 0.08933149, 0.09131368, 0.08549602);
 	user U1 {
 		submodel = "system";
 		};
@@ -5754,10 +5760,10 @@ node ci_ldh_t1 {
 	};
 
 node ci_status_t1 {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (dead, icu, hospital, discharged);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_status_t0, ci_func_pul_t1, ci_func_car_t1, ci_end_organ_perf_t1);
 	probs = 
 		// dead         icu          hospital     discharged    // ci_status_t0 ci_func_pul_t1 ci_func_car_t1 ci_end_organ_perf_t1 
@@ -5806,10 +5812,10 @@ node ci_status_t1 {
 	};
 
 node ci_status {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (dead, discharged);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_status_t1, ci_func_pul_t1, ci_func_car_t1, ci_end_organ_perf_t1);
 	probs = 
 		// dead         discharged    // ci_status_t1 ci_func_pul_t1 ci_func_car_t1 ci_end_organ_perf_t1 
@@ -5847,7 +5853,7 @@ node ci_status {
 		   0.009900992, 0.990099);    // discharged   normal         normal         normal               ;
 	title = "ci status";
 	whenchanged = 1646864571;
-	belief = (0.4487378, 0.5512621);
+	belief = (0.4487379, 0.5512621);
 	user U1 {
 		submodel = "system";
 		};
@@ -5858,10 +5864,10 @@ node ci_status {
 	};
 
 node ci_icu {
-	kind = NATURE;
 	discrete = TRUE;
-	chance = CHANCE;
 	states = (ND, reported);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_status_t0, ci_status_t1, ci_func_pul_t1, ci_func_car_t1, ci_end_organ_perf_t1);
 	probs = 
 		// ND           reported      // ci_status_t0 ci_status_t1 ci_func_pul_t1 ci_func_car_t1 ci_end_organ_perf_t1 
@@ -6006,10 +6012,10 @@ node ci_icu {
 	};
 
 node ci_respiratory_rate_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (9.99999, 16, 17, 18, 19, 20, 20, 22, 25, 30, 53.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t1);
 	probs = 
 		// 9.99999 to 16 16 to 17    17 to 18     18 to 19     19 to 20     20           20 to 22     22 to 25     25 to 30     30 to 53      // ci_func_pul_t1 
@@ -6017,7 +6023,7 @@ node ci_respiratory_rate_t1 {
 		   0.06012016,  0.1433675,   0.1801374,   0.1819275,   0.1595818,   0.1231893,   0.08194801,  0.0439567,   0.01585126,  0.009920483); // normal         ;
 	title = "ci respiratory rate t1";
 	whenchanged = 1646864571;
-	belief = (0.02388914, 0.04746898, 0.05788407, 0.05839112, 0.05206168, 0.05036131, 0.07744426, 0.1533437, 0.2634394, 0.2157163);
+	belief = (0.02388913, 0.04746898, 0.05788408, 0.05839112, 0.05206169, 0.05036132, 0.07744426, 0.1533437, 0.2634394, 0.2157162);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -6028,18 +6034,18 @@ node ci_respiratory_rate_t1 {
 	};
 
 node ci_pco2_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (4.33999, 24.6, 29.4, 34.41, 35.42, 38.5, 45.28, 49.8, 53.25, 60, 79.50001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_pul_t1);
 	probs = 
 		// 4.33999 to 24.6 24.6 to 29.4 29.4 to 34.41 34.41 to 35.42 35.42 to 38.5 38.5 to 45.28 45.28 to 49.8 49.8 to 53.25 53.25 to 60 60 to 79.5  // ci_func_pul_t1 
 		  (0.07945031,  0.07199963,  0.0718409,   0.0735416,   0.07667866,  0.08146182,  0.08864684,  0.100158,    0.1221783,   0.2340439,    // reduced        
-		   0.1270438,   0.1360423,   0.1329746,   0.126246,    0.1171175,   0.1059259,   0.0926056,   0.07670432,  0.05699344,  0.0283467);   // normal         ;
+		   0.1270438,   0.1360423,   0.1329746,   0.126246,    0.1171175,   0.1059259,   0.09260558,  0.07670431,  0.05699343,  0.0283467);   // normal         ;
 	title = "ci pco2 t1";
 	whenchanged = 1646864571;
-	belief = (0.09293118, 0.09013974, 0.08915704, 0.08847014, 0.08813298, 0.08839127, 0.08976816, 0.09351473, 0.1037147, 0.1757801);
+	belief = (0.09293119, 0.09013975, 0.08915704, 0.08847015, 0.08813298, 0.08839129, 0.08976816, 0.09351473, 0.1037147, 0.17578);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -6050,10 +6056,10 @@ node ci_pco2_t1 {
 	};
 
 node ci_pulse_rate_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (19.99999, 62, 69, 72, 78, 82, 86, 89.2, 95, 102, 130.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t1);
 	probs = 
 		// 20 to 62     62 to 69     69 to 72     72 to 78     78 to 82     82 to 86     86 to 89.2   89.2 to 95   95 to 102    102 to 130    // ci_func_car_t1 
@@ -6072,10 +6078,10 @@ node ci_pulse_rate_t1 {
 	};
 
 node ci_troponin_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.00399, 0.0104, 0.0138, 0.017, 0.0272, 0.056, 0.2832, 21.676, 72.3, 1241.72, 5701.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_func_car_t1);
 	probs = 
 		// 0.00399 to 0.010 0.0104 to 0.0138 0.0138 to 0.017 0.017 to 0.0272 0.0272 to 0.056 0.056 to 0.2832 0.2832 to 21.676 21.676 to 72.3 72.3 to 1241.72 1241.72 to 5701  // ci_func_car_t1 
@@ -6083,7 +6089,7 @@ node ci_troponin_t1 {
 		   0.03321149,  0.2511327,   0.3556606,   0.2250871,   0.08004004,  0.01633783,  0.009632574, 0.009632574, 0.009632574, 0.009632574); // normal         ;
 	title = "ci troponin t1";
 	whenchanged = 1646864571;
-	belief = (0.05951959, 0.1869392, 0.2506138, 0.1687652, 0.0786478, 0.04004433, 0.03794873, 0.04158045, 0.04885516, 0.08708577);
+	belief = (0.05951959, 0.1869392, 0.2506137, 0.1687652, 0.07864781, 0.04004433, 0.03794874, 0.04158046, 0.04885516, 0.08708577);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -6094,10 +6100,10 @@ node ci_troponin_t1 {
 	};
 
 node ci_creat_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.34999, 53.016, 63, 70, 76.0144, 84, 93, 104.94, 125, 177, 1844.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t0, ci_intravas_volume_t0);
 	probs = 
 		// 0.34999 to 53.01 53.016 to 63 63 to 70 70 to 76.0144 76.0144 to 84 84 to 93   93 to 104.94 104.94 to 125 125 to 177  177 to 1844   // ci_end_organ_perf_t0 ci_intravas_volume_t0 
@@ -6107,7 +6113,7 @@ node ci_creat_t0 {
 		   0.1380124,   0.2103355,   0.2027832,   0.1667849,   0.1218195,   0.07862147,  0.04327211,  0.01865551,  0.009857696, 0.009857696); // normal               normal                ;
 	title = "ci creat t0";
 	whenchanged = 1646864571;
-	belief = (0.0537156, 0.09921671, 0.1116145, 0.1078522, 0.1035595, 0.1066785, 0.1192377, 0.1307105, 0.1165909, 0.05082386);
+	belief = (0.05371561, 0.0992167, 0.1116145, 0.1078522, 0.1035595, 0.1066785, 0.1192377, 0.1307105, 0.1165909, 0.05082386);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6118,10 +6124,10 @@ node ci_creat_t0 {
 	};
 
 node ci_creat_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.72999, 48, 59, 65, 70.92, 78, 86.7792, 96.2848, 119, 178.993, 710.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t1, ci_intravas_volume_t1);
 	probs = 
 		// 0.72999 to 48 48 to 59    59 to 65     65 to 70.92  70.92 to 78  78 to 86.7792 86.7792 to 96.28 96.2848 to 119 119 to 178.993 178.993 to 710  // ci_end_organ_perf_t1 ci_intravas_volume_t1 
@@ -6131,7 +6137,7 @@ node ci_creat_t1 {
 		   0.1262666,   0.1856607,   0.1853436,   0.162742,    0.1301346,   0.09456038,  0.06081819,  0.03244605,  0.01211021,  0.009917562); // normal               normal                ;
 	title = "ci creat t1";
 	whenchanged = 1646864571;
-	belief = (0.0528648, 0.08331789, 0.09723519, 0.1004231, 0.099211, 0.09936201, 0.1121322, 0.1347339, 0.145003, 0.07571698);
+	belief = (0.05286481, 0.08331788, 0.09723519, 0.1004231, 0.099211, 0.09936201, 0.1121322, 0.1347339, 0.1450029, 0.07571698);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6142,18 +6148,18 @@ node ci_creat_t1 {
 	};
 
 node ci_ddimer_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.06899, 0.3, 0.408, 0.551, 0.7584, 1.29, 2.176, 3.97, 18.544, 662.1, 56201.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t0);
 	probs = 
 		// 0.06899 to 0.3 0.3 to 0.408 0.408 to 0.551 0.551 to 0.7584 0.7584 to 1.29 1.29 to 2.176 2.176 to 3.97 3.97 to 18.544 18.544 to 662.1 662.1 to 56201  // ci_coagulation_t0 
-		  (0.02261913,  0.05034176,  0.07127784,  0.08899072,  0.1043776,   0.1177424,   0.1290558,   0.1378912,   0.1428453,   0.1348581,    // abnormal          
+		  (0.02261913,  0.05034177,  0.07127785,  0.08899073,  0.1043776,   0.1177424,   0.1290558,   0.1378912,   0.1428453,   0.1348581,    // abnormal          
 		   0.3608756,   0.3940281,   0.1517776,   0.03635736,  0.009493545, 0.009493545, 0.009493545, 0.009493545, 0.009493545, 0.009493545); // normal            ;
 	title = "ci ddimer t0";
 	whenchanged = 1646864571;
-	belief = (0.3163243, 0.3487616, 0.1411751, 0.04328964, 0.02199062, 0.02375088, 0.02524096, 0.02640466, 0.02705716, 0.02600517);
+	belief = (0.3163243, 0.3487616, 0.1411751, 0.04328964, 0.02199062, 0.02375088, 0.02524096, 0.02640466, 0.02705715, 0.02600517);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6164,10 +6170,10 @@ node ci_ddimer_t0 {
 	};
 
 node ci_aptt_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.83999, 8.618, 24.8, 26.5, 27.3, 28.5, 31.16, 32.18, 35.64, 40.68, 200.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t0);
 	probs = 
 		// 0.83999 to 8.618 8.618 to 24.8 24.8 to 26.5 26.5 to 27.3 27.3 to 28.5 28.5 to 31.16 31.16 to 32.18 32.18 to 35.64 35.64 to 40.68 40.68 to 200  // ci_coagulation_t0 
@@ -6175,7 +6181,7 @@ node ci_aptt_t0 {
 		   0.4038479,   0.387733,    0.1265672,   0.02505509,  0.009466129, 0.009466129, 0.009466129, 0.009466129, 0.009466129, 0.009466129); // normal            ;
 	title = "ci aptt t0";
 	whenchanged = 1646864571;
-	belief = (0.356521, 0.3461737, 0.1214511, 0.03479625, 0.022405, 0.02328677, 0.02392758, 0.02429823, 0.02426319, 0.02287718);
+	belief = (0.356521, 0.3461737, 0.1214511, 0.03479626, 0.022405, 0.02328677, 0.02392758, 0.02429823, 0.02426319, 0.02287718);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6186,10 +6192,10 @@ node ci_aptt_t0 {
 	};
 
 node ci_plat_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (227000.00001, 369.7, 308, 272, 247, 223, 202, 180, 158, 128, 0.20999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t0);
 	probs = 
 		// 369.7 to 2.27e5 308 to 369.7 272 to 308 247 to 272  223 to 247   202 to 223   180 to 202   158 to 180   128 to 158   0.20999 to 128  // ci_coagulation_t0 
@@ -6197,7 +6203,7 @@ node ci_plat_t0 {
 		   0.09021911,  0.1121016,   0.1183467,   0.1196066,   0.1176596,   0.1130248,   0.1056579,   0.09495649,  0.0791248,   0.0493024);   // normal            ;
 	title = "ci plat t0";
 	whenchanged = 1646864571;
-	belief = (0.08357035, 0.1003483, 0.1054907, 0.1065658, 0.1050138, 0.1012929, 0.09544863, 0.08721375, 0.0760299, 0.1390259);
+	belief = (0.08357035, 0.1003483, 0.1054907, 0.1065658, 0.1050138, 0.1012929, 0.09544863, 0.08721374, 0.0760299, 0.1390259);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6208,10 +6214,10 @@ node ci_plat_t0 {
 	};
 
 node ci_ddimer_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.19999, 0.347, 0.412, 0.553, 0.6356, 0.8035, 1.20069, 1.48, 2.006, 4.171, 1209.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t1);
 	probs = 
 		// 0.19999 to 0.347 0.347 to 0.412 0.412 to 0.553 0.553 to 0.6356 0.6356 to 0.8035 0.8035 to 1.2006 1.20069 to 1.48 1.48 to 2.006 2.006 to 4.171 4.171 to 1209  // ci_coagulation_t1 
@@ -6219,7 +6225,7 @@ node ci_ddimer_t1 {
 		   0.2788962,   0.4137962,   0.1950608,   0.05466426,  0.009907858, 0.009534925, 0.009534925, 0.009534925, 0.009534925, 0.009534925); // normal            ;
 	title = "ci ddimer t1";
 	whenchanged = 1646864571;
-	belief = (0.2298956, 0.3432532, 0.1712436, 0.0614021, 0.0278743, 0.02968247, 0.03160455, 0.03338325, 0.03504655, 0.03661441);
+	belief = (0.2298956, 0.3432532, 0.1712436, 0.06140211, 0.0278743, 0.02968247, 0.03160455, 0.03338325, 0.03504655, 0.03661441);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6230,10 +6236,10 @@ node ci_ddimer_t1 {
 	};
 
 node ci_aptt_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.95999, 0.99, 1.16, 24, 24, 28.1, 32.6, 36.5, 48, 56.3, 100.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t1);
 	probs = 
 		// 0.95999 to 0.99 0.99 to 1.16 1.16 to 24 24          24 to 28.1   28.1 to 32.6 32.6 to 36.5 36.5 to 48   48 to 56.3   56.3 to 100   // ci_coagulation_t1 
@@ -6241,7 +6247,7 @@ node ci_aptt_t1 {
 		   0.07065067,  0.2243902,   0.2647288,   0.2096176,   0.1254598,   0.05719164,  0.01871573,  0.009748514, 0.009748514, 0.009748514); // normal            ;
 	title = "ci aptt t1";
 	whenchanged = 1646864571;
-	belief = (0.07074029, 0.1944914, 0.2273945, 0.1838696, 0.1172033, 0.06349877, 0.03403905, 0.02889771, 0.03250925, 0.04735611);
+	belief = (0.07074029, 0.1944913, 0.2273945, 0.1838696, 0.1172033, 0.06349877, 0.03403905, 0.02889771, 0.03250926, 0.04735612);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6252,10 +6258,10 @@ node ci_aptt_t1 {
 	};
 
 node ci_plat_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (385000.00001, 397.4, 329.6, 291.2, 263, 235, 213.4, 192, 163.2, 126, 14.39999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_coagulation_t1);
 	probs = 
 		// 397.4 to 3.85e5 329.6 to 397.4 291.2 to 329.6 263 to 291.2 235 to 263 213.4 to 235 192 to 213.4 163.2 to 192 126 to 163.2 14.4 to 126  // ci_coagulation_t1 
@@ -6263,7 +6269,7 @@ node ci_plat_t1 {
 		   0.09704766,  0.1192942,   0.1243787,   0.1239185,   0.1198821,   0.1128711,   0.1028935,   0.0894082,   0.07078037,  0.03952556);  // normal            ;
 	title = "ci plat t1";
 	whenchanged = 1646864571;
-	belief = (0.08830008, 0.1028524, 0.1065289, 0.1062474, 0.1034246, 0.0985792, 0.09191081, 0.08353985, 0.07423308, 0.1443837);
+	belief = (0.08830008, 0.1028524, 0.1065289, 0.1062474, 0.1034246, 0.09857919, 0.0919108, 0.08353985, 0.07423307, 0.1443838);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6274,10 +6280,10 @@ node ci_plat_t1 {
 	};
 
 node ci_lacticac_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.05549, 0.8, 1, 1.2, 1.3, 1.5, 1.65612, 1.9, 2.266, 2.921, 131.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t0);
 	probs = 
 		// 0.05549 to 0.8 0.8 to 1   1 to 1.2     1.2 to 1.3   1.3 to 1.5   1.5 to 1.65612 1.65612 to 1.9 1.9 to 2.266 2.266 to 2.921 2.921 to 131  // ci_end_organ_perf_t0 
@@ -6285,7 +6291,7 @@ node ci_lacticac_t0 {
 		   0.2410006,   0.4586602,   0.200279,    0.04314158,  0.009486438, 0.009486438, 0.009486438, 0.009486438, 0.009486438, 0.009486438); // normal               ;
 	title = "ci lacticac t0";
 	whenchanged = 1646864571;
-	belief = (0.1144164, 0.2254908, 0.1284266, 0.0730582, 0.06901412, 0.07731439, 0.08298729, 0.08514309, 0.08167277, 0.06247637);
+	belief = (0.1144164, 0.2254908, 0.1284266, 0.0730582, 0.06901412, 0.07731439, 0.08298728, 0.08514308, 0.08167276, 0.06247636);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6296,10 +6302,10 @@ node ci_lacticac_t0 {
 	};
 
 node ci_hgb_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (3.69999, 14.9, 96, 111, 121, 128, 133, 139, 145, 153, 288.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t0);
 	probs = 
 		// 3.69999 to 14.9 14.9 to 96 96 to 111   111 to 121   121 to 128   128 to 133   133 to 139   139 to 145   145 to 153   153 to 288    // ci_end_organ_perf_t0 
@@ -6318,10 +6324,10 @@ node ci_hgb_t0 {
 	};
 
 node ci_lacticac_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (0.49999, 0.89, 1, 1.176, 1.284, 1.4, 1.6, 1.715, 2.02, 2.9, 394.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t1);
 	probs = 
 		// 0.49999 to 0.89 0.89 to 1 1 to 1.176   1.176 to 1.284 1.284 to 1.4 1.4 to 1.6 1.6 to 1.715 1.715 to 2.02 2.02 to 2.9 2.9 to 394    // ci_end_organ_perf_t1 
@@ -6329,7 +6335,7 @@ node ci_lacticac_t1 {
 		   0.4231246,   0.3201101,   0.1441227,   0.0508085,   0.01405793,  0.009555234, 0.009555234, 0.009555234, 0.009555234, 0.009555234); // normal               ;
 	title = "ci lacticac t1";
 	whenchanged = 1646864571;
-	belief = (0.2665933, 0.2176114, 0.1208049, 0.07073899, 0.05277525, 0.05290205, 0.05491361, 0.05607707, 0.0559671, 0.05161634);
+	belief = (0.2665933, 0.2176114, 0.1208049, 0.07073898, 0.05277526, 0.05290206, 0.05491361, 0.05607708, 0.0559671, 0.05161634);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6340,10 +6346,10 @@ node ci_lacticac_t1 {
 	};
 
 node ci_hgb_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (6.29999, 11.495, 13, 16.07, 98.6, 110.5, 119, 127, 133, 141, 185.00001);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_end_organ_perf_t1);
 	probs = 
 		// 6.29999 to 11.49 11.495 to 13 13 to 16.07 16.07 to 98.6 98.6 to 110.5 110.5 to 119 119 to 127 127 to 133 133 to 141  141 to 185    // ci_end_organ_perf_t1 
@@ -6351,7 +6357,7 @@ node ci_hgb_t1 {
 		   0.07943743,  0.09083471,  0.09570199,  0.09900647,  0.1015386,   0.1036031,   0.1053521,   0.1068729,   0.1082206,   0.1094321);   // normal               ;
 	title = "ci hgb t1";
 	whenchanged = 1646864571;
-	belief = (0.1066926, 0.09833584, 0.09720667, 0.09699596, 0.09718633, 0.09764641, 0.09837005, 0.09945711, 0.1012666, 0.1068423);
+	belief = (0.1066927, 0.09833584, 0.09720666, 0.09699596, 0.09718633, 0.09764641, 0.09837005, 0.09945712, 0.1012666, 0.1068423);
 	user U1 {
 		submodel = "vascular";
 		};
@@ -6362,10 +6368,10 @@ node ci_hgb_t1 {
 	};
 
 node ci_oxygen_saturation_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (100.00001, 99, 98, 97, 96, 96, 95, 94, 92, 89, 0.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypoxaemia_t0);
 	probs = 
 		// 99 to 100    98 to 99     97 to 98     96 to 97     96           95 to 96     94 to 95     92 to 94     89 to 92     0.99999 to 89  // ci_hypoxaemia_t0 
@@ -6374,7 +6380,7 @@ node ci_oxygen_saturation_t0 {
 		   0.2198917,   0.2364187,   0.1927273,   0.1411702,   0.09402849,  0.05602065,  0.02862166,  0.01145308,  0.009834081, 0.009834081); // normal           ;
 	title = "ci oxygen saturation t0";
 	whenchanged = 1646864571;
-	belief = (0.1393325, 0.1575441, 0.1408277, 0.1176635, 0.09507468, 0.07580718, 0.06079288, 0.05005215, 0.04744203, 0.1154634);
+	belief = (0.1393324, 0.1575441, 0.1408277, 0.1176635, 0.09507468, 0.07580718, 0.06079288, 0.05005215, 0.04744203, 0.1154634);
 	user U1 {
 		submodel = "pulmonary";
 		};
@@ -6385,15 +6391,15 @@ node ci_oxygen_saturation_t0 {
 	};
 
 node ci_po2_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (440.00001, 100.65, 82, 70.99, 63.98, 57.6188, 49.215, 40.5, 29.88, 21.7275, 0.97499);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypoxaemia_t0);
 	probs = 
 		// 100.65 to 440 82 to 100.65 70.99 to 82 63.98 to 70.99 57.6188 to 63.98 49.215 to 57.618 40.5 to 49.215 29.88 to 40.5 21.7275 to 29.88 0.97499 to 21.72  // ci_hypoxaemia_t0 
 		  (0.009852022, 0.009852022, 0.01559873,  0.03538563,  0.06434218,  0.1017784,   0.1454163,   0.1902582,   0.2248831,   0.2026333,    // severe           
-		   0.01326281,  0.1292139,   0.2700233,   0.2800969,   0.1814734,   0.07676556,  0.01995805,  0.009735409, 0.009735409, 0.009735409,  // moderate         
+		   0.01326281,  0.1292139,   0.2700233,   0.2800969,   0.1814734,   0.07676555,  0.01995805,  0.009735408, 0.009735408, 0.009735408,  // moderate         
 		   0.4206128,   0.377354,    0.1211098,   0.02412923,  0.009465709, 0.009465709, 0.009465709, 0.009465709, 0.009465709, 0.009465709); // normal           ;
 	title = "ci po2 t0";
 	whenchanged = 1646864571;
@@ -6402,16 +6408,16 @@ node ci_po2_t0 {
 		submodel = "pulmonary";
 		};
 	visual V3 {
-		center = (2269, 1020);
+		center = (2268, 1020);
 		height = 73;
 		};
 	};
 
 node ci_systolic_blood_pressure_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (326.50001, 164, 150, 142, 135, 130, 124, 119, 112, 103, 11.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_cardiac_output_t0);
 	probs = 
 		// 164 to 326.5 150 to 164   142 to 150   135 to 142   130 to 135   124 to 130   119 to 124   112 to 119   103 to 112   12 to 103     // ci_cardiac_output_t0 
@@ -6419,7 +6425,7 @@ node ci_systolic_blood_pressure_t0 {
 		   0.1033702,   0.1143839,   0.1160755,   0.1150341,   0.1122011,   0.1077784,   0.1016088,   0.09311174,  0.08067522,  0.05576109);  // normal               ;
 	title = "ci systolic blood pressure t0";
 	whenchanged = 1646864571;
-	belief = (0.09045892, 0.1012805, 0.1041619, 0.104754, 0.103982, 0.1021626, 0.09940957, 0.09577931, 0.0916471, 0.1063641);
+	belief = (0.09045893, 0.1012805, 0.1041619, 0.104754, 0.103982, 0.1021626, 0.09940957, 0.09577931, 0.09164711, 0.1063641);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -6430,10 +6436,10 @@ node ci_systolic_blood_pressure_t0 {
 	};
 
 node ci_diastolic_blood_pressure_t0 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (170.00001, 93, 86, 81, 78, 74, 71, 68, 63, 57, 8.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_cardiac_output_t0);
 	probs = 
 		// 93 to 170    86 to 93     81 to 86     78 to 81     74 to 78     71 to 74     68 to 71     63 to 68     57 to 63     8.99999 to 57  // ci_cardiac_output_t0 
@@ -6441,7 +6447,7 @@ node ci_diastolic_blood_pressure_t0 {
 		   0.1107272,   0.1332091,   0.1354659,   0.1311622,   0.1227238,   0.1110041,   0.09623524,  0.0781884,   0.05591033,  0.02537375);  // normal               ;
 	title = "ci diastolic blood pressure t0";
 	whenchanged = 1646864571;
-	belief = (0.09672713, 0.1161008, 0.1180456, 0.1143369, 0.1070651, 0.09696575, 0.08497589, 0.07587398, 0.07782143, 0.1120874);
+	belief = (0.09672713, 0.1161008, 0.1180456, 0.1143369, 0.1070651, 0.09696575, 0.08497589, 0.07587399, 0.07782143, 0.1120874);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -6452,10 +6458,10 @@ node ci_diastolic_blood_pressure_t0 {
 	};
 
 node ci_oxygen_saturation_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (100.00001, 99, 98, 97, 96, 95, 94, 93, 92.12, 91, 83.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypoxaemia_t1);
 	probs = 
 		// 99 to 100    98 to 99     97 to 98     96 to 97     95 to 96     94 to 95     93 to 94     92.12 to 93  91 to 92.12  84 to 91      // ci_hypoxaemia_t1 
@@ -6464,21 +6470,21 @@ node ci_oxygen_saturation_t1 {
 		   0.2595538,   0.3007032,   0.2081743,   0.1170547,   0.05489777,  0.02087924,  0.009684246, 0.009684246, 0.009684246, 0.009684246); // normal           ;
 	title = "ci oxygen saturation t1";
 	whenchanged = 1646864571;
-	belief = (0.122606, 0.1508333, 0.1196604, 0.08913978, 0.07144884, 0.06611034, 0.07064395, 0.07977161, 0.08872116, 0.1410646);
+	belief = (0.122606, 0.1508333, 0.1196604, 0.08913977, 0.07144883, 0.06611034, 0.07064395, 0.0797716, 0.08872116, 0.1410646);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V3 {
-		center = (2088, 1163);
+		center = (2088, 1162);
 		height = 76;
 		};
 	};
 
 node ci_po2_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (195.00001, 96, 90, 81.6, 73, 68.2125, 66, 61.75, 56.25, 47.6, 9.69999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_hypoxaemia_t1);
 	probs = 
 		// 96 to 195    90 to 96     81.6 to 90   73 to 81.6   68.2125 to 73 66 to 68.2125 61.75 to 66 56.25 to 61.75 47.6 to 56.25 9.69999 to 47.6  // ci_hypoxaemia_t1 
@@ -6487,21 +6493,21 @@ node ci_po2_t1 {
 		   0.3904641,   0.3203343,   0.1589626,   0.06263746,  0.01971808,  0.009576696, 0.009576696, 0.009576696, 0.009576696, 0.009576696); // normal           ;
 	title = "ci po2 t1";
 	whenchanged = 1646864571;
-	belief = (0.1810004, 0.1638549, 0.1131785, 0.09058811, 0.08591172, 0.08664031, 0.08109598, 0.06525788, 0.04282252, 0.08964966);
+	belief = (0.1810004, 0.1638549, 0.1131785, 0.09058812, 0.08591172, 0.08664031, 0.08109597, 0.06525788, 0.04282251, 0.08964965);
 	user U1 {
 		submodel = "pulmonary";
 		};
 	visual V3 {
-		center = (2266, 1163);
+		center = (2266, 1162);
 		height = 77;
 		};
 	};
 
 node ci_systolic_blood_pressure_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (228.00001, 155.8, 142.8, 135, 128, 122, 116.4, 110, 105, 99.6, 71.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_cardiac_output_t1);
 	probs = 
 		// 155.8 to 228 142.8 to 155.8 135 to 142.8 128 to 135 122 to 128   116.4 to 122 110 to 116.4 105 to 110   99.6 to 105  72 to 99.6    // ci_cardiac_output_t1 
@@ -6509,7 +6515,7 @@ node ci_systolic_blood_pressure_t1 {
 		   0.1191868,   0.129032,    0.1277078,   0.122992,    0.11602,     0.1070595,   0.09597772,  0.08221563,  0.06428299,  0.03552554);  // normal               ;
 	title = "ci systolic blood pressure t1";
 	whenchanged = 1646864571;
-	belief = (0.09236103, 0.10371, 0.1057026, 0.1050904, 0.1030072, 0.09991562, 0.09611569, 0.09202531, 0.08904377, 0.1130284);
+	belief = (0.09236104, 0.10371, 0.1057026, 0.1050904, 0.1030072, 0.09991562, 0.09611569, 0.09202531, 0.08904377, 0.1130284);
 	user U1 {
 		submodel = "cardiac";
 		};
@@ -6520,10 +6526,10 @@ node ci_systolic_blood_pressure_t1 {
 	};
 
 node ci_diastolic_blood_pressure_t1 {
-	kind = NATURE;
 	discrete = FALSE;
-	chance = CHANCE;
 	levels = (110.00001, 88, 80, 77.2, 72.6, 70, 66, 62.8, 59, 53, 36.99999);
+	kind = NATURE;
+	chance = CHANCE;
 	parents = (ci_cardiac_output_t1);
 	probs = 
 		// 88 to 110    80 to 88     77.2 to 80   72.6 to 77.2 70 to 72.6   66 to 70     62.8 to 66   59 to 62.8   53 to 59     37 to 53      // ci_cardiac_output_t1 
@@ -6531,7 +6537,7 @@ node ci_diastolic_blood_pressure_t1 {
 		   0.1244098,   0.1464817,   0.1452963,   0.1367195,   0.1237275,   0.1075183,   0.08865715,  0.06736826,  0.04355494,  0.01626659);  // normal               ;
 	title = "ci diastolic blood pressure t1";
 	whenchanged = 1646864571;
-	belief = (0.09044256, 0.1059921, 0.105157, 0.09911466, 0.08996188, 0.0785426, 0.06912106, 0.08114322, 0.1387107, 0.1418143);
+	belief = (0.09044256, 0.1059921, 0.105157, 0.09911466, 0.08996188, 0.0785426, 0.06912106, 0.0811432, 0.1387107, 0.1418143);
 	user U1 {
 		submodel = "cardiac";
 		};
