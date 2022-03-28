@@ -1,14 +1,14 @@
 import _env,csv,math
 from bni_netica import *
 
-bn_models = {"0" :'jump5_start0_period0.dne',\
-             "1" :'jump5_start1plus_period0.dne', \
-             "2" :'jump5_start0_period1.dne', \
-             "3" :'jump5_start1plus_period1.dne', \
-             "4" :'jump5_start0_period2.dne', \
-             "5" :'jump5_start1plus_period2.dne'}
+bn_models = {"0" :'jump5_start0_period0.trained.dne',\
+             "1" :'jump5_start1plus_period0.trained.dne', \
+             "2" :'jump5_start0_period1.trained.dne', \
+             "3" :'jump5_start1plus_period1.trained.dne', \
+             "4" :'jump5_start0_period2.trained.dne', \
+             "5" :'jump5_start1plus_period2.trained.dne'}
 
-default_model = "jump5_start0_period2.dne"
+default_model = "jump5_start0_period2.trained.dne"
 
 nested_dictionary = { }
 
@@ -106,13 +106,13 @@ def updateBn(param_dict):
                             senior_result = senior_fraction/sum_fraction
                     node.likelihoods([senior_result, adult_result,young_result])
                     print ('    setting node likelihoods: ', node.likelihoods())
-                elif node.name() == 'ci_gender_bg':
-                    if 'ci_gender_bg' in param_dict.keys() and param_dict['ci_gender_bg'] == 'other':
-                        print ('    Updating gender to: ',  param_dict[node.name()])
-                        node.likelihoods([1, 1])
-                    elif 'ci_gender_bg' in param_dict.keys():
-                        print ('    Updating gender to: ',  param_dict[node.name()])
-                        enterFinding(node, param_dict[node.name()])
+                #elif node.name() == 'ci_gender_bg':
+                #    if 'ci_gender_bg' in param_dict.keys() and param_dict['ci_gender_bg'] == 'other':
+                #        print ('    Updating gender to: ',  param_dict[node.name()])
+                #        node.likelihoods([1, 1])
+                #    elif 'ci_gender_bg' in param_dict.keys():
+                #        print ('    Updating gender to: ',  param_dict[node.name()])
+                #        enterFinding(node, param_dict[node.name()])
                 elif node.type() == Node.CONTINUOUS_TYPE:
                     print ('    Interpolating: ' + node.name() + " with value: ",  param_dict[node.name()])
                     interpolate (node, (param_dict[node.name()]))
