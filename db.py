@@ -64,7 +64,7 @@ def create_tables(db_file):
         print("creating table (if it does not exist): subject")
         cursor.execute('''    
         CREATE TABLE IF NOT EXISTS subject (id integer primary key not null,
-            USUBJID, STUDYID, DOMAIN, RFSTDTC, DTHFL, AGE, AGETXT, AGEU, SEX, RACE, ETHNIC, ARMCD, ARM, COUNTRY, DMDY, DSDECOD, ci_sa_medicalHistory, ci_sa_symptomsOnAdmission, ci_vs_weight, ci_vs_weight_u, ci_vs_height, ci_vs_height_u, ci_vs_bmi, ci_vs_bmi_u, ci_ho_duration, ci_ho_disout, ci_ho_selfcare, HYPERTENSION, CHRONIC_PULMONARY_DISEASE, SMOKING___FORMER, CHRONIC_INFLAMMATORY_DISEASE, OBESITY, OTHER_COMORBIDITIES, CHRONIC_CARDIAC_DISEASE, DIABETES, CHRONIC_NEUROLOGICAL_DISORDER, DEMENTIA, MALNUTRITION, CHRONIC_KIDNEY_DISEASE, SMOKING, DIABETES___TYPE_2, ASTHMA, AIDS_HIV, TUBERCULOSIS, RHEUMATOLOGIC_DISORDER, MALIGNANT_NEOPLASM, HISTORY_OF_PERIPHERAL_OR_CARDI, LIVER_DISEASE, CHRONIC_HEMATOLOGIC_DISEASE, ASPLENIA, DIABETES___TYPE_1, VALVULAR_HEART_DISEASE, SOLID_TUMOR_WITHOUT_METASTASIS, PEPTIC_ULCER_DISEASE_EXCLUDING, CONGESTIVE_HEART_FAILURE, DEPRESSION, STROKE_OR_OTHER_NEUROLOGICAL_D, HEMATOLOGIC_MALIGNANCY, DYSLIPIDEMIA_HYPERLIPIDEMIA, PSYCHOSIS, COVID_19_SYMPTOMS, FATIGUE_MALAISE, SHORTNESS_OF_BREATH, COUGH, MUSCLE_ACHES_JOINT_PAIN, HEADACHE, HISTORY_OF_FEVER, COUGH___WITH_SPUTUM, DIARRHOEA, UPPER_RESPIRATORY_TRACT_SYMPTO, SEIZURES, ABDOMINAL_PAIN, VOMITING_NAUSEA, ALTERED_CONSCIOUSNESS_CONFUSIO, COUGH___NO_SPUTUM, WHEEZING, LYMPHADENOPATHY, SORE_THROAT, LOSS_OF_SMELL, LOSS_OF_TASTE, CHEST_PAIN, RUNNY_NOSE, COUGH_BLOODY_SPUTUM, ANOREXIA, INABILITY_TO_WALK, SKIN_RASH, CONJUNCTIVITIS, CHILLS_RIGORS, MYALGIA_OR_FATIGUE, BACTERIAL_PNEUMONIA, ACUTE_HYPOXIC_RESPIRATORY_FAIL, SEPSIS, SHOCK, SEVERE_DEHYDRATION, OTHER_SIGNS_AND_SYMPTOMS, BLEEDING, SKIN_ULCERS, HEMOGLOBINURIA, LEUKOCYTURIA, PROTEINURIA, HEMATURIA, EAR_PAIN, COUGH_BLOODY_SPUTUM___HAEMOPTY, LETHARGY, REFUSING_TO_EAT_OR_DRINK_HISTO, ci_ICU text, ci_InvVent text)
+            USUBJID, STUDYID, DOMAIN, RFSTDTC, DTHFL, AGE, AGETXT, AGEU, SEX, RACE, ETHNIC, ARMCD, ARM, COUNTRY, DMDY, DSDECOD, BaselineStatus, ci_sa_medicalHistory, ci_sa_symptomsOnAdmission, ci_vs_weight, ci_vs_weight_u, ci_vs_height, ci_vs_height_u, ci_vs_bmi, ci_vs_bmi_u, ci_ho_duration, ci_ho_disout, ci_ho_selfcare, HYPERTENSION, CHRONIC_PULMONARY_DISEASE, SMOKING___FORMER, CHRONIC_INFLAMMATORY_DISEASE, OBESITY, OTHER_COMORBIDITIES, CHRONIC_CARDIAC_DISEASE, DIABETES, CHRONIC_NEUROLOGICAL_DISORDER, DEMENTIA, MALNUTRITION, CHRONIC_KIDNEY_DISEASE, SMOKING, DIABETES___TYPE_2, ASTHMA, AIDS_HIV, TUBERCULOSIS, RHEUMATOLOGIC_DISORDER, MALIGNANT_NEOPLASM, HISTORY_OF_PERIPHERAL_OR_CARDI, LIVER_DISEASE, CHRONIC_HEMATOLOGIC_DISEASE, ASPLENIA, DIABETES___TYPE_1, VALVULAR_HEART_DISEASE, SOLID_TUMOR_WITHOUT_METASTASIS, PEPTIC_ULCER_DISEASE_EXCLUDING, CONGESTIVE_HEART_FAILURE, DEPRESSION, STROKE_OR_OTHER_NEUROLOGICAL_D, HEMATOLOGIC_MALIGNANCY, DYSLIPIDEMIA_HYPERLIPIDEMIA, PSYCHOSIS, COVID_19_SYMPTOMS, FATIGUE_MALAISE, SHORTNESS_OF_BREATH, COUGH, MUSCLE_ACHES_JOINT_PAIN, HEADACHE, HISTORY_OF_FEVER, COUGH___WITH_SPUTUM, DIARRHOEA, UPPER_RESPIRATORY_TRACT_SYMPTO, SEIZURES, ABDOMINAL_PAIN, VOMITING_NAUSEA, ALTERED_CONSCIOUSNESS_CONFUSIO, COUGH___NO_SPUTUM, WHEEZING, LYMPHADENOPATHY, SORE_THROAT, LOSS_OF_SMELL, LOSS_OF_TASTE, CHEST_PAIN, RUNNY_NOSE, COUGH_BLOODY_SPUTUM, ANOREXIA, INABILITY_TO_WALK, SKIN_RASH, CONJUNCTIVITIS, CHILLS_RIGORS, MYALGIA_OR_FATIGUE, BACTERIAL_PNEUMONIA, ACUTE_HYPOXIC_RESPIRATORY_FAIL, SEPSIS, SHOCK, SEVERE_DEHYDRATION, OTHER_SIGNS_AND_SYMPTOMS, BLEEDING, SKIN_ULCERS, HEMOGLOBINURIA, LEUKOCYTURIA, PROTEINURIA, HEMATURIA, EAR_PAIN, COUGH_BLOODY_SPUTUM___HAEMOPTY, LETHARGY, REFUSING_TO_EAT_OR_DRINK_HISTO, ci_ICU text, ci_InvVent text)
         ''')
         #commit the change to the db
         conn.commit()
@@ -110,7 +110,7 @@ def update_tables(db_file, json_data):
         
         #insert the json into SQL
         for item in json_data:
-            sql = "INSERT INTO subject (SEX, AGE, CHRONIC_PULMONARY_DISEASE, COVID_19_SYMPTOMS, ci_ho_disout, ci_ICU, ci_sa_symptomsOnAdmission, ci_ho_duration, ci_InvVent) VALUES (?,?,?,?,?,?,?,?,?)"
+            sql = "INSERT INTO subject (SEX, AGE, CHRONIC_PULMONARY_DISEASE, COVID_19_SYMPTOMS, ci_ho_disout, ci_ICU, BaselineStatus, ci_ho_duration, ci_InvVent) VALUES (?,?,?,?,?,?,?,?,?)"
             value_gender = str(item.get('Gender'))
             value_age = str(item.get('Age'))
             value_pulmonary = str(item.get('ChronicPulmonaryDisease'))
@@ -120,21 +120,22 @@ def update_tables(db_file, json_data):
             value_baseline_status = str(item.get('BaselineStatus'))
             value_stay_duration = item.get('DurationOfStay')
             value_oxygen = str(item.get('OxygenTreatment'))
-			
+            
             print(sql, value_gender, value_age, value_pulmonary, value_covid_status, value_final_status, value_icu, value_baseline_status, value_stay_duration, value_oxygen)
-			
+            
             cursor.execute(sql, (value_gender, value_age, value_pulmonary, value_covid_status, value_final_status, value_icu, value_baseline_status, value_stay_duration, value_oxygen,))
             conn.commit()
-			
+            
             cursor.execute("SELECT last_insert_rowid()")
             last_id = cursor.fetchone()
             print("last_id ", int(last_id[0]))   
             #insert time series int(weight[0])records into SQL
             for inner_item in item.get('TimeSeries'):
-                sql = "INSERT INTO timeSeries (Timestamp, usubjid, ci_Heart_Rate, ci_Heart_Rate_u, ci_TROPONIN, ci_TROPONIN_u, ci_Diastolic_Blood_Pressure, ci_Diastolic_Blood_Pressure_u, ci_Systolic_Blood_Pressure, ci_Systolic_Blood_Pressure_u, ci_CRP, ci_CRP_u, ci_LDH, ci_LDH_u, ci_LYM, ci_LYM_u, ci_NEUT, ci_NEUT_u, ci_Oxygen_Saturation, ci_Oxygen_Saturation_u, ci_PO2, ci_PO2_u, ci_PCO2, ci_PCO2_u, ci_Respiratory_Rate, ci_Respiratory_Rate_u, ci_APTT, ci_APTT_u, ci_PLAT, ci_PLAT_u, ci_DDIMER, ci_DDIMER_u, ci_CREAT, ci_CREAT_u, ci_LACTICAC, ci_LACTICAC_u, ci_HCT, ci_HCT_u, OxygenTreatment, Status, PulmonaryComplication, CardiacComplication, VascularComplication, AntiCoagulation, AntiInflammatory, AntiViral) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
+                sql = "INSERT INTO timeSeries (usubjid, Timestamp, ci_ho_type, ci_Heart_Rate, ci_Heart_Rate_u, ci_TROPONIN, ci_TROPONIN_u, ci_Diastolic_Blood_Pressure, ci_Diastolic_Blood_Pressure_u, ci_Systolic_Blood_Pressure, ci_Systolic_Blood_Pressure_u, ci_CRP, ci_CRP_u, ci_LDH, ci_LDH_u, ci_LYM, ci_LYM_u, ci_NEUT, ci_NEUT_u, ci_Oxygen_Saturation, ci_Oxygen_Saturation_u, ci_PO2, ci_PO2_u, ci_PCO2, ci_PCO2_u, ci_Respiratory_Rate, ci_Respiratory_Rate_u, ci_APTT, ci_APTT_u, ci_PLAT, ci_PLAT_u, ci_DDIMER, ci_DDIMER_u, ci_CREAT, ci_CREAT_u, ci_LACTICAC, ci_LACTICAC_u, ci_HCT, ci_HCT_u, OxygenTreatment, Status, PulmonaryComplication, CardiacComplication, VascularComplication, AntiCoagulation, AntiInflammatory, AntiViral) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"
             
-                value_timestamp = str(inner_item.get('Timestamp'))
                 value_usubjid = int(last_id[0])
+                value_timestamp = str(inner_item.get('Timestamp'))
+                value_status = str(inner_item.get('Status'))
                 value_heart_rate = str(inner_item.get('HeartRate'))
                 value_heart_rate_u = str(inner_item.get('HeartRateU'))
                 value_troponin = str(inner_item.get('Troponin'))
@@ -150,7 +151,7 @@ def update_tables(db_file, json_data):
                 value_lymphocytes = str(inner_item.get('Lymphocytes'))
                 value_lymphocytes_u = str(inner_item.get('LymphocytesU'))
                 value_neutrophils = str(inner_item.get('Neutrophils'))
-                value_neutrophils_u = str(inner_item.get('NeutrophilsU'))	
+                value_neutrophils_u = str(inner_item.get('NeutrophilsU'))
                 value_oxygen_saturation = str(inner_item.get('OxygenSaturation'))
                 value_oxygen_saturation_u = str(inner_item.get('OxygenSaturationU'))
                 value_po2 = str(inner_item.get('PO2'))
@@ -180,9 +181,9 @@ def update_tables(db_file, json_data):
                 value_antiinflammatory = str(inner_item.get('AntiInflammatory'))
                 value_antiviral = str(inner_item.get('AntiViral'))
             
-                print(sql, value_timestamp, value_usubjid, value_heart_rate, value_heart_rate_u, value_troponin,value_troponin_u, value_diastolic_bp, value_diastolic_bp_u, value_systolic_bp, value_systolic_bp_u, value_crp, value_crp_u, value_ldh, value_ldh_u, value_lymphocytes, value_lymphocytes_u, value_neutrophils, value_neutrophils_u, value_oxygen_saturation, value_oxygen_saturation_u, value_po2, value_po2_u, value_pco2, value_pco2_u, value_respiratory_rate, value_respiratory_rate_u, value_aptt, value_aptt_u, value_platelets, value_platelets_u, value_ddimer, value_ddimer_u, value_creatinine, value_creatinine_u, value_lactate, value_lactate_u, value_hematocrit, value_hematocrit_u, value_oxygen_treatment, value_status, value_pulmonary_complication, value_cardiac_complication, value_vascular_complication, value_anticoagulation, value_antiinflammatory, value_antiviral)
-				
-                cursor.execute(sql, (value_timestamp, value_usubjid, value_heart_rate, value_heart_rate_u, value_troponin,value_troponin_u, value_diastolic_bp, value_diastolic_bp_u, value_systolic_bp, value_systolic_bp_u, value_crp, value_crp_u, value_ldh, value_ldh_u, value_lymphocytes, value_lymphocytes_u, value_neutrophils, value_neutrophils_u, value_oxygen_saturation, value_oxygen_saturation_u, value_po2, value_po2_u, value_pco2, value_pco2_u, value_respiratory_rate, value_respiratory_rate_u, value_aptt, value_aptt_u, value_platelets, value_platelets_u, value_ddimer, value_ddimer_u, value_creatinine, value_creatinine_u, value_lactate, value_lactate_u, value_hematocrit, value_hematocrit_u, value_oxygen_treatment, value_status, value_pulmonary_complication, value_cardiac_complication, value_vascular_complication, value_anticoagulation, value_antiinflammatory, value_antiviral,))
+                print(sql, value_usubjid, value_timestamp, value_status, value_heart_rate, value_heart_rate_u, value_troponin,value_troponin_u, value_diastolic_bp, value_diastolic_bp_u, value_systolic_bp, value_systolic_bp_u, value_crp, value_crp_u, value_ldh, value_ldh_u, value_lymphocytes, value_lymphocytes_u, value_neutrophils, value_neutrophils_u, value_oxygen_saturation, value_oxygen_saturation_u, value_po2, value_po2_u, value_pco2, value_pco2_u, value_respiratory_rate, value_respiratory_rate_u, value_aptt, value_aptt_u, value_platelets, value_platelets_u, value_ddimer, value_ddimer_u, value_creatinine, value_creatinine_u, value_lactate, value_lactate_u, value_hematocrit, value_hematocrit_u, value_oxygen_treatment, value_status, value_pulmonary_complication, value_cardiac_complication, value_vascular_complication, value_anticoagulation, value_antiinflammatory, value_antiviral)
+                
+                cursor.execute(sql, (value_usubjid, value_timestamp, value_status, value_heart_rate, value_heart_rate_u, value_troponin,value_troponin_u, value_diastolic_bp, value_diastolic_bp_u, value_systolic_bp, value_systolic_bp_u, value_crp, value_crp_u, value_ldh, value_ldh_u, value_lymphocytes, value_lymphocytes_u, value_neutrophils, value_neutrophils_u, value_oxygen_saturation, value_oxygen_saturation_u, value_po2, value_po2_u, value_pco2, value_pco2_u, value_respiratory_rate, value_respiratory_rate_u, value_aptt, value_aptt_u, value_platelets, value_platelets_u, value_ddimer, value_ddimer_u, value_creatinine, value_creatinine_u, value_lactate, value_lactate_u, value_hematocrit, value_hematocrit_u, value_oxygen_treatment, value_status, value_pulmonary_complication, value_cardiac_complication, value_vascular_complication, value_anticoagulation, value_antiinflammatory, value_antiviral,))
                 conn.commit()
  
 
